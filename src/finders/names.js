@@ -82,7 +82,8 @@ function readWords(text, pos, max = 4) {
     const m = WORD.exec(text);
     if (!m) break;
     const raw = m[0].replace(/\.+$/, (dots) => (m[0].length <= 2 ? dots : ""));
-    words.push({ text: raw, start: i, end: i + raw.length, lower: raw.toLowerCase().replace(/\.$/, "") });
+    const label = /^[ \t]*:/.test(text.slice(i + m[0].length, i + m[0].length + 3));
+    words.push({ text: raw, start: i, end: i + raw.length, lower: raw.toLowerCase().replace(/\.$/, ""), label });
     i = i + m[0].length;
     // a name never continues across sentence punctuation or line breaks
     if (/^[,;!?\n]/.test(text.slice(i, i + 1)) || /^\.\s/.test(text.slice(i - 1, i + 1)) && raw.length > 2) break;
@@ -94,10 +95,12 @@ const isCap = (w) => /^[A-Z]/.test(w.text);
 const isInitial = (w) => /^[A-Za-z]\.?$/.test(w.text) && isCap(w);
 const known = (w) => FIRST_NAMES.has(w.lower) || SURNAMES.has(w.lower);
 
-function takeWhile(words, ok) {
+function takeWhile(words, ok, { labelled = false } = {}) {
   const out = [];
   for (const w of words) {
-    if (STOP.has(w.lower) || NOT_NAME.has(w.lower) && !known(w)) break;
+    if (w.label) break;
+    // after an explicit "Name:" label any capitalised word counts; elsewhere common words end the name
+    if (STOP.has(w.lower) || (NOT_NAME.has(w.lower) && !known(w) && !(labelled && isCap(w)))) break;
     if (!ok(w, out.length)) break;
     out.push(w);
   }
@@ -117,7 +120,7 @@ export function findNames(text) {
   while ((m = STRONG.exec(text))) {
     const read = readWords(text, m.index + m[0].length, 5);
     while (read.length && HONOR_WORDS.has(read[0].lower)) read.shift();
-    const words = takeWhile(read, (w) => w.text.length > 1 || isInitial(w));
+    const words = takeWhile(read, (w) => w.text.length > 1 || isInitial(w), { labelled: true });
     const s = span(words, 0.95);
     if (s) out.push(s);
   }
@@ -151,6 +154,8 @@ export function findNames(text) {
 
   HONORIFIC.lastIndex = 0;
   while ((m = HONORIFIC.exec(text))) {
+    // "MS Excel", "DR Congo": capitalised short forms without a dot are not titles
+    if (/^(?:MS|MR|DR|SH|ER|KM)\s/.test(m[0])) continue;
     const taken = takeWhile(readWords(text, m.index + m[0].length), (w) => isCap(w) || known(w));
     const s = span(taken, 0.9);
     if (s) out.push(s);
@@ -174,6 +179,16 @@ export function findNames(text) {
     out.push({ start: m.index, end: m.index + m[1].length, confidence: 0.75 });
   }
 
+  // résumé header: the first line is 2-4 name words and contact details follow soon after
+  const header = text.match(/^[ \t]*((?:[A-Z][a-z]+|[A-Z]{2,})(?:[ \t]+(?:[A-Z][a-z]+|[A-Z]{2,}|[A-Z]\.)){1,3})[ \t]*(?:\n|[|•·]|$)/);
+  if (header && /@|\+?\d[\d\s-]{9,}|linkedin|github/i.test(text.slice(0, 400))) {
+    const words = header[1].split(/\s+/).map((w) => w.toLowerCase());
+    if (!words.some((w) => NOT_NAME.has(w) || PLACE_AFTER.has(w) || PLACES.has(w))) {
+      const start = header.index + header[0].indexOf(header[1]);
+      out.push({ start, end: start + header[1].length, confidence: 0.85 });
+    }
+  }
+
   // CSV / export rows: "Nirav Thummar,9123456780,nirav@x.in"
   CSV_ROW.lastIndex = 0;
   while ((m = CSV_ROW.exec(text))) {
@@ -191,6 +206,8 @@ const PLACE_AFTER = new Set(`
 nagar road rd marg chowk place colony vihar enclave park street st market bazar bazaar ganj puram pur layout
 circle station hospital college school university institute stadium airport bridge setu bhawan bhavan sadan
 hall maidan ground garden gardens gate temple mandir masjid church nagri basti chauraha tower towers complex
+vidyalaya vidyapeeth vidyapith vidyapeetham academy convent mahavidyalaya vishwavidyalaya gurukul polytechnic
+iti pvt ltd limited technologies solutions services industries enterprises infotech labs
 society apartments residency memorial trust foundation award awards scheme yojana express mall cinema
 `.trim().split(/\s+/));
 
@@ -252,9 +269,15 @@ function dictionaryNames(text) {
       if (nx && adjacent(w, nx) && isCap(nx) && !NOT_NAME.has(nx.lower) && !FIRST_NAMES.has(nx.lower)) {
         end = i + 1;
         confidence = 0.75;
+        const third = words[i + 2];
+        if (third && adjacent(nx, third) && isCap(third) && (SURNAMES.has(third.lower) || looksLikeSurname(third))) {
+          end = i + 2;
+          confidence = 0.85;
+        }
       } else if (!AMBIGUOUS_FIRST.has(w.lower)) confidence = 0.65;
     }
     if (!confidence) continue;
+    if (run.some((x, k) => k > 0 && PLACE_AFTER.has(x.lower)) || (end > i && PLACE_AFTER.has(words[end].lower))) continue;
     const after = words[end + 1];
     if (after && adjacent(words[end], after) && PLACE_AFTER.has(after.lower)) continue;
 

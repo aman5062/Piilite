@@ -53,9 +53,11 @@ export class Piilite {
   constructor(options = {}) {
     const preset = resolvePreset(options.preset);
     this.options = { ...DEFAULTS, ...preset, ...options };
-    const { types, exclude, customPatterns = [] } = this.options;
+    const { types, exclude, include = [], customPatterns = [] } = this.options;
     let patterns = [...builtinPatterns, ...customPatterns];
-    if (types?.length) patterns = patterns.filter((p) => types.includes(p.type));
+    // opt-in types (LOCATION) only run when named in `types` or `include`
+    patterns = patterns.filter((p) => !p.optIn || include.includes(p.type) || types?.includes(p.type));
+    if (types?.length) patterns = patterns.filter((p) => types.includes(p.type) || include.includes(p.type));
     if (exclude?.length) patterns = patterns.filter((p) => !exclude.includes(p.type));
     this.patterns = patterns;
     this.allow = (this.options.allow ?? []).map((a) => (a instanceof RegExp ? a : new RegExp(`^${escapeRe(a)}$`, "i")));

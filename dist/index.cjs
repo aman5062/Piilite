@@ -719,6 +719,7 @@ var BANKS = [
   "cooperative bank",
   "gramin bank"
 ];
+var INSTITUTION = /\b(?:university|college|school|institute|academy|vidyalaya|vidya|mandir|road|street|nagar|sector|hospital|bank|ltd|limited|pvt|technologies|solutions|office)\b/i;
 var MONTHS = "jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?";
 var noState = (value) => {
   const code = value.slice(0, 2).toUpperCase();
@@ -1012,6 +1013,28 @@ var indiaPatterns = [
     priority: 75,
     severity: "high"
   },
+  // ---------------------------------------------------------------- location (opt-in)
+  {
+    // a city alone rarely identifies a person, and search / matching often needs it,
+    // so LOCATION only runs when asked for: new Piilite({ include: ["LOCATION"] })
+    type: "LOCATION",
+    // each extra word must not start the next field: "Based in: Pune Open to: Full-time"
+    regex: /\b(?:based\s+in|location|current\s+location|city|home\s*town|native\s+place|native|hometown|place\s+of\s+birth|birth\s*place|from|resides?\s+in)\s*[:\-]\s*([A-Z][A-Za-z.]+(?:[ \t]+(?![A-Za-z]+(?:[ \t]+[a-z]+)?[ \t]*:)[A-Z][A-Za-z.]+){0,3}(?:,[ \t]*[A-Z][A-Za-z.]+(?:[ \t]+(?![A-Za-z]+(?:[ \t]+[a-z]+)?[ \t]*:)[A-Z][A-Za-z.]+){0,2}){0,2})/gid,
+    validator: (val) => /^[A-Z]/.test(val) && !INSTITUTION.test(val),
+    group: 1,
+    optIn: true,
+    priority: 45,
+    severity: "low"
+  },
+  {
+    // "Kotputli, Rajasthan", "Andheri, Mumbai"
+    type: "LOCATION",
+    regex: new RegExp(`(?<![A-Za-z])[A-Z][a-z]+(?:[ \\t]+[A-Z][a-z]+)?,[ \\t]*(?:${CITY_OR_STATE})\\b(?:,[ \\t]*India\\b)?`, "gi"),
+    validator: (val) => /^[A-Z]/.test(val) && /,\s*[A-Z]/.test(val) && !INSTITUTION.test(val),
+    optIn: true,
+    priority: 44,
+    severity: "low"
+  },
   // ---------------------------------------------------------------- PIN codes
   {
     type: "PINCODE",
@@ -1143,9 +1166,27 @@ var globalPatterns = [
   },
   {
     type: "SOCIAL_PROFILE",
-    regex: /(?:https?:\/\/)?(?:www\.|[a-z]{2}\.)?(?:linkedin\.com\/in|github\.com|twitter\.com|x\.com|instagram\.com|facebook\.com|fb\.com|t\.me|wa\.me)\/[A-Za-z0-9_.\-%]{2,100}\/?/gi,
-    validator: (val) => !/\/(?:login|signup|share|sharer|home|explore|search|about|help|settings|intent|hashtag)\b/i.test(val),
+    regex: /(?:https?:\/\/)?(?:www\.|[a-z]{2}\.)?(?:linkedin\.com\/in|github\.com|gitlab\.com|bitbucket\.org|twitter\.com|x\.com|instagram\.com|facebook\.com|fb\.com|t\.me|wa\.me|leetcode\.com(?:\/u)?|codechef\.com\/users|codeforces\.com\/profile|hackerrank\.com(?:\/profile)?|geeksforgeeks\.org\/user|auth\.geeksforgeeks\.org\/user|kaggle\.com|medium\.com|dev\.to|behance\.net|dribbble\.com|stackoverflow\.com\/users\/\d+|youtube\.com\/(?:@|c\/|channel\/)?|threads\.net\/@?|hashnode\.com\/@)\/?@?[A-Za-z0-9_.\-%]{2,100}\/?/gi,
+    validator: (val) => !/\/(?:login|signup|share|sharer|home|explore|search|about|help|settings|intent|hashtag|problems|contest|discuss|jobs|pricing|features)\b/i.test(val),
     priority: 86,
+    severity: "medium"
+  },
+  {
+    // "GitHub: handle", "Leetcode (handle)", "LinkedIn - handle"
+    type: "SOCIAL_PROFILE",
+    regex: /\b(?:github|gitlab|leetcode|linkedin|codechef|codeforces|hackerrank|hackerearth|kaggle|gfg|geeksforgeeks|twitter|insta(?:gram)?|medium|behance|dribbble|telegram|discord)\s*(?:id|handle|username|profile)?\s*(?::|-|\(|=)\s*@?([A-Za-z0-9][A-Za-z0-9_.\-]{2,60})(?=\)|[\s,|;]|$)/gid,
+    group: 1,
+    // a handle has a digit, "_", "-", ".", camelCase, or is a long lowercase word; "Projects" is not one
+    validator: (val) => /\d|[_.-]|[a-z][A-Z]/.test(val) || val.length >= 6 && /^[a-z]+$/.test(val),
+    priority: 85,
+    severity: "medium"
+  },
+  {
+    // LinkedIn vanity slug with its generated suffix: "first-last-a1b2c3d4e"
+    type: "SOCIAL_PROFILE",
+    regex: /(?<![\w\/-])[a-z]+(?:-[a-z]+){1,4}-[0-9a-f]{6,12}(?![\w-])/g,
+    validator: (val) => /\d/.test(val.split("-").pop()),
+    priority: 84,
     severity: "medium"
   },
   {
@@ -1351,6 +1392,10 @@ village post office police station hospital school college university company pr
 government ministry department customer support service account card number phone mobile email address name
 amount total balance payment order invoice ticket date time and or but if then also not yes no ok okay my your
 our his her their its i we you he she they it is am are was were be been will shall can could would should
+excel word office powerpoint outlook access teams sql azure aws google microsoft python java javascript react
+node angular vue linux windows android ios figma canva tableau power bi git docker kubernetes resume curriculum
+vitae profile summary objective education experience skills projects certifications achievements languages
+software developer engineer intern student fresher full stack frontend backend data analyst scientist designer
 `.trim().split(/\s+/));
 
 // src/finders/names.js
@@ -1416,7 +1461,8 @@ function readWords(text, pos, max = 4) {
     const m = WORD.exec(text);
     if (!m) break;
     const raw = m[0].replace(/\.+$/, (dots) => m[0].length <= 2 ? dots : "");
-    words.push({ text: raw, start: i, end: i + raw.length, lower: raw.toLowerCase().replace(/\.$/, "") });
+    const label = /^[ \t]*:/.test(text.slice(i + m[0].length, i + m[0].length + 3));
+    words.push({ text: raw, start: i, end: i + raw.length, lower: raw.toLowerCase().replace(/\.$/, ""), label });
     i = i + m[0].length;
     if (/^[,;!?\n]/.test(text.slice(i, i + 1)) || /^\.\s/.test(text.slice(i - 1, i + 1)) && raw.length > 2) break;
   }
@@ -1425,10 +1471,11 @@ function readWords(text, pos, max = 4) {
 var isCap = (w) => /^[A-Z]/.test(w.text);
 var isInitial = (w) => /^[A-Za-z]\.?$/.test(w.text) && isCap(w);
 var known = (w) => FIRST_NAMES.has(w.lower) || SURNAMES.has(w.lower);
-function takeWhile(words, ok) {
+function takeWhile(words, ok, { labelled = false } = {}) {
   const out = [];
   for (const w of words) {
-    if (STOP.has(w.lower) || NOT_NAME.has(w.lower) && !known(w)) break;
+    if (w.label) break;
+    if (STOP.has(w.lower) || NOT_NAME.has(w.lower) && !known(w) && !(labelled && isCap(w))) break;
     if (!ok(w, out.length)) break;
     out.push(w);
   }
@@ -1445,7 +1492,7 @@ function findNames(text) {
   while (m = STRONG.exec(text)) {
     const read = readWords(text, m.index + m[0].length, 5);
     while (read.length && HONOR_WORDS.has(read[0].lower)) read.shift();
-    const words = takeWhile(read, (w) => w.text.length > 1 || isInitial(w));
+    const words = takeWhile(read, (w) => w.text.length > 1 || isInitial(w), { labelled: true });
     const s = span(words, 0.95);
     if (s) out.push(s);
   }
@@ -1473,6 +1520,7 @@ function findNames(text) {
   }
   HONORIFIC.lastIndex = 0;
   while (m = HONORIFIC.exec(text)) {
+    if (/^(?:MS|MR|DR|SH|ER|KM)\s/.test(m[0])) continue;
     const taken = takeWhile(readWords(text, m.index + m[0].length), (w) => isCap(w) || known(w));
     const s = span(taken, 0.9);
     if (s) out.push(s);
@@ -1492,6 +1540,14 @@ function findNames(text) {
     if (NOT_NAME.has(first) || PLACES.has(m[1].toLowerCase())) continue;
     out.push({ start: m.index, end: m.index + m[1].length, confidence: 0.75 });
   }
+  const header = text.match(/^[ \t]*((?:[A-Z][a-z]+|[A-Z]{2,})(?:[ \t]+(?:[A-Z][a-z]+|[A-Z]{2,}|[A-Z]\.)){1,3})[ \t]*(?:\n|[|•·]|$)/);
+  if (header && /@|\+?\d[\d\s-]{9,}|linkedin|github/i.test(text.slice(0, 400))) {
+    const words = header[1].split(/\s+/).map((w) => w.toLowerCase());
+    if (!words.some((w) => NOT_NAME.has(w) || PLACE_AFTER.has(w) || PLACES.has(w))) {
+      const start = header.index + header[0].indexOf(header[1]);
+      out.push({ start, end: start + header[1].length, confidence: 0.85 });
+    }
+  }
   CSV_ROW.lastIndex = 0;
   while (m = CSV_ROW.exec(text)) {
     const start = m.index + m[0].indexOf(m[1]);
@@ -1505,6 +1561,8 @@ var PLACE_AFTER = new Set(`
 nagar road rd marg chowk place colony vihar enclave park street st market bazar bazaar ganj puram pur layout
 circle station hospital college school university institute stadium airport bridge setu bhawan bhavan sadan
 hall maidan ground garden gardens gate temple mandir masjid church nagri basti chauraha tower towers complex
+vidyalaya vidyapeeth vidyapith vidyapeetham academy convent mahavidyalaya vishwavidyalaya gurukul polytechnic
+iti pvt ltd limited technologies solutions services industries enterprises infotech labs
 society apartments residency memorial trust foundation award awards scheme yojana express mall cinema
 `.trim().split(/\s+/));
 var SURNAME_ENDING = /^[A-Z][a-z]{2,}(?:kar|ekar|wala|walla|wale|wani|vani|ani|iya|ariya|ariya|ji|appa|amma|esan|ayya|aiah|anna)$/;
@@ -1554,9 +1612,15 @@ function dictionaryNames(text) {
       if (nx && adjacent(w, nx) && isCap(nx) && !NOT_NAME.has(nx.lower) && !FIRST_NAMES.has(nx.lower)) {
         end = i + 1;
         confidence = 0.75;
+        const third = words[i + 2];
+        if (third && adjacent(nx, third) && isCap(third) && (SURNAMES.has(third.lower) || looksLikeSurname(third))) {
+          end = i + 2;
+          confidence = 0.85;
+        }
       } else if (!AMBIGUOUS_FIRST.has(w.lower)) confidence = 0.65;
     }
     if (!confidence) continue;
+    if (run.some((x, k) => k > 0 && PLACE_AFTER.has(x.lower)) || end > i && PLACE_AFTER.has(words[end].lower)) continue;
     const after = words[end + 1];
     if (after && adjacent(words[end], after) && PLACE_AFTER.has(after.lower)) continue;
     out.push({ start, end: words[end].end, confidence });
@@ -1848,9 +1912,10 @@ var Piilite = class {
   constructor(options = {}) {
     const preset = resolvePreset(options.preset);
     this.options = { ...DEFAULTS, ...preset, ...options };
-    const { types, exclude, customPatterns = [] } = this.options;
+    const { types, exclude, include = [], customPatterns = [] } = this.options;
     let patterns = [...builtinPatterns, ...customPatterns];
-    if (types?.length) patterns = patterns.filter((p) => types.includes(p.type));
+    patterns = patterns.filter((p) => !p.optIn || include.includes(p.type) || types?.includes(p.type));
+    if (types?.length) patterns = patterns.filter((p) => types.includes(p.type) || include.includes(p.type));
     if (exclude?.length) patterns = patterns.filter((p) => !exclude.includes(p.type));
     this.patterns = patterns;
     this.allow = (this.options.allow ?? []).map((a) => a instanceof RegExp ? a : new RegExp(`^${escapeRe(a)}$`, "i"));

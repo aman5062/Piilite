@@ -35,6 +35,9 @@ const BANKS = [
   "india post", "ippb", "cooperative bank", "gramin bank",
 ];
 
+// Organisations, not places where a person lives
+const INSTITUTION = /\b(?:university|college|school|institute|academy|vidyalaya|vidya|mandir|road|street|nagar|sector|hospital|bank|ltd|limited|pvt|technologies|solutions|office)\b/i;
+
 const MONTHS = "jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?";
 
 const noState = (value) => {
@@ -325,6 +328,29 @@ export const indiaPatterns = [
     },
     priority: 75,
     severity: "high",
+  },
+
+  // ---------------------------------------------------------------- location (opt-in)
+  {
+    // a city alone rarely identifies a person, and search / matching often needs it,
+    // so LOCATION only runs when asked for: new Piilite({ include: ["LOCATION"] })
+    type: "LOCATION",
+    // each extra word must not start the next field: "Based in: Pune Open to: Full-time"
+    regex: /\b(?:based\s+in|location|current\s+location|city|home\s*town|native\s+place|native|hometown|place\s+of\s+birth|birth\s*place|from|resides?\s+in)\s*[:\-]\s*([A-Z][A-Za-z.]+(?:[ \t]+(?![A-Za-z]+(?:[ \t]+[a-z]+)?[ \t]*:)[A-Z][A-Za-z.]+){0,3}(?:,[ \t]*[A-Z][A-Za-z.]+(?:[ \t]+(?![A-Za-z]+(?:[ \t]+[a-z]+)?[ \t]*:)[A-Z][A-Za-z.]+){0,2}){0,2})/gid,
+    validator: (val) => /^[A-Z]/.test(val) && !INSTITUTION.test(val),
+    group: 1,
+    optIn: true,
+    priority: 45,
+    severity: "low",
+  },
+  {
+    // "Kotputli, Rajasthan", "Andheri, Mumbai"
+    type: "LOCATION",
+    regex: new RegExp(`(?<![A-Za-z])[A-Z][a-z]+(?:[ \\t]+[A-Z][a-z]+)?,[ \\t]*(?:${CITY_OR_STATE})\\b(?:,[ \\t]*India\\b)?`, "gi"),
+    validator: (val) => /^[A-Z]/.test(val) && /,\s*[A-Z]/.test(val) && !INSTITUTION.test(val),
+    optIn: true,
+    priority: 44,
+    severity: "low",
   },
 
   // ---------------------------------------------------------------- PIN codes

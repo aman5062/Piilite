@@ -167,4 +167,8 @@ village post office police station hospital school college university company pr
 government ministry department customer support service account card number phone mobile email address name
 amount total balance payment order invoice ticket date time and or but if then also not yes no ok okay my your
 our his her their its i we you he she they it is am are was were be been will shall can could would should
+excel word office powerpoint outlook access teams sql azure aws google microsoft python java javascript react
+node angular vue linux windows android ios figma canva tableau power bi git docker kubernetes resume curriculum
+vitae profile summary objective education experience skills projects certifications achievements languages
+software developer engineer intern student fresher full stack frontend backend data analyst scientist designer
 `.trim().split(/\s+/));

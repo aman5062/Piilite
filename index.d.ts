@@ -4,7 +4,7 @@ export type PiiType =
   | "AADHAAR" | "AADHAAR_VID" | "PAN" | "GSTIN" | "TAN" | "CIN" | "UPI_ID" | "BANK_ACCOUNT" | "IFSC"
   | "PHONE_IN" | "VOTER_ID" | "PASSPORT_IN" | "DRIVING_LICENSE" | "VEHICLE_REG" | "RATION_CARD"
   | "ABHA" | "ABHA_ADDRESS" | "UAN" | "ESIC" | "OTP" | "PIN_SECRET" | "DATE_OF_BIRTH" | "PINCODE"
-  | "NAME" | "ADDRESS" | "EMAIL" | "PHONE" | "CREDIT_CARD" | "CVV" | "CARD_EXPIRY" | "IBAN" | "SWIFT_BIC"
+  | "NAME" | "ADDRESS" | "LOCATION" | "EMAIL" | "PHONE" | "CREDIT_CARD" | "CVV" | "CARD_EXPIRY" | "IBAN" | "SWIFT_BIC"
   | "SSN" | "IP_ADDRESS" | "MAC_ADDRESS" | "IMEI" | "SOCIAL_PROFILE" | "API_KEY" | "PRIVATE_KEY" | "JWT"
   | "BEARER_TOKEN" | "CONNECTION_STRING" | "URL_CREDENTIALS" | "PASSWORD"
   | (string & {});
@@ -39,6 +39,8 @@ export interface PiiPattern {
   negativeContext?: RegExp;
   /** Accept a failed validator when context is present */
   lenient?: boolean;
+  /** Only runs when named in `types` or `include` */
+  optIn?: boolean;
   /** May be trimmed around higher-priority matches instead of dropped */
   region?: boolean;
 }
@@ -80,6 +82,8 @@ export interface PiiliteOptions {
   onDetect?: (result: DetectionResult) => void;
   /** How to replace PII (default "placeholder" → "[PHONE_IN_1]") */
   mode?: RedactionMode;
+  /** Also run opt-in types, e.g. ["LOCATION"] */
+  include?: PiiType[];
   /** Only detect these types */
   types?: PiiType[];
   /** Detect everything except these types */

@@ -117,9 +117,27 @@ export const globalPatterns = [
   },
   {
     type: "SOCIAL_PROFILE",
-    regex: /(?:https?:\/\/)?(?:www\.|[a-z]{2}\.)?(?:linkedin\.com\/in|github\.com|twitter\.com|x\.com|instagram\.com|facebook\.com|fb\.com|t\.me|wa\.me)\/[A-Za-z0-9_.\-%]{2,100}\/?/gi,
-    validator: (val) => !/\/(?:login|signup|share|sharer|home|explore|search|about|help|settings|intent|hashtag)\b/i.test(val),
+    regex: /(?:https?:\/\/)?(?:www\.|[a-z]{2}\.)?(?:linkedin\.com\/in|github\.com|gitlab\.com|bitbucket\.org|twitter\.com|x\.com|instagram\.com|facebook\.com|fb\.com|t\.me|wa\.me|leetcode\.com(?:\/u)?|codechef\.com\/users|codeforces\.com\/profile|hackerrank\.com(?:\/profile)?|geeksforgeeks\.org\/user|auth\.geeksforgeeks\.org\/user|kaggle\.com|medium\.com|dev\.to|behance\.net|dribbble\.com|stackoverflow\.com\/users\/\d+|youtube\.com\/(?:@|c\/|channel\/)?|threads\.net\/@?|hashnode\.com\/@)\/?@?[A-Za-z0-9_.\-%]{2,100}\/?/gi,
+    validator: (val) => !/\/(?:login|signup|share|sharer|home|explore|search|about|help|settings|intent|hashtag|problems|contest|discuss|jobs|pricing|features)\b/i.test(val),
     priority: 86,
+    severity: "medium",
+  },
+  {
+    // "GitHub: handle", "Leetcode (handle)", "LinkedIn - handle"
+    type: "SOCIAL_PROFILE",
+    regex: /\b(?:github|gitlab|leetcode|linkedin|codechef|codeforces|hackerrank|hackerearth|kaggle|gfg|geeksforgeeks|twitter|insta(?:gram)?|medium|behance|dribbble|telegram|discord)\s*(?:id|handle|username|profile)?\s*(?::|-|\(|=)\s*@?([A-Za-z0-9][A-Za-z0-9_.\-]{2,60})(?=\)|[\s,|;]|$)/gid,
+    group: 1,
+    // a handle has a digit, "_", "-", ".", camelCase, or is a long lowercase word; "Projects" is not one
+    validator: (val) => /\d|[_.-]|[a-z][A-Z]/.test(val) || (val.length >= 6 && /^[a-z]+$/.test(val)),
+    priority: 85,
+    severity: "medium",
+  },
+  {
+    // LinkedIn vanity slug with its generated suffix: "first-last-a1b2c3d4e"
+    type: "SOCIAL_PROFILE",
+    regex: /(?<![\w\/-])[a-z]+(?:-[a-z]+){1,4}-[0-9a-f]{6,12}(?![\w-])/g,
+    validator: (val) => /\d/.test(val.split("-").pop()),
+    priority: 84,
     severity: "medium",
   },
   {
