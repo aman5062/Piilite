@@ -1,0 +1,48 @@
+{
+  "name": "piilite",
+  "version": "0.1.0",
+  "description": "Lightweight, zero-dependency, India-first PII detection and masking for JavaScript. Aadhaar, PAN, GSTIN, UPI, +91 phones, names, addresses and more, using patterns only (no AI model).",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "bench": "node bench/bench.js"
+  },
+  "keywords": [
+    "pii",
+    "redaction",
+    "masking",
+    "privacy",
+    "india",
+    "aadhaar",
+    "pan",
+    "gstin",
+    "upi",
+    "dpdp",
+    "llm",
+    "anonymization"
+  ],
+  "author": "Aman kumar keshri <amank232004@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aman5062/Piilite.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false
+}
