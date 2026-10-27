@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redact PII before sending prompts to ChatGPT, Claude or Gemini</title>
+<meta name="description" content="Mask personal data in prompts to ChatGPT, Claude, Gemini or local models, restore it in the answer, and redact streaming LLM responses with piilite.">
+<link rel="canonical" href="https://aman5062.github.io/Piilite/llm/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Aman kumar keshri">
+<meta name="keywords" content="redact pii before llm, mask pii chatgpt, llm data privacy, pii redaction streaming, anonymize prompt, restore pii llm response, express pii middleware">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="piilite">
+<meta property="og:title" content="Redact PII before sending prompts to ChatGPT, Claude or Gemini">
+<meta property="og:description" content="Mask personal data in prompts to ChatGPT, Claude, Gemini or local models, restore it in the answer, and redact streaming LLM responses with piilite.">
+<meta property="og:url" content="https://aman5062.github.io/Piilite/llm/">
+<meta property="og:image" content="https://aman5062.github.io/Piilite/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="piilite: India-first PII detection and masking for JavaScript">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Redact PII before sending prompts to ChatGPT, Claude or Gemini">
+<meta name="twitter:description" content="Mask personal data in prompts to ChatGPT, Claude, Gemini or local models, restore it in the answer, and redact streaming LLM responses with piilite.">
+<meta name="twitter:image" content="https://aman5062.github.io/Piilite/assets/og.png">
+<meta name="theme-color" content="#0f766e" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" href="../sitemap.xml">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://aman5062.github.io/Piilite/#website","url":"https://aman5062.github.io/Piilite/","name":"piilite","description":"Lightweight, zero-dependency, India-first PII detection and masking for JavaScript.","inLanguage":"en","publisher":{"@id":"https://aman5062.github.io/Piilite/#author"}},{"@type":"Person","@id":"https://aman5062.github.io/Piilite/#author","name":"Aman kumar keshri","url":"https://github.com/aman5062"},{"@type":"SoftwareApplication","@id":"https://aman5062.github.io/Piilite/#software","name":"piilite","description":"Lightweight, zero-dependency, India-first PII detection and masking for JavaScript.","applicationCategory":"DeveloperApplication","applicationSubCategory":"PII detection and data masking library","operatingSystem":"Cross-platform: Node.js 18+, browsers, Bun, Deno","softwareVersion":"0.2.0","url":"https://aman5062.github.io/Piilite/","downloadUrl":"https://www.npmjs.com/package/piilite","installUrl":"https://www.npmjs.com/package/piilite","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://aman5062.github.io/Piilite/#author"},"featureList":["Aadhaar detection with Verhoeff checksum","PAN and GSTIN validation","UPI ID, bank account and IFSC detection","Indian mobile and landline numbers in every format","Indian names and addresses, Hinglish and 10 Indian languages","OTP, password and API key redaction","Placeholder, mask and remove modes","Restore original values in LLM answers","Streaming redaction for LLM token streams","DPDP Act 2023, KYC, GDPR, HIPAA and PCI presets","Express middleware and React hooks","Optional OpenRedaction bridge for 110 global ID types"],"keywords":"pii detection, pii redaction, data masking, aadhaar, pan, gstin, upi, dpdp act, javascript, typescript, npm, llm privacy, india, openredaction alternative","softwareRequirements":"Node.js 18 or later, or any modern browser","fileSize":"26.6 KB (gzipped)"},{"@type":"SoftwareSourceCode","@id":"https://aman5062.github.io/Piilite/#source","name":"piilite","codeRepository":"https://github.com/aman5062/Piilite","programmingLanguage":["JavaScript","TypeScript"],"runtimePlatform":"Node.js","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://aman5062.github.io/Piilite/#author"},"targetProduct":{"@id":"https://aman5062.github.io/Piilite/#software"}},{"@type":"BreadcrumbList","@id":"https://aman5062.github.io/Piilite/llm/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"piilite","item":"https://aman5062.github.io/Piilite/"},{"@type":"ListItem","position":2,"name":"LLM apps","item":"https://aman5062.github.io/Piilite/llm/"}]},{"@type":"TechArticle","@id":"https://aman5062.github.io/Piilite/llm/#page","url":"https://aman5062.github.io/Piilite/llm/","name":"Redact PII before sending prompts to ChatGPT, Claude or Gemini","headline":"Using piilite with LLMs","description":"Mask personal data in prompts to ChatGPT, Claude, Gemini or local models, restore it in the answer, and redact streaming LLM responses with piilite.","inLanguage":"en","isPartOf":{"@id":"https://aman5062.github.io/Piilite/#website"},"about":{"@id":"https://aman5062.github.io/Piilite/#software"},"author":{"@id":"https://aman5062.github.io/Piilite/#author"},"datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://aman5062.github.io/Piilite/assets/og.png","breadcrumb":{"@id":"https://aman5062.github.io/Piilite/llm/#breadcrumb"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="bar">
+<a class="brand" href="../" aria-label="piilite home"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0f766e"/><path d="M32 12 16 18v12c0 11 7 19 16 22 9-3 16-11 16-22V18z" fill="#fff"/><rect x="22" y="29" width="20" height="6" rx="3" fill="#0f766e"/></svg><span>piilite</span></a>
+<nav class="nav" aria-label="Main"><ul class="nav-desktop"><li><a href="../">Home</a></li><li><a href="../guide/">Guide</a></li><li><a href="../india-pii/">Indian PII</a></li><li><a href="../llm/" aria-current="page">LLM apps</a></li><li><a href="../presets/">Presets</a></li><li><a href="../playground/">Playground</a></li><li><a href="../openredaction/">vs OpenRedaction</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../faq/">FAQ</a></li></ul><details class="nav-mobile"><summary class="nav-toggle">Menu</summary><ul><li><a href="../">Home</a></li><li><a href="../guide/">Guide</a></li><li><a href="../india-pii/">Indian PII</a></li><li><a href="../llm/" aria-current="page">LLM apps</a></li><li><a href="../presets/">Presets</a></li><li><a href="../playground/">Playground</a></li><li><a href="../openredaction/">vs OpenRedaction</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../faq/">FAQ</a></li></ul></details></nav>
+<a class="gh" href="https://github.com/aman5062/Piilite" aria-label="piilite on GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+</div></header>
+<main id="main">
+<div class="page"><article><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../">piilite</a></li><li aria-current="page">LLM apps</li></ol></nav>
+<h1>Redact PII before it reaches an LLM</h1>
+<p class="lead">Send user messages to ChatGPT, Claude, Gemini or a local model without sending the user's personal data, and still give a personal answer back.</p>
+
+<h2 id="why-redact-personal-data-before-calling-an-llm"><a class="anchor" href="#why-redact-personal-data-before-calling-an-llm">Why redact personal data before calling an LLM?</a></h2>
+<p class="answer">Prompts you send to a hosted model leave your servers, may be logged by the provider and can end up in your own logs and traces. Redacting first keeps Aadhaar numbers, phone numbers and names out of all of them, which is what India's DPDP Act and most security reviews expect.</p>
+
+<h2 id="how-do-i-redact-a-prompt-and-restore-the-answer"><a class="anchor" href="#how-do-i-redact-a-prompt-and-restore-the-answer">How do I redact a prompt and restore the answer?</a></h2>
+<p class="answer">Call <code>detect()</code> on the prompt, send <code>redacted</code> to the model, then call <code>restore()</code> on the answer with the <code>redactionMap</code>. Keep the map on your server.</p>
+<div class="code"><span class="lang">js</span><pre><code>import { Piilite } from &quot;piilite&quot;;
+const shield = new Piilite({ preset: &quot;dpdp&quot; });
+
+const { redacted, redactionMap } = shield.detect(userMessage);
+<span class="c-com">// &quot;Hi, I am [NAME_1], my number is [PHONE_IN_1]. Change my plan.&quot;</span>
+
+const answer = await callYourModel(redacted);
+<span class="c-com">// &quot;Sure [NAME_1], I have updated the plan for [PHONE_IN_1].&quot;</span>
+
+const reply = shield.restore(answer, redactionMap);
+<span class="c-com">// &quot;Sure Rahul Sharma, I have updated the plan for 9123456780.&quot;</span></code></pre></div>
+
+<h2 id="what-if-the-model-changes-the-placeholders"><a class="anchor" href="#what-if-the-model-changes-the-placeholders">What if the model changes the placeholders?</a></h2>
+<p class="answer">restore() is fuzzy by default: it also restores placeholders a model rewrote, such as [NAME 1], [name_1], NAME_1 or [ NAME-1 ]. Pass <code>{ fuzzy: false }</code> for exact matching only.</p>
+
+<h2 id="how-do-i-redact-streaming-llm-output"><a class="anchor" href="#how-do-i-redact-streaming-llm-output">How do I redact streaming LLM output?</a></h2>
+<p class="answer">Use <code>redactStream()</code> on any async iterable of text chunks. piilite holds back a short tail of text, so a value split across two chunks is never emitted half-redacted.</p>
+<div class="code"><span class="lang">js</span><pre><code>for await (const piece of shield.redactStream(modelTextStream)) {
+  process.stdout.write(piece);
+}
+
+<span class="c-com">// manual control</span>
+const stream = shield.createStream();
+socket.on(&quot;data&quot;, (chunk) =&gt; send(stream.push(chunk)));
+socket.on(&quot;end&quot;, () =&gt; send(stream.end()));
+
+<span class="c-com">// Web Streams (fetch, Deno, edge runtimes)</span>
+response.body.pipeThrough(new TextDecoderStream()).pipeThrough(shield.transformStream());</code></pre></div>
+
+<h2 id="how-do-i-redact-a-whole-chat-history-or-tool-result"><a class="anchor" href="#how-do-i-redact-a-whole-chat-history-or-tool-result">How do I redact a whole chat history or tool result?</a></h2>
+<p class="answer">Use <code>redactObject()</code>. It redacts every string in an object or array and gives the same value the same placeholder everywhere, so the model can still follow the conversation.</p>
+<div class="code"><span class="lang">js</span><pre><code>const { value, redactionMap } = shield.redactObject(
+  { messages, toolResult },
+  { skipKeys: [&quot;id&quot;, &quot;role&quot;] }
+);</code></pre></div>
+
+<h2 id="how-do-i-add-pii-redaction-to-an-express-api"><a class="anchor" href="#how-do-i-add-pii-redaction-to-an-express-api">How do I add PII redaction to an Express API?</a></h2>
+<p class="answer">Add <code>piiliteMiddleware()</code> after <code>express.json()</code>. It redacts <code>req.body</code> before your handlers run and keeps the originals on <code>req.pii</code>.</p>
+<div class="code"><span class="lang">js</span><pre><code>import express from &quot;express&quot;;
+import { piiliteMiddleware } from &quot;piilite/express&quot;;
+
+const app = express();
+app.use(express.json(), piiliteMiddleware({ preset: &quot;dpdp&quot; }));
+
+app.post(&quot;/chat&quot;, async (req, res) =&gt; {
+  const answer = await callYourModel(req.body.message); <span class="c-com">// already redacted</span>
+  res.json({ answer: req.pii.restore(answer) });
+});
+
+<span class="c-com">// reject requests that contain secrets with HTTP 422</span>
+app.use(&quot;/logs&quot;, piiliteMiddleware({ preset: &quot;secrets&quot;, block: true }));</code></pre></div>
+
+<h2 id="how-do-i-warn-users-before-they-send-personal-data"><a class="anchor" href="#how-do-i-warn-users-before-they-send-personal-data">How do I warn users before they send personal data?</a></h2>
+<p class="answer">Use the <code>usePIIDetector</code> React hook to check a message as the user types and show a warning or a redacted preview.</p>
+<div class="code"><span class="lang">jsx</span><pre><code>import { usePIIDetector } from &quot;piilite/react&quot;;
+
+function ChatInput({ text }) {
+  const { hasPII, redacted } = usePIIDetector(text);
+  return hasPII ? &lt;p&gt;This message contains personal data: {redacted}&lt;/p&gt; : null;
+}</code></pre></div>
+
+<h2 id="best-practices"><a class="anchor" href="#best-practices">Best practices</a></h2>
+<ul>
+<li>Redact model <strong>output</strong> too before you log or store it.</li>
+<li>Keep the <code>redactionMap</code> on the server, never in logs, analytics or the client.</li>
+<li>Use <code>mask</code> mode for display only; it keeps the last digits and is not anonymisation.</li>
+<li>Use <code>onDetect</code> to count what was redacted for audits, without storing the values.</li>
+</ul>
+<p class="updated">Last updated <time datetime="2026-10-27">27 October 2026</time> · piilite 0.2.0</p></article><nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#why-redact-personal-data-before-calling-an-llm">Why redact personal data before calling an LLM?</a></li><li><a href="#how-do-i-redact-a-prompt-and-restore-the-answer">How do I redact a prompt and restore the answer?</a></li><li><a href="#what-if-the-model-changes-the-placeholders">What if the model changes the placeholders?</a></li><li><a href="#how-do-i-redact-streaming-llm-output">How do I redact streaming LLM output?</a></li><li><a href="#how-do-i-redact-a-whole-chat-history-or-tool-result">How do I redact a whole chat history or tool result?</a></li><li><a href="#how-do-i-add-pii-redaction-to-an-express-api">How do I add PII redaction to an Express API?</a></li><li><a href="#how-do-i-warn-users-before-they-send-personal-data">How do I warn users before they send personal data?</a></li><li><a href="#best-practices">Best practices</a></li></ol></nav></div>
+</main>
+<footer class="site-footer"><div class="inner">
+<div><h2>piilite 0.2.0</h2><p>India-first PII detection and masking for JavaScript. MIT licensed.</p><p>Built by <a href="https://github.com/aman5062" rel="author">Aman kumar keshri</a>.</p></div>
+<div><h2>Docs</h2><ul><li><a href="../guide/">Guide</a></li><li><a href="../india-pii/">Indian PII types</a></li><li><a href="../llm/">LLM apps</a></li><li><a href="../presets/">Presets</a></li></ul></div>
+<div><h2>Learn</h2><ul><li><a href="../playground/">Playground</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../openredaction/">vs OpenRedaction</a></li><li><a href="../faq/">FAQ</a></li></ul></div>
+<div><h2>Project</h2><ul><li><a href="https://github.com/aman5062/Piilite" rel="noopener">GitHub</a></li><li><a href="https://www.npmjs.com/package/piilite" rel="noopener">npm</a></li><li><a href="https://github.com/aman5062/Piilite/issues" rel="noopener">Report an issue</a></li><li><a href="../llms.txt">llms.txt</a></li></ul></div>
+</div></footer>
+<script src="../assets/site.js" defer></script>
+
+</body>
+</html>

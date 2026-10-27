@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detect Aadhaar, PAN, GSTIN, UPI and Indian PII in JavaScript</title>
+<meta name="description" content="Detect and mask Aadhaar, PAN, GSTIN, UPI IDs, +91 phones, bank accounts, voter IDs, vehicle numbers, Indian names and addresses in JavaScript.">
+<link rel="canonical" href="https://aman5062.github.io/Piilite/india-pii/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Aman kumar keshri">
+<meta name="keywords" content="aadhaar validation javascript, pan validation regex, gstin checksum, upi id regex, indian phone number regex, verhoeff javascript, detect aadhaar number, mask aadhaar, pii india, dpdp">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="piilite">
+<meta property="og:title" content="Detect Aadhaar, PAN, GSTIN, UPI and Indian PII in JavaScript">
+<meta property="og:description" content="Detect and mask Aadhaar, PAN, GSTIN, UPI IDs, +91 phones, bank accounts, voter IDs, vehicle numbers, Indian names and addresses in JavaScript.">
+<meta property="og:url" content="https://aman5062.github.io/Piilite/india-pii/">
+<meta property="og:image" content="https://aman5062.github.io/Piilite/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="piilite: India-first PII detection and masking for JavaScript">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Detect Aadhaar, PAN, GSTIN, UPI and Indian PII in JavaScript">
+<meta name="twitter:description" content="Detect and mask Aadhaar, PAN, GSTIN, UPI IDs, +91 phones, bank accounts, voter IDs, vehicle numbers, Indian names and addresses in JavaScript.">
+<meta name="twitter:image" content="https://aman5062.github.io/Piilite/assets/og.png">
+<meta name="theme-color" content="#0f766e" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" href="../sitemap.xml">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://aman5062.github.io/Piilite/#website","url":"https://aman5062.github.io/Piilite/","name":"piilite","description":"Lightweight, zero-dependency, India-first PII detection and masking for JavaScript.","inLanguage":"en","publisher":{"@id":"https://aman5062.github.io/Piilite/#author"}},{"@type":"Person","@id":"https://aman5062.github.io/Piilite/#author","name":"Aman kumar keshri","url":"https://github.com/aman5062"},{"@type":"SoftwareApplication","@id":"https://aman5062.github.io/Piilite/#software","name":"piilite","description":"Lightweight, zero-dependency, India-first PII detection and masking for JavaScript.","applicationCategory":"DeveloperApplication","applicationSubCategory":"PII detection and data masking library","operatingSystem":"Cross-platform: Node.js 18+, browsers, Bun, Deno","softwareVersion":"0.2.0","url":"https://aman5062.github.io/Piilite/","downloadUrl":"https://www.npmjs.com/package/piilite","installUrl":"https://www.npmjs.com/package/piilite","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://aman5062.github.io/Piilite/#author"},"featureList":["Aadhaar detection with Verhoeff checksum","PAN and GSTIN validation","UPI ID, bank account and IFSC detection","Indian mobile and landline numbers in every format","Indian names and addresses, Hinglish and 10 Indian languages","OTP, password and API key redaction","Placeholder, mask and remove modes","Restore original values in LLM answers","Streaming redaction for LLM token streams","DPDP Act 2023, KYC, GDPR, HIPAA and PCI presets","Express middleware and React hooks","Optional OpenRedaction bridge for 110 global ID types"],"keywords":"pii detection, pii redaction, data masking, aadhaar, pan, gstin, upi, dpdp act, javascript, typescript, npm, llm privacy, india, openredaction alternative","softwareRequirements":"Node.js 18 or later, or any modern browser","fileSize":"26.6 KB (gzipped)"},{"@type":"SoftwareSourceCode","@id":"https://aman5062.github.io/Piilite/#source","name":"piilite","codeRepository":"https://github.com/aman5062/Piilite","programmingLanguage":["JavaScript","TypeScript"],"runtimePlatform":"Node.js","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://aman5062.github.io/Piilite/#author"},"targetProduct":{"@id":"https://aman5062.github.io/Piilite/#software"}},{"@type":"BreadcrumbList","@id":"https://aman5062.github.io/Piilite/india-pii/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"piilite","item":"https://aman5062.github.io/Piilite/"},{"@type":"ListItem","position":2,"name":"Indian PII","item":"https://aman5062.github.io/Piilite/india-pii/"}]},{"@type":"TechArticle","@id":"https://aman5062.github.io/Piilite/india-pii/#page","url":"https://aman5062.github.io/Piilite/india-pii/","name":"Detect Aadhaar, PAN, GSTIN, UPI and Indian PII in JavaScript","headline":"Detect Indian PII in JavaScript","description":"Detect and mask Aadhaar, PAN, GSTIN, UPI IDs, +91 phones, bank accounts, voter IDs, vehicle numbers, Indian names and addresses in JavaScript.","inLanguage":"en","isPartOf":{"@id":"https://aman5062.github.io/Piilite/#website"},"about":{"@id":"https://aman5062.github.io/Piilite/#software"},"author":{"@id":"https://aman5062.github.io/Piilite/#author"},"datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://aman5062.github.io/Piilite/assets/og.png","breadcrumb":{"@id":"https://aman5062.github.io/Piilite/india-pii/#breadcrumb"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="bar">
+<a class="brand" href="../" aria-label="piilite home"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0f766e"/><path d="M32 12 16 18v12c0 11 7 19 16 22 9-3 16-11 16-22V18z" fill="#fff"/><rect x="22" y="29" width="20" height="6" rx="3" fill="#0f766e"/></svg><span>piilite</span></a>
+<nav class="nav" aria-label="Main"><ul class="nav-desktop"><li><a href="../">Home</a></li><li><a href="../guide/">Guide</a></li><li><a href="../india-pii/" aria-current="page">Indian PII</a></li><li><a href="../llm/">LLM apps</a></li><li><a href="../presets/">Presets</a></li><li><a href="../playground/">Playground</a></li><li><a href="../openredaction/">vs OpenRedaction</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../faq/">FAQ</a></li></ul><details class="nav-mobile"><summary class="nav-toggle">Menu</summary><ul><li><a href="../">Home</a></li><li><a href="../guide/">Guide</a></li><li><a href="../india-pii/" aria-current="page">Indian PII</a></li><li><a href="../llm/">LLM apps</a></li><li><a href="../presets/">Presets</a></li><li><a href="../playground/">Playground</a></li><li><a href="../openredaction/">vs OpenRedaction</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../faq/">FAQ</a></li></ul></details></nav>
+<a class="gh" href="https://github.com/aman5062/Piilite" aria-label="piilite on GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+</div></header>
+<main id="main">
+<div class="page"><article><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../">piilite</a></li><li aria-current="page">Indian PII</li></ol></nav>
+<h1>Detect Aadhaar, PAN, GSTIN, UPI and other Indian PII in JavaScript</h1>
+<p class="lead">piilite detects every common Indian identity, tax, banking and contact format, checks real checksums, and understands how people in India actually write them.</p>
+
+<h2 id="which-indian-data-types-does-piilite-detect"><a class="anchor" href="#which-indian-data-types-does-piilite-detect">Which Indian data types does piilite detect?</a></h2>
+<div class="table"><table><thead><tr><th scope="col">Type</th><th scope="col">Example</th><th scope="col">How it is checked</th></tr></thead><tbody><tr><td><code>AADHAAR</code></td><td>4918 3726 5017</td><td>12 digits starting 2-9, Verhoeff checksum; skipped after UTR / order / ref labels</td></tr><tr><td><code>AADHAAR_VID</code></td><td>16-digit Virtual ID</td><td>Verhoeff checksum + &ldquo;VID&rdquo; nearby</td></tr><tr><td><code>PAN</code></td><td>ABCPS1234K</td><td>Structure + valid holder type (4th letter)</td></tr><tr><td><code>GSTIN</code></td><td>27AAPFU0939F1ZV</td><td>State code + embedded PAN + mod-36 checksum</td></tr><tr><td><code>UPI_ID</code></td><td>rahul@okhdfcbank</td><td>85+ known UPI handles; any handle when UPI, GPay or PhonePe is mentioned</td></tr><tr><td><code>PHONE_IN</code></td><td>+91 91234 56780</td><td>Mobile (6-9 start) and landline, every common format, spoken digits</td></tr><tr><td><code>BANK_ACCOUNT</code></td><td>A/c 50100234567890</td><td>9-18 digits after an account label or one of 40 bank names</td></tr><tr><td><code>IFSC</code></td><td>HDFC0001234</td><td>Structure</td></tr><tr><td><code>VOTER_ID</code></td><td>ABC1234567</td><td>EPIC structure</td></tr><tr><td><code>PASSPORT_IN</code></td><td>K1234567</td><td>Structure + &ldquo;passport&rdquo; label</td></tr><tr><td><code>DRIVING_LICENSE</code></td><td>MH12 20110012345</td><td>State code + RTO + year + number</td></tr><tr><td><code>VEHICLE_REG</code></td><td>MH 12 AB 1234, 22 BH 1234 AA</td><td>Real state / UT codes, Bharat series</td></tr><tr><td><code>ABHA</code></td><td>91-1234-5678-9012</td><td>ABDM health ID format, ABHA address <code>name@abdm</code></td></tr><tr><td><code>UAN</code>, <code>ESIC</code>, <code>RATION_CARD</code></td><td>UAN 100123456789</td><td>Label nearby</td></tr><tr><td><code>OTP</code>, <code>PIN_SECRET</code></td><td>OTP is 482913, UPI PIN 4821</td><td>Label nearby</td></tr><tr><td><code>DATE_OF_BIRTH</code></td><td>DOB 12/05/1998</td><td>Date after a birth label; real calendar date</td></tr><tr><td><code>PINCODE</code></td><td>Patna - 800001</td><td>Label, or after one of 220+ cities and states</td></tr><tr><td><code>NAME</code></td><td>mera naam Priya Verma hai</td><td>Intro phrases, labels, titles, S/O, 1,700-name dictionary, 10 languages</td></tr><tr><td><code>ADDRESS</code></td><td>Flat no 302, MG Road, Pune - 411001</td><td>Labels, house and village markers, landmarks, PIN codes</td></tr><tr><td><code>LOCATION</code> (opt-in)</td><td>Based in: Kotputli, Rajasthan</td><td>Profile labels and Town, State pairs</td></tr></tbody></table></div>
+<p>All examples on this page are fake values.</p>
+
+<h2 id="how-do-i-detect-aadhaar-numbers-in-javascript"><a class="anchor" href="#how-do-i-detect-aadhaar-numbers-in-javascript">How do I detect Aadhaar numbers in JavaScript?</a></h2>
+<p class="answer">Use <code>new Piilite({ types: ["AADHAAR"] })</code> and call <code>scan()</code>. piilite accepts 12-digit numbers written plain, with spaces or with dashes, and keeps only those that pass the Verhoeff checksum UIDAI uses.</p>
+<div class="code"><span class="lang">js</span><pre><code>import { Piilite, aadhaar } from &quot;piilite&quot;;
+
+const s = new Piilite({ types: [&quot;AADHAAR&quot;] });
+s.scan(&quot;Aadhaar: 4918 3726 5017&quot;);      <span class="c-com">// [{ type: &quot;AADHAAR&quot;, value: &quot;4918 3726 5017&quot;, ... }]</span>
+s.scan(&quot;UTR 412398765432 credited&quot;);    <span class="c-com">// [] (reference numbers are skipped)</span>
+
+aadhaar(&quot;491837265017&quot;);                <span class="c-com">// true: checksum only, no text needed</span></code></pre></div>
+<p>Numbers starting with 0 or 1 are never Aadhaar numbers. When the text says &ldquo;aadhaar&rdquo; (in English or eight Indian scripts), a number with a typo is still redacted, because the user clearly meant it as one.</p>
+
+<h2 id="how-do-i-validate-a-pan-number"><a class="anchor" href="#how-do-i-validate-a-pan-number">How do I validate a PAN number?</a></h2>
+<p class="answer">A PAN is five letters, four digits and a letter, and its fourth letter must be a valid holder type (P for a person, C for a company, H, F, A, T, B, L, J, G). piilite checks both and skips codes after labels like SKU or model.</p>
+<div class="code"><span class="lang">js</span><pre><code>import { pan } from &quot;piilite&quot;;
+pan(&quot;ABCPS1234K&quot;); <span class="c-com">// true</span>
+pan(&quot;ABCXS1234K&quot;); <span class="c-com">// false: X is not a holder type</span></code></pre></div>
+
+<h2 id="how-does-piilite-check-a-gstin"><a class="anchor" href="#how-does-piilite-check-a-gstin">How does piilite check a GSTIN?</a></h2>
+<p class="answer">A GSTIN must start with a real state code (01 to 38, 97 or 99), contain a valid PAN, and end with the correct mod-36 check character. piilite verifies all three, so a mistyped GSTIN is not mistaken for a valid one.</p>
+<div class="code"><span class="lang">js</span><pre><code>import { gstin } from &quot;piilite&quot;;
+gstin(&quot;27AAPFU0939F1ZV&quot;); <span class="c-com">// true</span></code></pre></div>
+
+<h2 id="how-do-i-detect-upi-ids"><a class="anchor" href="#how-do-i-detect-upi-ids">How do I detect UPI IDs?</a></h2>
+<p class="answer">piilite recognises UPI IDs on 85+ known handles such as <code>@okhdfcbank</code>, <code>@ybl</code>, <code>@paytm</code> and <code>@oksbi</code>. Any other <code>name@handle</code> counts when the text mentions UPI, GPay, PhonePe, Paytm or BHIM.</p>
+<div class="code"><span class="lang">js</span><pre><code>import { redact } from &quot;piilite&quot;;
+redact(&quot;pay rahul.k@okhdfcbank or 9123456780@ybl&quot;); <span class="c-com">// &quot;pay [UPI_ID_1] or [UPI_ID_2]&quot;</span></code></pre></div>
+
+<h2 id="which-indian-phone-number-formats-are-supported"><a class="anchor" href="#which-indian-phone-number-formats-are-supported">Which Indian phone number formats are supported?</a></h2>
+<p class="answer">piilite detects Indian mobile numbers starting with 6-9 and landlines with STD codes, in every common format. It also understands digits in Indian scripts and numbers spoken in English or Hinglish.</p>
+<div class="table"><table><thead><tr><th scope="col">Written as</th><th scope="col">Detected</th></tr></thead><tbody><tr><td>9123456780, 91234 56780, 912-345-6780</td><td>Yes</td></tr><tr><td>+91 91234 56780, +919123456780, 0091 9123456780, 919123456780</td><td>Yes</td></tr><tr><td>091234 56780, 011-23456781 (landline)</td><td>Yes</td></tr><tr><td>९१२३४५६७८० (Devanagari), ৯১২৩৪৫৬৭৮০ (Bengali)</td><td>Yes</td></tr><tr><td>nine one two three &hellip;, nau ek do teen &hellip;</td><td>Yes</td></tr><tr><td>9999999999, 9876543210 (test numbers)</td><td>No, skipped on purpose</td></tr></tbody></table></div>
+
+<h2 id="how-do-i-detect-bank-account-numbers-and-ifsc-codes"><a class="anchor" href="#how-do-i-detect-bank-account-numbers-and-ifsc-codes">How do I detect bank account numbers and IFSC codes?</a></h2>
+<p class="answer">Bank account numbers are 9 to 18 digits, so piilite only flags them after an account label (A/c, account, khata) or a bank name such as SBI or HDFC. IFSC codes are matched by their structure: four letters, a zero, and six characters.</p>
+<div class="code"><span class="lang">js</span><pre><code>redact(&quot;my SBI A/c 50100234567890, IFSC SBIN0004512&quot;);
+<span class="c-com">// &quot;my SBI A/c [BANK_ACCOUNT_1], IFSC [IFSC_1]&quot;</span></code></pre></div>
+
+<h2 id="how-does-piilite-find-indian-names"><a class="anchor" href="#how-does-piilite-find-indian-names">How does piilite find Indian names?</a></h2>
+<p class="answer">piilite finds names from the words around them and from a dictionary of 1,100 first names and 640 surnames from every region, without an AI model.</p>
+<ul>
+<li><strong>Intros:</strong> my name is, mera naam &hellip; hai, myself, this is, and &ldquo;my name is&rdquo; in Hindi, Marathi, Bengali, Punjabi, Gujarati, Odia, Tamil, Telugu, Kannada and Malayalam.</li>
+<li><strong>Labels:</strong> Name:, Father's Name:, Candidate:, Beneficiary:, JSON keys like <code>cust_name</code>.</li>
+<li><strong>Titles and relations:</strong> Shri, Smt, Dr., Kumari, S/O, W/O, D/O.</li>
+<li><strong>Patterns:</strong> initials (K. Ramesh), surname endings (-kar, -wala, -iya), résumé header lines, CSV rows.</li>
+</ul>
+<p>Places named after people (Gandhi Nagar, Nehru Place), schools (Vidya Mandir) and tools (MS Excel) are not flagged.</p>
+
+<h2 id="how-does-piilite-find-indian-addresses"><a class="anchor" href="#how-does-piilite-find-indian-addresses">How does piilite find Indian addresses?</a></h2>
+<p class="answer">piilite finds addresses that start at a label (Address:, Ship to:, mera pata, ঠিকানা:), a house or village marker (Flat no, H.No, Vill., Post, Dist.) or a landmark (near, opp, Sector 15), and ends them at the PIN code.</p>
+<div class="code"><span class="lang">js</span><pre><code>redact(&quot;Address: Flat no 302, Sai Krupa Apartment, MG Road, Pune - 411001. Phone 9123456780&quot;);
+<span class="c-com">// &quot;Address: [ADDRESS_1]. Phone [PHONE_IN_1]&quot;</span></code></pre></div>
+
+<h2 id="can-piilite-redact-cities-and-locations"><a class="anchor" href="#can-piilite-redact-cities-and-locations">Can piilite redact cities and locations?</a></h2>
+<p class="answer">Yes, with the opt-in <code>LOCATION</code> type. It is off by default because a city alone rarely identifies a person and search or matching features often need it.</p>
+<div class="code"><span class="lang">js</span><pre><code>new Piilite({ include: [&quot;LOCATION&quot;] }).redact(&quot;Based in: Kotputli, Rajasthan&quot;);
+<span class="c-com">// &quot;Based in: [LOCATION_1]&quot;</span></code></pre></div>
+<p class="updated">Last updated <time datetime="2026-10-27">27 October 2026</time> · piilite 0.2.0</p></article><nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#which-indian-data-types-does-piilite-detect">Which Indian data types does piilite detect?</a></li><li><a href="#how-do-i-detect-aadhaar-numbers-in-javascript">How do I detect Aadhaar numbers in JavaScript?</a></li><li><a href="#how-do-i-validate-a-pan-number">How do I validate a PAN number?</a></li><li><a href="#how-does-piilite-check-a-gstin">How does piilite check a GSTIN?</a></li><li><a href="#how-do-i-detect-upi-ids">How do I detect UPI IDs?</a></li><li><a href="#which-indian-phone-number-formats-are-supported">Which Indian phone number formats are supported?</a></li><li><a href="#how-do-i-detect-bank-account-numbers-and-ifsc-codes">How do I detect bank account numbers and IFSC codes?</a></li><li><a href="#how-does-piilite-find-indian-names">How does piilite find Indian names?</a></li><li><a href="#how-does-piilite-find-indian-addresses">How does piilite find Indian addresses?</a></li><li><a href="#can-piilite-redact-cities-and-locations">Can piilite redact cities and locations?</a></li></ol></nav></div>
+</main>
+<footer class="site-footer"><div class="inner">
+<div><h2>piilite 0.2.0</h2><p>India-first PII detection and masking for JavaScript. MIT licensed.</p><p>Built by <a href="https://github.com/aman5062" rel="author">Aman kumar keshri</a>.</p></div>
+<div><h2>Docs</h2><ul><li><a href="../guide/">Guide</a></li><li><a href="../india-pii/">Indian PII types</a></li><li><a href="../llm/">LLM apps</a></li><li><a href="../presets/">Presets</a></li></ul></div>
+<div><h2>Learn</h2><ul><li><a href="../playground/">Playground</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../openredaction/">vs OpenRedaction</a></li><li><a href="../faq/">FAQ</a></li></ul></div>
+<div><h2>Project</h2><ul><li><a href="https://github.com/aman5062/Piilite" rel="noopener">GitHub</a></li><li><a href="https://www.npmjs.com/package/piilite" rel="noopener">npm</a></li><li><a href="https://github.com/aman5062/Piilite/issues" rel="noopener">Report an issue</a></li><li><a href="../llms.txt">llms.txt</a></li></ul></div>
+</div></footer>
+<script src="../assets/site.js" defer></script>
+
+</body>
+</html>

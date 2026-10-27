@@ -1,0 +1,29 @@
+# piilite
+
+> piilite is a lightweight (26.6 KB gzipped), zero-dependency JavaScript library for India-first PII detection and masking. It detects Aadhaar (Verhoeff checksum), PAN, GSTIN (mod-36 checksum), UPI IDs, +91 phone numbers, bank accounts, voter IDs, vehicle numbers, Indian names and addresses (Hinglish and 10 Indian languages), OTPs and API keys, and is built for apps that send user text to LLMs. MIT licensed. Install: `npm install piilite`. Current version: 0.2.0.
+
+Key facts:
+- Usage: `import { Piilite } from "piilite"; new Piilite().detect(text)` returns `{ redacted, detections, redactionMap }`; `restore(answer, redactionMap)` puts values back.
+- Runs locally in Node.js 18+, browsers, Bun and Deno; no AI model and no network calls.
+- Held-out benchmark (480 samples): 84.3% recall and 99.7% precision, vs 45.7% and 76.7% for OpenRedaction 1.1.5.
+- Presets: dpdp (India's DPDP Act 2023), kyc, fintech, pci, healthcare, hr, secrets, gdpr, hipaa.
+- Detected types: PRIVATE_KEY, API_KEY, JWT, BEARER_TOKEN, CONNECTION_STRING, URL_CREDENTIALS, PASSWORD, OTP, PIN_SECRET, AADHAAR_VID, AADHAAR, UAN, ESIC, ABHA, ABHA_ADDRESS, GSTIN, PAN, TAN, CIN, UPI_ID, BANK_ACCOUNT, IFSC, PHONE_IN, VOTER_ID, PASSPORT_IN, DRIVING_LICENSE, VEHICLE_REG, RATION_CARD, DATE_OF_BIRTH, LOCATION, PINCODE, EMAIL, CREDIT_CARD, CVV, CARD_EXPIRY, IBAN, SWIFT_BIC, SSN, PHONE, IP_ADDRESS, MAC_ADDRESS, SOCIAL_PROFILE, IMEI, NAME, ADDRESS.
+
+## Docs
+
+- [Guide](https://aman5062.github.io/Piilite/guide/): install, detect, masking modes, options, API, custom patterns, browser use
+- [Indian PII](https://aman5062.github.io/Piilite/india-pii/): Aadhaar, PAN, GSTIN, UPI, phone formats, bank accounts, names, addresses
+- [LLM apps](https://aman5062.github.io/Piilite/llm/): redact prompts, restore answers, streaming, chat payloads, Express, React
+- [Presets](https://aman5062.github.io/Piilite/presets/): DPDP, KYC, fintech, PCI, healthcare, HR, GDPR, HIPAA
+- [Accuracy](https://aman5062.github.io/Piilite/accuracy/): benchmark method and per-type results
+- [FAQ](https://aman5062.github.io/Piilite/faq/): common questions
+
+## Comparisons
+
+- [piilite vs OpenRedaction](https://aman5062.github.io/Piilite/openredaction/): accuracy, features, migration and the optional bridge
+
+## Optional
+
+- [Full documentation as Markdown](https://aman5062.github.io/Piilite/llms-full.txt)
+- [Source code](https://github.com/aman5062/Piilite)
+- [npm package](https://www.npmjs.com/package/piilite)

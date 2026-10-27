@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to use piilite: install, detect, mask and restore PII</title>
+<meta name="description" content="Step-by-step piilite guide: install from npm, detect PII, pick a masking mode, filter types, add custom patterns, and use it in TypeScript or the browser.">
+<link rel="canonical" href="https://aman5062.github.io/Piilite/guide/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Aman kumar keshri">
+<meta name="keywords" content="pii detection, pii redaction, data masking, aadhaar, pan, gstin, upi, dpdp act, javascript, typescript, npm, llm privacy, india, openredaction alternative">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="piilite">
+<meta property="og:title" content="How to use piilite: install, detect, mask and restore PII">
+<meta property="og:description" content="Step-by-step piilite guide: install from npm, detect PII, pick a masking mode, filter types, add custom patterns, and use it in TypeScript or the browser.">
+<meta property="og:url" content="https://aman5062.github.io/Piilite/guide/">
+<meta property="og:image" content="https://aman5062.github.io/Piilite/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="piilite: India-first PII detection and masking for JavaScript">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to use piilite: install, detect, mask and restore PII">
+<meta name="twitter:description" content="Step-by-step piilite guide: install from npm, detect PII, pick a masking mode, filter types, add custom patterns, and use it in TypeScript or the browser.">
+<meta name="twitter:image" content="https://aman5062.github.io/Piilite/assets/og.png">
+<meta name="theme-color" content="#0f766e" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" href="../sitemap.xml">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://aman5062.github.io/Piilite/#website","url":"https://aman5062.github.io/Piilite/","name":"piilite","description":"Lightweight, zero-dependency, India-first PII detection and masking for JavaScript.","inLanguage":"en","publisher":{"@id":"https://aman5062.github.io/Piilite/#author"}},{"@type":"Person","@id":"https://aman5062.github.io/Piilite/#author","name":"Aman kumar keshri","url":"https://github.com/aman5062"},{"@type":"SoftwareApplication","@id":"https://aman5062.github.io/Piilite/#software","name":"piilite","description":"Lightweight, zero-dependency, India-first PII detection and masking for JavaScript.","applicationCategory":"DeveloperApplication","applicationSubCategory":"PII detection and data masking library","operatingSystem":"Cross-platform: Node.js 18+, browsers, Bun, Deno","softwareVersion":"0.2.0","url":"https://aman5062.github.io/Piilite/","downloadUrl":"https://www.npmjs.com/package/piilite","installUrl":"https://www.npmjs.com/package/piilite","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://aman5062.github.io/Piilite/#author"},"featureList":["Aadhaar detection with Verhoeff checksum","PAN and GSTIN validation","UPI ID, bank account and IFSC detection","Indian mobile and landline numbers in every format","Indian names and addresses, Hinglish and 10 Indian languages","OTP, password and API key redaction","Placeholder, mask and remove modes","Restore original values in LLM answers","Streaming redaction for LLM token streams","DPDP Act 2023, KYC, GDPR, HIPAA and PCI presets","Express middleware and React hooks","Optional OpenRedaction bridge for 110 global ID types"],"keywords":"pii detection, pii redaction, data masking, aadhaar, pan, gstin, upi, dpdp act, javascript, typescript, npm, llm privacy, india, openredaction alternative","softwareRequirements":"Node.js 18 or later, or any modern browser","fileSize":"26.6 KB (gzipped)"},{"@type":"SoftwareSourceCode","@id":"https://aman5062.github.io/Piilite/#source","name":"piilite","codeRepository":"https://github.com/aman5062/Piilite","programmingLanguage":["JavaScript","TypeScript"],"runtimePlatform":"Node.js","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://aman5062.github.io/Piilite/#author"},"targetProduct":{"@id":"https://aman5062.github.io/Piilite/#software"}},{"@type":"BreadcrumbList","@id":"https://aman5062.github.io/Piilite/guide/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"piilite","item":"https://aman5062.github.io/Piilite/"},{"@type":"ListItem","position":2,"name":"Guide","item":"https://aman5062.github.io/Piilite/guide/"}]},{"@type":"TechArticle","@id":"https://aman5062.github.io/Piilite/guide/#page","url":"https://aman5062.github.io/Piilite/guide/","name":"How to use piilite: install, detect, mask and restore PII","headline":"piilite guide: install, detect, mask and restore","description":"Step-by-step piilite guide: install from npm, detect PII, pick a masking mode, filter types, add custom patterns, and use it in TypeScript or the browser.","inLanguage":"en","isPartOf":{"@id":"https://aman5062.github.io/Piilite/#website"},"about":{"@id":"https://aman5062.github.io/Piilite/#software"},"author":{"@id":"https://aman5062.github.io/Piilite/#author"},"datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://aman5062.github.io/Piilite/assets/og.png","breadcrumb":{"@id":"https://aman5062.github.io/Piilite/guide/#breadcrumb"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="bar">
+<a class="brand" href="../" aria-label="piilite home"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0f766e"/><path d="M32 12 16 18v12c0 11 7 19 16 22 9-3 16-11 16-22V18z" fill="#fff"/><rect x="22" y="29" width="20" height="6" rx="3" fill="#0f766e"/></svg><span>piilite</span></a>
+<nav class="nav" aria-label="Main"><ul class="nav-desktop"><li><a href="../">Home</a></li><li><a href="../guide/" aria-current="page">Guide</a></li><li><a href="../india-pii/">Indian PII</a></li><li><a href="../llm/">LLM apps</a></li><li><a href="../presets/">Presets</a></li><li><a href="../playground/">Playground</a></li><li><a href="../openredaction/">vs OpenRedaction</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../faq/">FAQ</a></li></ul><details class="nav-mobile"><summary class="nav-toggle">Menu</summary><ul><li><a href="../">Home</a></li><li><a href="../guide/" aria-current="page">Guide</a></li><li><a href="../india-pii/">Indian PII</a></li><li><a href="../llm/">LLM apps</a></li><li><a href="../presets/">Presets</a></li><li><a href="../playground/">Playground</a></li><li><a href="../openredaction/">vs OpenRedaction</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../faq/">FAQ</a></li></ul></details></nav>
+<a class="gh" href="https://github.com/aman5062/Piilite" aria-label="piilite on GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+</div></header>
+<main id="main">
+<div class="page"><article><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../">piilite</a></li><li aria-current="page">Guide</li></ol></nav>
+<h1>piilite guide: install, detect, mask and restore</h1>
+<p class="lead">Everything you need to use piilite in a Node.js, browser or TypeScript project, from installing it to writing your own patterns.</p>
+
+<h2 id="how-do-i-install-piilite"><a class="anchor" href="#how-do-i-install-piilite">How do I install piilite?</a></h2>
+<p class="answer">Install piilite from npm with <code>npm install piilite</code>. It has no dependencies and works with npm, pnpm, yarn and bun.</p>
+<div class="code"><span class="lang">bash</span><pre><code>npm install piilite
+<span class="c-com"># or</span>
+pnpm add piilite
+yarn add piilite
+bun add piilite</code></pre></div>
+
+<h2 id="how-do-i-detect-and-redact-pii"><a class="anchor" href="#how-do-i-detect-and-redact-pii">How do I detect and redact PII?</a></h2>
+<p class="answer">Call <code>detect(text)</code> on a <code>Piilite</code> instance. It returns the redacted text, the list of detections and a map from each placeholder to its original value.</p>
+<div class="code"><span class="lang">js</span><pre><code>import { Piilite } from &quot;piilite&quot;;
+
+const shield = new Piilite();
+const { redacted, redactionMap } = shield.detect(
+  &quot;Myself Ankit Kumar Gupta, call 9123456780 or pay ankit@okhdfcbank. PAN ABCPS1234K, OTP is 482913&quot;
+);
+
+console.log(redacted);
+<span class="c-com">// Myself [NAME_1], call [PHONE_IN_1] or pay [UPI_ID_1]. PAN [PAN_1], OTP is [OTP_1]</span></code></pre></div>
+<p>The result has the same shape as OpenRedaction's <code>detect()</code>:</p>
+<div class="code"><span class="lang">js</span><pre><code>{
+  original: &quot;Myself Ankit Kumar Gupta, call 9123456780 or pay ankit@okhdfcbank.&quot;,
+  redacted: &quot;Myself [NAME_1], call [PHONE_IN_1] or pay [UPI_ID_1].&quot;,
+  detections: [
+    {type: &quot;NAME&quot;, value: &quot;Ankit Kumar Gupta&quot;, placeholder: &quot;[NAME_1]&quot;, position: [7,24], severity: &quot;high&quot;, confidence: 0.85},
+    {type: &quot;PHONE_IN&quot;, value: &quot;9123456780&quot;, placeholder: &quot;[PHONE_IN_1]&quot;, position: [31,41], severity: &quot;high&quot;, confidence: 1},
+    {type: &quot;UPI_ID&quot;, value: &quot;ankit@okhdfcbank&quot;, placeholder: &quot;[UPI_ID_1]&quot;, position: [49,65], severity: &quot;high&quot;, confidence: 0.9},
+  ],
+  redactionMap: {&quot;[NAME_1]&quot;: &quot;Ankit Kumar Gupta&quot;, &quot;[PHONE_IN_1]&quot;: &quot;9123456780&quot;, &quot;[UPI_ID_1]&quot;: &quot;ankit@okhdfcbank&quot;},
+  stats: { piiCount: 3, byType: {NAME: 1,PHONE_IN: 1,UPI_ID: 1}, processingTime: 1 },
+}</code></pre></div>
+<p>Need only part of that? <code>redact(text)</code> returns the redacted string, <code>scan(text)</code> returns the matches without changing the text, and <code>hasPII(text)</code> returns <code>true</code> or <code>false</code>.</p>
+
+<h2 id="how-do-i-use-piilite-with-commonjs-or-typescript"><a class="anchor" href="#how-do-i-use-piilite-with-commonjs-or-typescript">How do I use piilite with CommonJS or TypeScript?</a></h2>
+<p class="answer">piilite ships ES modules, CommonJS and TypeScript types, so <code>import</code> and <code>require</code> both work and types load automatically.</p>
+<div class="code"><span class="lang">js</span><pre><code><span class="c-com">// ES modules / TypeScript</span>
+import { Piilite, redact, type DetectionResult } from &quot;piilite&quot;;
+
+<span class="c-com">// CommonJS</span>
+const { Piilite } = require(&quot;piilite&quot;);</code></pre></div>
+
+<h2 id="which-masking-modes-are-there"><a class="anchor" href="#which-masking-modes-are-there">Which masking modes are there?</a></h2>
+<p class="answer">piilite has five masking modes: placeholders (default), partial mask, full mask, remove, or your own function.</p>
+<div class="table"><table><thead><tr><th scope="col">Mode</th><th scope="col">Input</th><th scope="col">Output</th></tr></thead><tbody><tr><td><code>placeholder</code> (default)</td><td>call 9123456780</td><td>call [PHONE_IN_1]</td></tr><tr><td><code>mask</code></td><td>call 9123456780</td><td>call XXXXXX6780</td></tr><tr><td><code>mask</code></td><td>PAN ABCPS1234K</td><td>PAN XXXXXX234K</td></tr><tr><td><code>mask</code></td><td>rahul@gmail.com</td><td>rXXXX@gmail.com</td></tr><tr><td><code>mask-all</code> + <code>maskChar: "*"</code></td><td>call 9123456780</td><td>call **********</td></tr><tr><td><code>remove</code></td><td>call 9123456780 now</td><td>call &nbsp;now</td></tr><tr><td>function</td><td>call 9123456780</td><td>call &lt;PHONE_IN&gt;</td></tr></tbody></table></div>
+<div class="code"><span class="lang">js</span><pre><code>new Piilite({ mode: &quot;mask&quot; }).redact(&quot;call 9123456780&quot;);                <span class="c-com">// &quot;call XXXXXX6780&quot;</span>
+new Piilite({ mode: (m) =&gt; `&lt;${m.type}&gt;` }).redact(&quot;call 9123456780&quot;);  <span class="c-com">// &quot;call &lt;PHONE_IN&gt;&quot;</span></code></pre></div>
+
+<h2 id="how-do-i-detect-only-some-types"><a class="anchor" href="#how-do-i-detect-only-some-types">How do I detect only some types?</a></h2>
+<p class="answer">Pass <code>types</code> to detect only those types, <code>exclude</code> to skip some, or a <a href="../presets/">preset</a> such as <code>kyc</code>. Opt-in types like <code>LOCATION</code> run only when you add them with <code>include</code>.</p>
+<div class="code"><span class="lang">js</span><pre><code>new Piilite({ types: [&quot;AADHAAR&quot;, &quot;PAN&quot;] });          <span class="c-com">// only these</span>
+new Piilite({ exclude: [&quot;IP_ADDRESS&quot;] });            <span class="c-com">// everything else</span>
+new Piilite({ preset: &quot;kyc&quot;, exclude: [&quot;PINCODE&quot;] }); <span class="c-com">// a preset, adjusted</span>
+new Piilite({ include: [&quot;LOCATION&quot;] });              <span class="c-com">// also redact cities</span></code></pre></div>
+
+<h2 id="how-do-i-keep-some-values-like-my-support-email"><a class="anchor" href="#how-do-i-keep-some-values-like-my-support-email">How do I keep some values, like my support email?</a></h2>
+<p class="answer">Add them to <code>allow</code>. Strings match exactly (case-insensitive); regular expressions match any detected value.</p>
+<div class="code"><span class="lang">js</span><pre><code>new Piilite({ allow: [&quot;support@acme.in&quot;, /@acme\.in$/] });</code></pre></div>
+
+<h2 id="how-do-i-add-my-own-patterns"><a class="anchor" href="#how-do-i-add-my-own-patterns">How do I add my own patterns?</a></h2>
+<p class="answer">Pass <code>customPatterns</code>. Each pattern needs a <code>type</code> and a <code>regex</code>; a <code>validator</code>, <code>priority</code> and <code>severity</code> are optional. OpenRedaction patterns work unchanged.</p>
+<div class="code"><span class="lang">js</span><pre><code>const shield = new Piilite({
+  customPatterns: [
+    { type: &quot;EMPLOYEE_ID&quot;, regex: /\bEMP-\d{5}\b/g, priority: 90, severity: &quot;medium&quot; },
+    {
+      type: &quot;ORDER_REF&quot;,
+      regex: /\bORD\d{8}\b/g,
+      context: /order|booking/i,   <span class="c-com">// must appear near the match...</span>
+      requireContext: true,        <span class="c-com">// ...or the match is dropped</span>
+    },
+  ],
+});
+shield.redact(&quot;id EMP-00421&quot;); <span class="c-com">// &quot;id [EMPLOYEE_ID_1]&quot;</span></code></pre></div>
+
+<h2 id="what-options-does-piilite-accept"><a class="anchor" href="#what-options-does-piilite-accept">What options does piilite accept?</a></h2>
+<div class="table"><table><thead><tr><th scope="col">Option</th><th scope="col">Default</th><th scope="col">What it does</th></tr></thead><tbody><tr><td><code>preset</code></td><td>none</td><td>A ready-made type set: <code>dpdp</code>, <code>kyc</code>, <code>fintech</code>, <code>pci</code>, <code>healthcare</code>, <code>hr</code>, <code>secrets</code>, <code>gdpr</code>, <code>hipaa</code>, <code>strict</code>, <code>precise</code></td></tr><tr><td><code>mode</code></td><td><code>placeholder</code></td><td>How PII is replaced (see above)</td></tr><tr><td><code>types</code> / <code>exclude</code> / <code>include</code></td><td>all</td><td>Choose which types run</td></tr><tr><td><code>allow</code></td><td>[]</td><td>Values never redacted</td></tr><tr><td><code>minConfidence</code></td><td>0.5</td><td>Drop weaker matches; 0.4 catches more, 0.8 is stricter</td></tr><tr><td><code>maskChar</code> / <code>keepLast</code></td><td>X / 4</td><td>Mask character and digits left visible in <code>mask</code> mode</td></tr><tr><td><code>placeholder</code></td><td><code>[TYPE_n]</code></td><td>Function that builds placeholder text</td></tr><tr><td><code>maxInputSize</code></td><td>5,000,000</td><td>Throws a RangeError above this length; stream larger input</td></tr><tr><td><code>onDetect</code></td><td>none</td><td>Called after every <code>detect()</code>, for audit logs</td></tr><tr><td><code>customPatterns</code></td><td>[]</td><td>Your own patterns</td></tr></tbody></table></div>
+
+<h2 id="what-methods-does-a-piilite-instance-have"><a class="anchor" href="#what-methods-does-a-piilite-instance-have">What methods does a Piilite instance have?</a></h2>
+<div class="table"><table><thead><tr><th scope="col">Method</th><th scope="col">Returns</th></tr></thead><tbody><tr><td><code>detect(text)</code></td><td><code>{ original, redacted, detections, redactionMap, stats }</code></td></tr><tr><td><code>redact(text)</code></td><td>Redacted string</td></tr><tr><td><code>scan(text)</code></td><td>Matches: <code>{ type, value, start, end, severity, confidence }[]</code></td></tr><tr><td><code>hasPII(text)</code></td><td><code>boolean</code></td></tr><tr><td><code>redactObject(obj, { skipKeys })</code></td><td><code>{ value, redactionMap }</code> with every string redacted</td></tr><tr><td><code>restore(text, map, { fuzzy })</code></td><td>Text with the original values back</td></tr><tr><td><code>createStream()</code> / <code>redactStream()</code> / <code>transformStream()</code></td><td>Streaming redaction (see <a href="../llm/">LLM guide</a>)</td></tr></tbody></table></div>
+<p>The module also exports <code>redact</code>, <code>scan</code>, <code>detect</code>, <code>hasPII</code> and <code>restore</code> with default options, plus the validators <code>verhoeff</code>, <code>luhn</code>, <code>aadhaar</code>, <code>pan</code> and <code>gstin</code>.</p>
+
+<h2 id="can-i-use-piilite-in-the-browser"><a class="anchor" href="#can-i-use-piilite-in-the-browser">Can I use piilite in the browser?</a></h2>
+<p class="answer">Yes. piilite is plain JavaScript with no Node-only APIs, so bundlers like Vite, webpack and esbuild include it as is, and you can load it from a CDN as an ES module.</p>
+<div class="code"><span class="lang">html</span><pre><code>&lt;script type=&quot;module&quot;&gt;
+  import { redact } from &quot;https://cdn.jsdelivr.net/npm/piilite@0.2.0/src/index.js&quot;;
+  console.log(redact(&quot;call 9123456780&quot;)); <span class="c-com">// &quot;call [PHONE_IN_1]&quot;</span>
+&lt;/script&gt;</code></pre></div>
+<p class="updated">Last updated <time datetime="2026-10-27">27 October 2026</time> · piilite 0.2.0</p></article><nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#how-do-i-install-piilite">How do I install piilite?</a></li><li><a href="#how-do-i-detect-and-redact-pii">How do I detect and redact PII?</a></li><li><a href="#how-do-i-use-piilite-with-commonjs-or-typescript">How do I use piilite with CommonJS or TypeScript?</a></li><li><a href="#which-masking-modes-are-there">Which masking modes are there?</a></li><li><a href="#how-do-i-detect-only-some-types">How do I detect only some types?</a></li><li><a href="#how-do-i-keep-some-values-like-my-support-email">How do I keep some values, like my support email?</a></li><li><a href="#how-do-i-add-my-own-patterns">How do I add my own patterns?</a></li><li><a href="#what-options-does-piilite-accept">What options does piilite accept?</a></li><li><a href="#what-methods-does-a-piilite-instance-have">What methods does a Piilite instance have?</a></li><li><a href="#can-i-use-piilite-in-the-browser">Can I use piilite in the browser?</a></li></ol></nav></div>
+</main>
+<footer class="site-footer"><div class="inner">
+<div><h2>piilite 0.2.0</h2><p>India-first PII detection and masking for JavaScript. MIT licensed.</p><p>Built by <a href="https://github.com/aman5062" rel="author">Aman kumar keshri</a>.</p></div>
+<div><h2>Docs</h2><ul><li><a href="../guide/">Guide</a></li><li><a href="../india-pii/">Indian PII types</a></li><li><a href="../llm/">LLM apps</a></li><li><a href="../presets/">Presets</a></li></ul></div>
+<div><h2>Learn</h2><ul><li><a href="../playground/">Playground</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../openredaction/">vs OpenRedaction</a></li><li><a href="../faq/">FAQ</a></li></ul></div>
+<div><h2>Project</h2><ul><li><a href="https://github.com/aman5062/Piilite" rel="noopener">GitHub</a></li><li><a href="https://www.npmjs.com/package/piilite" rel="noopener">npm</a></li><li><a href="https://github.com/aman5062/Piilite/issues" rel="noopener">Report an issue</a></li><li><a href="../llms.txt">llms.txt</a></li></ul></div>
+</div></footer>
+<script src="../assets/site.js" defer></script>
+
+</body>
+</html>

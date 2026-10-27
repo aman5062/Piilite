@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>piilite vs OpenRedaction: comparison, migration and bridge</title>
+<meta name="description" content="piilite vs OpenRedaction on accuracy, Indian data, features and size. Migrate in one line, or add OpenRedaction&#39;s global patterns via piilite&#39;s bridge.">
+<link rel="canonical" href="https://aman5062.github.io/Piilite/openredaction/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Aman kumar keshri">
+<meta name="keywords" content="openredaction alternative, piilite vs openredaction, openredaction india, pii library comparison javascript">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="piilite">
+<meta property="og:title" content="piilite vs OpenRedaction: comparison, migration and bridge">
+<meta property="og:description" content="piilite vs OpenRedaction on accuracy, Indian data, features and size. Migrate in one line, or add OpenRedaction&#39;s global patterns via piilite&#39;s bridge.">
+<meta property="og:url" content="https://aman5062.github.io/Piilite/openredaction/">
+<meta property="og:image" content="https://aman5062.github.io/Piilite/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="piilite: India-first PII detection and masking for JavaScript">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="piilite vs OpenRedaction: comparison, migration and bridge">
+<meta name="twitter:description" content="piilite vs OpenRedaction on accuracy, Indian data, features and size. Migrate in one line, or add OpenRedaction&#39;s global patterns via piilite&#39;s bridge.">
+<meta name="twitter:image" content="https://aman5062.github.io/Piilite/assets/og.png">
+<meta name="theme-color" content="#0f766e" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" href="../sitemap.xml">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://aman5062.github.io/Piilite/#website","url":"https://aman5062.github.io/Piilite/","name":"piilite","description":"Lightweight, zero-dependency, India-first PII detection and masking for JavaScript.","inLanguage":"en","publisher":{"@id":"https://aman5062.github.io/Piilite/#author"}},{"@type":"Person","@id":"https://aman5062.github.io/Piilite/#author","name":"Aman kumar keshri","url":"https://github.com/aman5062"},{"@type":"SoftwareApplication","@id":"https://aman5062.github.io/Piilite/#software","name":"piilite","description":"Lightweight, zero-dependency, India-first PII detection and masking for JavaScript.","applicationCategory":"DeveloperApplication","applicationSubCategory":"PII detection and data masking library","operatingSystem":"Cross-platform: Node.js 18+, browsers, Bun, Deno","softwareVersion":"0.2.0","url":"https://aman5062.github.io/Piilite/","downloadUrl":"https://www.npmjs.com/package/piilite","installUrl":"https://www.npmjs.com/package/piilite","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://aman5062.github.io/Piilite/#author"},"featureList":["Aadhaar detection with Verhoeff checksum","PAN and GSTIN validation","UPI ID, bank account and IFSC detection","Indian mobile and landline numbers in every format","Indian names and addresses, Hinglish and 10 Indian languages","OTP, password and API key redaction","Placeholder, mask and remove modes","Restore original values in LLM answers","Streaming redaction for LLM token streams","DPDP Act 2023, KYC, GDPR, HIPAA and PCI presets","Express middleware and React hooks","Optional OpenRedaction bridge for 110 global ID types"],"keywords":"pii detection, pii redaction, data masking, aadhaar, pan, gstin, upi, dpdp act, javascript, typescript, npm, llm privacy, india, openredaction alternative","softwareRequirements":"Node.js 18 or later, or any modern browser","fileSize":"26.6 KB (gzipped)"},{"@type":"SoftwareSourceCode","@id":"https://aman5062.github.io/Piilite/#source","name":"piilite","codeRepository":"https://github.com/aman5062/Piilite","programmingLanguage":["JavaScript","TypeScript"],"runtimePlatform":"Node.js","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://aman5062.github.io/Piilite/#author"},"targetProduct":{"@id":"https://aman5062.github.io/Piilite/#software"}},{"@type":"BreadcrumbList","@id":"https://aman5062.github.io/Piilite/openredaction/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"piilite","item":"https://aman5062.github.io/Piilite/"},{"@type":"ListItem","position":2,"name":"vs OpenRedaction","item":"https://aman5062.github.io/Piilite/openredaction/"}]},{"@type":"TechArticle","@id":"https://aman5062.github.io/Piilite/openredaction/#page","url":"https://aman5062.github.io/Piilite/openredaction/","name":"piilite vs OpenRedaction: comparison, migration and bridge","headline":"piilite vs OpenRedaction","description":"piilite vs OpenRedaction on accuracy, Indian data, features and size. Migrate in one line, or add OpenRedaction's global patterns via piilite's bridge.","inLanguage":"en","isPartOf":{"@id":"https://aman5062.github.io/Piilite/#website"},"about":{"@id":"https://aman5062.github.io/Piilite/#software"},"author":{"@id":"https://aman5062.github.io/Piilite/#author"},"datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://aman5062.github.io/Piilite/assets/og.png","breadcrumb":{"@id":"https://aman5062.github.io/Piilite/openredaction/#breadcrumb"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="bar">
+<a class="brand" href="../" aria-label="piilite home"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0f766e"/><path d="M32 12 16 18v12c0 11 7 19 16 22 9-3 16-11 16-22V18z" fill="#fff"/><rect x="22" y="29" width="20" height="6" rx="3" fill="#0f766e"/></svg><span>piilite</span></a>
+<nav class="nav" aria-label="Main"><ul class="nav-desktop"><li><a href="../">Home</a></li><li><a href="../guide/">Guide</a></li><li><a href="../india-pii/">Indian PII</a></li><li><a href="../llm/">LLM apps</a></li><li><a href="../presets/">Presets</a></li><li><a href="../playground/">Playground</a></li><li><a href="../openredaction/" aria-current="page">vs OpenRedaction</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../faq/">FAQ</a></li></ul><details class="nav-mobile"><summary class="nav-toggle">Menu</summary><ul><li><a href="../">Home</a></li><li><a href="../guide/">Guide</a></li><li><a href="../india-pii/">Indian PII</a></li><li><a href="../llm/">LLM apps</a></li><li><a href="../presets/">Presets</a></li><li><a href="../playground/">Playground</a></li><li><a href="../openredaction/" aria-current="page">vs OpenRedaction</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../faq/">FAQ</a></li></ul></details></nav>
+<a class="gh" href="https://github.com/aman5062/Piilite" aria-label="piilite on GitHub" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+</div></header>
+<main id="main">
+<div class="page"><article><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../">piilite</a></li><li aria-current="page">vs OpenRedaction</li></ol></nav>
+<h1>piilite vs OpenRedaction</h1>
+<p class="lead">piilite is far more accurate on Indian data; OpenRedaction is broader and has enterprise modules. You can use both together.</p>
+
+<h2 id="which-one-should-i-use"><a class="anchor" href="#which-one-should-i-use">Which one should I use?</a></h2>
+<div class="table"><table><thead><tr><th scope="col">If you need</th><th scope="col">Use</th></tr></thead><tbody><tr><td>Indian users, chats, résumés, KYC, LLM prompts</td><td>piilite</td></tr><tr><td>A small bundle, the browser, edge runtimes or streaming LLM output</td><td>piilite</td></tr><tr><td>IDs from many countries</td><td>piilite with the OpenRedaction bridge, or OpenRedaction</td></tr><tr><td>PDF, DOCX, OCR or XLSX input</td><td>piilite with the OpenRedaction bridge, or OpenRedaction</td></tr><tr><td>An audit database, RBAC, multi-tenancy or webhooks</td><td>OpenRedaction</td></tr></tbody></table></div>
+
+<h2 id="how-accurate-is-each-on-indian-data"><a class="anchor" href="#how-accurate-is-each-on-indian-data">How accurate is each on Indian data?</a></h2>
+<p class="answer">On the same held-out benchmark of 480 samples, piilite caught 84.3% of personal data and OpenRedaction 45.7%. OpenRedaction redacted something in 86.7% of PII-free sentences; piilite did in 6.7%.</p>
+<div class="table"><table><thead><tr><th scope="col">Metric</th><th scope="col" class="num">piilite</th><th scope="col" class="num">OpenRedaction 1.1.5</th></tr></thead><tbody><tr><td>Recall</td><td class="num"><span class="win">84.3%</span></td><td class="num">45.7%</td></tr><tr><td>Precision</td><td class="num"><span class="win">99.7%</span></td><td class="num">76.7%</td></tr><tr><td>False alarms on clean text (lower is better)</td><td class="num"><span class="win">6.7%</span></td><td class="num">86.7%</td></tr></tbody></table></div>
+<p>OpenRedaction was run as its lite entry with default options. Its full class with NER enabled was not scored. <a href="../accuracy/">Method and per-type results</a>.</p>
+
+<h2 id="how-do-their-features-compare"><a class="anchor" href="#how-do-their-features-compare">How do their features compare?</a></h2>
+<div class="table"><table><thead><tr><th scope="col">Feature</th><th scope="col">piilite</th><th scope="col">OpenRedaction</th></tr></thead><tbody><tr><td>Indian IDs with checksums (Aadhaar, PAN, GSTIN, UPI &hellip;)</td><td>Yes, 20+ types</td><td>Aadhaar and IFSC</td></tr><tr><td>Hinglish and Indian scripts</td><td>Yes</td><td>No</td></tr><tr><td>Patterns for other countries</td><td>Through the bridge (110 types)</td><td>570+ patterns, 50+ countries</td></tr><tr><td>Size</td><td>About 27 KB gzipped</td><td>About 500 KB of core code</td></tr><tr><td>Fuzzy restore of placeholders</td><td>Yes</td><td>Exact only</td></tr><tr><td>Streaming for LLM token streams</td><td>Yes</td><td>Chunked streaming detector</td></tr><tr><td>PDF, DOCX, OCR, XLSX</td><td>Through the bridge</td><td>Yes</td></tr><tr><td>Presets</td><td>DPDP, KYC, fintech, PCI, healthcare, HR, secrets, GDPR, HIPAA</td><td>GDPR, HIPAA, CCPA, finance, education, healthcare, transport, PCI, SOC 2</td></tr><tr><td>Express and React</td><td>Yes</td><td>Yes, plus a REST server</td></tr><tr><td>Audit database, RBAC, multi-tenancy, webhooks</td><td>No (<code>onDetect</code> hook)</td><td>Yes</td></tr></tbody></table></div>
+
+<h2 id="how-do-i-migrate-from-openredaction"><a class="anchor" href="#how-do-i-migrate-from-openredaction">How do I migrate from OpenRedaction?</a></h2>
+<p class="answer">Change the import. piilite's <code>detect()</code> returns the same <code>{ redacted, detections, redactionMap }</code> shape, still works with <code>await</code>, and accepts OpenRedaction custom patterns unchanged.</p>
+<div class="code"><span class="lang">diff</span><pre><code>- import { OpenRedaction } from &quot;openredaction&quot;;
+- const shield = new OpenRedaction();
++ import { Piilite } from &quot;piilite&quot;;
++ const shield = new Piilite();
+
+  const { redacted, detections, redactionMap } = await shield.detect(text);</code></pre></div>
+
+<h2 id="how-do-i-use-openredaction-s-patterns-with-piilite"><a class="anchor" href="#how-do-i-use-openredaction-s-patterns-with-piilite">How do I use OpenRedaction's patterns with piilite?</a></h2>
+<p class="answer">Install <code>@openredaction/core</code> and import from <code>piilite/openredaction</code>. You get piilite's Indian engine plus 110 of OpenRedaction's pattern types and its document processors.</p>
+<div class="code"><span class="lang">bash</span><pre><code>npm install piilite @openredaction/core</code></pre></div>
+<div class="code"><span class="lang">js</span><pre><code>import { createGlobalShield, redactDocument, redactJson, redactCsv } from &quot;piilite/openredaction&quot;;
+
+const shield = createGlobalShield({ preset: &quot;gdpr&quot; });
+await redactDocument(pdfBuffer);              <span class="c-com">// PDF, DOCX, image (OCR) or text</span>
+await redactJson(payload);
+redactCsv(csvText, { columns: [&quot;phone&quot;] });</code></pre></div>
+<p>The bridge adds national IDs of 45+ countries, foreign bank formats, crypto wallets, health IDs and extra secret formats. Each type was checked against 2,060 samples of Indian text and kept only if it never matched by mistake; Indian matches always win an overlap.</p>
+<div class="note"><p>In OpenRedaction 1.1.5, <code>CsvProcessor.redact()</code> can apply detections to the wrong row when the file has a header. piilite's <code>redactCsv</code> uses OpenRedaction's CSV parser but redacts cells itself, so rows stay aligned.</p></div>
+<p class="updated">Last updated <time datetime="2026-10-27">27 October 2026</time> · piilite 0.2.0</p></article><nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#which-one-should-i-use">Which one should I use?</a></li><li><a href="#how-accurate-is-each-on-indian-data">How accurate is each on Indian data?</a></li><li><a href="#how-do-their-features-compare">How do their features compare?</a></li><li><a href="#how-do-i-migrate-from-openredaction">How do I migrate from OpenRedaction?</a></li><li><a href="#how-do-i-use-openredaction-s-patterns-with-piilite">How do I use OpenRedaction's patterns with piilite?</a></li></ol></nav></div>
+</main>
+<footer class="site-footer"><div class="inner">
+<div><h2>piilite 0.2.0</h2><p>India-first PII detection and masking for JavaScript. MIT licensed.</p><p>Built by <a href="https://github.com/aman5062" rel="author">Aman kumar keshri</a>.</p></div>
+<div><h2>Docs</h2><ul><li><a href="../guide/">Guide</a></li><li><a href="../india-pii/">Indian PII types</a></li><li><a href="../llm/">LLM apps</a></li><li><a href="../presets/">Presets</a></li></ul></div>
+<div><h2>Learn</h2><ul><li><a href="../playground/">Playground</a></li><li><a href="../accuracy/">Accuracy</a></li><li><a href="../openredaction/">vs OpenRedaction</a></li><li><a href="../faq/">FAQ</a></li></ul></div>
+<div><h2>Project</h2><ul><li><a href="https://github.com/aman5062/Piilite" rel="noopener">GitHub</a></li><li><a href="https://www.npmjs.com/package/piilite" rel="noopener">npm</a></li><li><a href="https://github.com/aman5062/Piilite/issues" rel="noopener">Report an issue</a></li><li><a href="../llms.txt">llms.txt</a></li></ul></div>
+</div></footer>
+<script src="../assets/site.js" defer></script>
+
+</body>
+</html>
