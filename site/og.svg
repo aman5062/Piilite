@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0f1115"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#2dd4bf"/>
+  <g transform="translate(80 92)">
+    <rect width="96" height="96" rx="22" fill="#0f766e"/>
+    <path d="M48 18 24 27v18c0 16.5 10.5 28.5 24 33 13.5-4.5 24-16.5 24-33V27z" fill="#fff"/>
+    <rect x="33" y="43" width="30" height="9" rx="4.5" fill="#0f766e"/>
+    <text x="124" y="70" font-family="DejaVu Sans" font-weight="700" font-size="64" fill="#ffffff">piilite</text>
+  </g>
+  <text x="80" y="300" font-family="DejaVu Sans" font-weight="700" font-size="58" fill="#ffffff">India-first PII detection</text>
+  <text x="80" y="372" font-family="DejaVu Sans" font-weight="700" font-size="58" fill="#ffffff">and masking for JavaScript</text>
+  <text x="80" y="440" font-family="DejaVu Sans" font-size="30" fill="#a3a9b6">Aadhaar · PAN · GSTIN · UPI · +91 phones · names · addresses</text>
+  <g font-family="DejaVu Sans" font-size="26" fill="#06201d">
+    <rect x="80" y="500" width="250" height="52" rx="26" fill="#2dd4bf"/><text x="205" y="535" text-anchor="middle">npm i piilite</text>
+    <rect x="350" y="500" width="300" height="52" rx="26" fill="#1b1f27" stroke="#2a2f39"/><text x="500" y="535" text-anchor="middle" fill="#e8eaee">Zero dependencies</text>
+    <rect x="670" y="500" width="230" height="52" rx="26" fill="#1b1f27" stroke="#2a2f39"/><text x="785" y="535" text-anchor="middle" fill="#e8eaee">Built for LLMs</text>
+    <rect x="920" y="500" width="130" height="52" rx="26" fill="#1b1f27" stroke="#2a2f39"/><text x="985" y="535" text-anchor="middle" fill="#e8eaee">MIT</text>
+  </g>
+</svg>
