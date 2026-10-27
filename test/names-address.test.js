@@ -196,12 +196,13 @@ test("after a Name: label, take capitalised words up to the next field", () => {
   assert.deepEqual(names("my name is rahul and I code"), ["rahul"]);
 });
 
-test("company addresses are not personal data (strict preset still masks them)", async () => {
+test("company addresses are masked by default; keepCompanyAddresses leaves them", async () => {
   const { Piilite } = await import("../src/index.js");
-  const text = "Office: Example Technologies Pvt Ltd, Sector 62, Noida";
-  assert.deepEqual(addresses(text), []);
-  assert.deepEqual(addresses("Bill to Acme Infotech LLP, 12, MG Road, Pune 411001"), []);
-  assert.deepEqual(new Piilite({ preset: "strict" }).scan(text).filter((d) => d.type === "ADDRESS").map((d) => d.value), ["Sector 62, Noida"]);
-  // a bank used as a landmark is still a personal address
-  assert.deepEqual(addresses("Come to near ICICI Bank, Sector 15, Noida"), ["near ICICI Bank, Sector 15, Noida"]);
+  const office = "Office: Example Technologies Pvt Ltd, Sector 62, Noida";
+  assert.deepEqual(addresses(office), ["Sector 62, Noida"]);
+  const keep = new Piilite({ keepCompanyAddresses: true });
+  assert.deepEqual(keep.scan(office).filter((d) => d.type === "ADDRESS"), []);
+  assert.deepEqual(keep.scan("Bill to Acme Infotech LLP, 12, MG Road, Pune 411001").filter((d) => d.type === "ADDRESS"), []);
+  // a bank used as a landmark is still a personal address, even with the option on
+  assert.deepEqual(keep.scan("Come to near ICICI Bank, Sector 15, Noida").map((d) => d.value), ["near ICICI Bank, Sector 15, Noida"]);
 });
