@@ -48,6 +48,8 @@
 <button type="button" data-sample="resume">Résumé</button>
 <button type="button" data-sample="kyc">KYC form</button>
 <button type="button" data-sample="support">Support ticket</button>
+<button type="button" data-sample="rag">RAG question</button>
+<button type="button" data-sample="hindi">Hindi / Bengali</button>
 <button type="button" data-sample="clean">No PII</button>
 </div>
 <label for="pg-input" class="sr">Text to scan</label>
@@ -56,16 +58,23 @@
 <label>Mode <select id="pg-mode"><option value="placeholder">placeholder</option><option value="mask">mask</option><option value="mask-all">mask-all</option><option value="remove">remove</option></select></label>
 <label>Preset <select id="pg-preset"><option value="">none (all types)</option></select></label>
 <label><input type="checkbox" id="pg-location"> Include LOCATION</label>
+<button type="button" class="btn small" id="pg-copy">Copy redacted text</button>
 </div>
 <p class="stats" id="pg-stats" aria-live="polite"></p>
+<h2 id="step-1-what-the-model-sees"><a class="anchor" href="#step-1-what-the-model-sees">Step 1: what the AI model sees</a></h2>
 <output id="pg-output" for="pg-input" aria-label="Redacted text"></output>
 <div class="table"><table><thead><tr><th scope="col">Type</th><th scope="col">Value</th><th scope="col">Severity</th><th scope="col" class="num">Confidence</th></tr></thead><tbody id="pg-rows"></tbody></table></div>
+<h2 id="step-2-restore-the-answer"><a class="anchor" href="#step-2-restore-the-answer">Step 2: restore the model's answer</a></h2>
+<p>Write an answer the way a model would, using the placeholders above (try <code>[NAME 1]</code> or a bare <code>NAME_1</code> too). piilite puts the real values back.</p>
+<label for="pg-answer" class="sr">Model answer with placeholders</label>
+<textarea id="pg-answer" class="short" spellcheck="false"></textarea>
+<output id="pg-restored" for="pg-answer" aria-label="Restored answer"></output>
 </div>
 <noscript><p>The playground needs JavaScript. You can also install piilite and run the same code locally.</p></noscript>
 <h2 id="use-the-same-code-in-your-app"><a class="anchor" href="#use-the-same-code-in-your-app">Use the same code in your app</a></h2>
 <div class="code"><span class="lang">js</span><pre><code>import { Piilite } from &quot;piilite&quot;;
 const { redacted, detections } = new Piilite({ mode: &quot;placeholder&quot; }).detect(text);</code></pre></div>
-<p class="updated">Last updated <time datetime="2026-10-27">27 October 2026</time> · piilite 0.3.0</p></article></div>
+<p class="updated">Last updated <time datetime="2026-10-27">27 October 2026</time> · piilite 0.3.0</p></article><nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#step-1-what-the-model-sees">Step 1: what the AI model sees</a></li><li><a href="#step-2-restore-the-answer">Step 2: restore the model's answer</a></li><li><a href="#use-the-same-code-in-your-app">Use the same code in your app</a></li></ol></nav></div>
 </main>
 <footer class="site-footer"><div class="inner">
 <div><h2>piilite 0.3.0</h2><p>India-first PII detection and masking for JavaScript. MIT licensed.</p><p>Built by <a href="https://github.com/aman5062" rel="author">Aman kumar keshri</a>.</p></div>

@@ -52,6 +52,26 @@ bun add piilite</code></pre></div>
 <ul class="pills"><li>28.0 KB gzipped</li><li>Zero dependencies</li><li>ESM + CommonJS + TypeScript</li><li>Node 18+, browsers, Bun, Deno</li><li>MIT licensed</li></ul>
 </section>
 
+<section class="demo" aria-labelledby="try-it-live">
+<h2 id="try-it-live"><a class="anchor" href="#try-it-live">Try it live</a></h2>
+<p class="answer">Edit the text and watch piilite mask it as you type. It runs in your browser; nothing is uploaded.</p>
+<div class="pg">
+<div class="samples" role="group" aria-label="Sample texts">
+<button type="button" data-sample="chat">Hinglish chat</button>
+<button type="button" data-sample="kyc">KYC form</button>
+<button type="button" data-sample="rag">RAG question</button>
+<button type="button" data-sample="hindi">Hindi / Bengali</button>
+<button type="button" data-sample="clean">No PII</button>
+</div>
+<div class="demo-grid">
+<div><label for="pg-input">Your text</label><textarea id="pg-input" spellcheck="false"></textarea></div>
+<div><span class="label" id="pg-out-label">What the AI model sees</span><output id="pg-output" for="pg-input" aria-labelledby="pg-out-label"></output></div>
+</div>
+<p class="stats" id="pg-stats" aria-live="polite"></p>
+<p><a href="playground/">Open the full playground</a> for masking modes, presets and restoring an answer.</p>
+</div>
+</section>
+
 <h2 id="quick-start"><a class="anchor" href="#quick-start">Quick start</a></h2>
 <p class="answer">Create a <code>Piilite</code> instance and call <code>detect()</code>. You get the redacted text, every detection with its position, and a map to restore the originals.</p>
 <div class="code"><span class="lang">js</span><pre><code>import { Piilite } from &quot;piilite&quot;;
@@ -97,6 +117,6 @@ const reply = shield.restore(answer, redactionMap);     <span class="c-com">// r
 <div><h2>Project</h2><ul><li><a href="https://github.com/aman5062/Piilite" rel="noopener">GitHub</a></li><li><a href="https://www.npmjs.com/package/piilite" rel="noopener">npm</a></li><li><a href="https://github.com/aman5062/Piilite/issues" rel="noopener">Report an issue</a></li><li><a href="llms.txt">llms.txt</a></li></ul></div>
 </div></footer>
 <script src="assets/site.js" defer></script>
-
+<script type="module" src="assets/playground.js"></script>
 </body>
 </html>

@@ -131,6 +131,7 @@ export const pages = [
     h1: "India-first PII detection and masking for JavaScript",
     crumb: "Home",
     wide: true,
+    scripts: (root) => `<script type="module" src="${root}assets/playground.js"></script>`,
     body: (c) => `
 <section class="hero">
 <h1>India-first PII detection and masking for JavaScript</h1>
@@ -138,6 +139,26 @@ export const pages = [
 <div class="cta"><a class="btn primary" href="guide/">Get started</a><a class="btn" href="playground/">Try it in your browser</a><a class="btn" href="${REPO}" rel="noopener">GitHub</a></div>
 ${code(INSTALL, "bash")}
 <ul class="pills"><li>${c.gzipKB} KB gzipped</li><li>Zero dependencies</li><li>ESM + CommonJS + TypeScript</li><li>Node 18+, browsers, Bun, Deno</li><li>MIT licensed</li></ul>
+</section>
+
+<section class="demo" aria-labelledby="try-it-live">
+${h2("Try it live", "try-it-live")}
+<p class="answer">Edit the text and watch piilite mask it as you type. It runs in your browser; nothing is uploaded.</p>
+<div class="pg">
+<div class="samples" role="group" aria-label="Sample texts">
+<button type="button" data-sample="chat">Hinglish chat</button>
+<button type="button" data-sample="kyc">KYC form</button>
+<button type="button" data-sample="rag">RAG question</button>
+<button type="button" data-sample="hindi">Hindi / Bengali</button>
+<button type="button" data-sample="clean">No PII</button>
+</div>
+<div class="demo-grid">
+<div><label for="pg-input">Your text</label><textarea id="pg-input" spellcheck="false"></textarea></div>
+<div><span class="label" id="pg-out-label">What the AI model sees</span><output id="pg-output" for="pg-input" aria-labelledby="pg-out-label"></output></div>
+</div>
+<p class="stats" id="pg-stats" aria-live="polite"></p>
+<p><a href="playground/">Open the full playground</a> for masking modes, presets and restoring an answer.</p>
+</div>
 </section>
 
 ${h2("Quick start")}
@@ -551,6 +572,8 @@ ${h2("What does the DPDP preset cover?")}
 <button type="button" data-sample="resume">Résumé</button>
 <button type="button" data-sample="kyc">KYC form</button>
 <button type="button" data-sample="support">Support ticket</button>
+<button type="button" data-sample="rag">RAG question</button>
+<button type="button" data-sample="hindi">Hindi / Bengali</button>
 <button type="button" data-sample="clean">No PII</button>
 </div>
 <label for="pg-input" class="sr">Text to scan</label>
@@ -559,10 +582,17 @@ ${h2("What does the DPDP preset cover?")}
 <label>Mode <select id="pg-mode"><option value="placeholder">placeholder</option><option value="mask">mask</option><option value="mask-all">mask-all</option><option value="remove">remove</option></select></label>
 <label>Preset <select id="pg-preset"><option value="">none (all types)</option></select></label>
 <label><input type="checkbox" id="pg-location"> Include LOCATION</label>
+<button type="button" class="btn small" id="pg-copy">Copy redacted text</button>
 </div>
 <p class="stats" id="pg-stats" aria-live="polite"></p>
+<h2 id="step-1-what-the-model-sees"><a class="anchor" href="#step-1-what-the-model-sees">Step 1: what the AI model sees</a></h2>
 <output id="pg-output" for="pg-input" aria-label="Redacted text"></output>
 ${table(["Type", "Value", "Severity", "Confidence"], [], { num: [3] }).replace("<tbody></tbody>", '<tbody id="pg-rows"></tbody>')}
+<h2 id="step-2-restore-the-answer"><a class="anchor" href="#step-2-restore-the-answer">Step 2: restore the model's answer</a></h2>
+<p>Write an answer the way a model would, using the placeholders above (try <code>[NAME 1]</code> or a bare <code>NAME_1</code> too). piilite puts the real values back.</p>
+<label for="pg-answer" class="sr">Model answer with placeholders</label>
+<textarea id="pg-answer" class="short" spellcheck="false"></textarea>
+<output id="pg-restored" for="pg-answer" aria-label="Restored answer"></output>
 </div>
 <noscript><p>The playground needs JavaScript. You can also install piilite and run the same code locally.</p></noscript>
 ${h2("Use the same code in your app")}

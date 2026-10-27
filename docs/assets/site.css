@@ -171,3 +171,12 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 @media print { .site-header, .toc, .site-footer, .copy { display: none; } }
 .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.btn.small { padding: 5px 12px; font-size: 13px; }
+.pg textarea.short { min-height: 90px; }
+.pg #pg-restored { min-height: 60px; }
+.demo { margin: 8px 0 16px; }
+.demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.demo-grid > div { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.demo-grid label, .demo-grid .label { font-size: 14px; color: var(--text-soft); font-weight: 600; }
+.demo-grid textarea, .demo-grid output { min-height: 170px; flex: 1; }
+@media (max-width: 760px) { .demo-grid { grid-template-columns: 1fr; } }
