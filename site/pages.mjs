@@ -62,7 +62,7 @@ const INDIA_TYPES = [
 export const FAQ = [
   {
     q: "What is piilite?",
-    a: `piilite is a free, open-source JavaScript library that finds and masks personal data (PII) in text. It is built for Indian data: Aadhaar, PAN, GSTIN, UPI IDs, +91 phone numbers, Indian names and addresses, OTPs and API keys. It has zero dependencies, weighs about 27 KB gzipped and runs in Node.js, browsers, Bun and Deno.`,
+    a: `piilite is a free, open-source JavaScript library that finds and masks personal data (PII) in text. It is built for Indian data: Aadhaar, PAN, GSTIN, UPI IDs, +91 phone numbers, Indian names and addresses, OTPs and API keys. It has zero dependencies, weighs about 28 KB gzipped and runs in Node.js, browsers, Bun and Deno.`,
   },
   { q: "Is piilite free to use in commercial projects?", a: `Yes. piilite is MIT licensed, so you can use it in personal and commercial projects for free. Keep the copyright notice from the LICENSE file.` },
   {
@@ -127,7 +127,7 @@ export const pages = [
     path: "",
     title: "piilite: India-first PII detection and masking for JavaScript",
     description:
-      "Detect and mask Aadhaar, PAN, GSTIN, UPI, +91 phones, Indian names and addresses in JavaScript. Zero dependencies, 27 KB, built for LLM apps. Free, MIT.",
+      "Detect and mask Aadhaar, PAN, GSTIN, UPI, +91 phones, Indian names and addresses in JavaScript. Zero dependencies, 28 KB, built for LLM apps. Free, MIT.",
     h1: "India-first PII detection and masking for JavaScript",
     crumb: "Home",
     wide: true,
@@ -256,6 +256,9 @@ ${table(["Option", "Default", "What it does"], [
   ["<code>allow</code>", "[]", "Values never redacted"],
   ["<code>minConfidence</code>", "0.5", "Drop weaker matches; 0.4 catches more, 0.8 is stricter"],
   ["<code>skipFakeNumbers</code>", "true", "Skip test-looking numbers such as 9876543210; <code>false</code> masks them too"],
+  ["<code>matchCase</code>", "false", "<code>true</code> gives &ldquo;RAHUL&rdquo; and &ldquo;Rahul&rdquo; separate placeholders"],
+  ["<code>propagate</code>", "true", "Mask values seen earlier wherever they appear again, incl. parts of names"],
+  ["<code>keepCompanyAddresses</code>", "false", "<code>true</code> leaves addresses after a company name unmasked"],
   ["<code>maskChar</code> / <code>keepLast</code>", "X / 4", "Mask character and digits left visible in <code>mask</code> mode"],
   ["<code>placeholder</code>", "<code>[TYPE_n]</code>", "Function that builds placeholder text"],
   ["<code>maxInputSize</code>", "5,000,000", "Throws a RangeError above this length; stream larger input"],
@@ -271,7 +274,10 @@ ${table(["Method", "Returns"], [
   ["<code>hasPII(text)</code>", "<code>boolean</code>"],
   ["<code>redactObject(obj, { skipKeys })</code>", "<code>{ value, redactionMap }</code> with every string redacted"],
   ["<code>restore(text, map, { fuzzy })</code>", "Text with the original values back"],
+  ["<code>detectAll(texts)</code> / <code>redactAll(texts)</code>", "Several texts with shared placeholders"],
+  ["<code>session()</code>", "Shared placeholders across calls, plus <code>restore</code> and <code>restoreStream</code>"],
   ["<code>createStream()</code> / <code>redactStream()</code> / <code>transformStream()</code>", "Streaming redaction (see <a href=\"../llm/\">LLM guide</a>)"],
+  ["<code>createRestoreStream(map)</code> / <code>restoreStream(iterable, map)</code>", "Streaming restore that never shows half a placeholder"],
 ])}
 <p>The module also exports <code>redact</code>, <code>scan</code>, <code>detect</code>, <code>hasPII</code> and <code>restore</code> with default options, plus the validators <code>verhoeff</code>, <code>luhn</code>, <code>aadhaar</code>, <code>pan</code> and <code>gstin</code>.</p>
 
@@ -356,7 +362,7 @@ ${h2("How does piilite find Indian names?")}
 
 ${h2("How does piilite find Indian addresses?")}
 <p class="answer">piilite finds addresses that start at a label (Address:, Ship to:, mera pata, ঠিকানা:), a house or village marker (Flat no, H.No, Vill., Post, Dist.) or a landmark (near, opp, Sector 15), and ends them at the PIN code.</p>
-<p>A company's own address, such as &ldquo;Example Technologies Pvt Ltd, Sector 62, Noida&rdquo;, is not personal data and is left alone by default. The <code>strict</code> preset masks it too.</p>
+<p>Addresses after a company name are masked too, because &ldquo;Engineer at Acme Technologies, 45 Civil Lines, Jaipur&rdquo; may be a home. Set <code>keepCompanyAddresses: true</code> to leave company-looking addresses such as &ldquo;Example Technologies Pvt Ltd, Sector 62, Noida&rdquo; unmasked.</p>
 ${code(`redact("Address: Flat no 302, Sai Krupa Apartment, MG Road, Pune - 411001. Phone 9123456780");
 // "Address: [ADDRESS_1]. Phone [PHONE_IN_1]"`)}
 
@@ -397,9 +403,29 @@ const answer = await callYourModel(redacted);
 const reply = shield.restore(answer, redactionMap);
 // "Sure Rahul Sharma, I have updated the plan for 9123456780."`)}
 
+${h2("How do I mask a RAG question, its passages and the history together?")}
+<p class="answer">Use a session. Every text shares one set of placeholders, and once a name is found anywhere, other mentions of it are masked too, even a bare lowercase first name in the question with no clue around it.</p>
+${code(`const session = shield.session();
+const [q, ...context] = session.redactAll([question, ...passages, history]);
+// "what did rahul approve?"  ->  "what did [NAME_1] approve?"
+// "Approved by Rahul Sharma" ->  "Approved by [NAME_1]"
+
+const answer = await callYourModel(q, context);
+const reply = session.restore(answer); // "Rahul Sharma approved ..."`)}
+<p>Masking a question with 8 passages of about 900 characters and 2 KB of history takes about 8 ms (p95 13 ms) on a 4-core server, and restoring the answer under 1 ms, so it can run on the request thread.</p>
+
 ${h2("What if the model changes the placeholders?")}
 <p class="answer">restore() is fuzzy by default: it also restores placeholders a model rewrote, such as [NAME 1], [name_1], NAME_1 or [ NAME-1 ]. Pass <code>{ fuzzy: false }</code> for exact matching only.</p>
-<p>Placeholders are case-exact: &ldquo;RAHUL&rdquo; and &ldquo;Rahul&rdquo; get separate placeholders, so each comes back exactly as the user wrote it.</p>
+<p>Spellings of one value share a placeholder (&ldquo;rahul sharma&rdquo; and &ldquo;Rahul Sharma&rdquo;, or <code>9123456780</code> and <code>+91 91234 56780</code>), and restore uses the best-capitalised spelling. Set <code>matchCase: true</code> to keep spellings apart. If your output may contain words like <code>EMAIL_1</code> on purpose, use <code>{ fuzzy: "brackets" }</code>.</p>
+
+${h2("How do I restore placeholders in a streamed answer?")}
+<p class="answer">Use <code>restoreStream()</code>. It holds back any text that could be the start of a placeholder until the next chunk arrives, so users never see half of &ldquo;[NAME_1]&rdquo;, in any form the model writes it.</p>
+${code(`for await (const piece of session.restoreStream(modelTextStream)) res.write(piece);
+
+// or push / end yourself
+const r = session.createRestoreStream();
+onToken((t) => res.write(r.push(t)));
+onDone(() => res.end(r.end()));`)}
 
 ${h2("How do I redact streaming LLM output?")}
 <p class="answer">Use <code>redactStream()</code> on any async iterable of text chunks. piilite holds back a short tail of text, so a value split across two chunks is never emitted half-redacted.</p>
@@ -483,7 +509,7 @@ ${table(["Preset", "Use it for", "Covers"], [
   ["<code>secrets</code>", "Logs, code, support tickets", "API keys, private keys, JWTs, tokens, connection strings, passwords, OTPs, PINs"],
   ["<code>gdpr</code>", "EU personal data", "Contact details, IDs, financial, health and device data, DOB, IBAN, SWIFT, SSN"],
   ["<code>hipaa</code>", "US health data", "Contact details, health IDs, device IDs, DOB, SSN, vehicle number, bank, cards"],
-  ["<code>strict</code>", "Prompts sent to third-party models", "Everything, with a lower confidence cut-off (0.4), test-looking numbers and company addresses too"],
+  ["<code>strict</code>", "Prompts sent to third-party models", "Everything, with a lower confidence cut-off (0.4) and test-looking numbers too"],
   ["<code>precise</code>", "Analytics where false alarms are costly", "Everything, with a higher confidence cut-off (0.8)"],
 ])}
 
@@ -581,7 +607,7 @@ ${table(["Feature", "piilite", "OpenRedaction"], [
   ["Indian IDs with checksums (Aadhaar, PAN, GSTIN, UPI &hellip;)", "Yes, 20+ types", "Aadhaar and IFSC"],
   ["Hinglish and Indian scripts", "Yes", "No"],
   ["Patterns for other countries", "Through the bridge (110 types)", "570+ patterns, 50+ countries"],
-  ["Size", "About 27 KB gzipped", "About 500 KB of core code"],
+  ["Size", "About 28 KB gzipped", "About 500 KB of core code"],
   ["Fuzzy restore of placeholders", "Yes", "Exact only"],
   ["Streaming for LLM token streams", "Yes", "Chunked streaming detector"],
   ["PDF, DOCX, OCR, XLSX", "Through the bridge", "Yes"],

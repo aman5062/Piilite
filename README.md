@@ -16,7 +16,7 @@ addresses, OTPs, API keys and more. The core uses patterns, checksums and rules 
 calls, no dependencies. An optional bridge adds [OpenRedaction](https://github.com/sam247/openredaction)'s global
 pattern library and document processors on top.
 
-- **25 KB gzipped**, zero dependencies, ESM + CommonJS, Node 18+, Bun, Deno, browsers
+- **28 KB gzipped**, zero dependencies, ESM + CommonJS, Node 18+, Bun, Deno, browsers
 - **Fast**: about 1.5 ms for a 1 KB message, 37 ms worst case on 20 KB of hostile input (ReDoS-tested)
 - **Real checksums**: Verhoeff (Aadhaar / VID), GSTIN mod-36, Luhn (cards incl. RuPay & Maestro, IMEI), IBAN mod-97
 - **Writes like India writes**: Hinglish (`mera naam … hai`, `ghar ka pata`), 9 Indian scripts, Indic digits
@@ -57,6 +57,24 @@ const { redacted, redactionMap } = shield.detect(userMessage);
 const answer = await callYourModel(redacted);            // the model only sees [NAME_1], [PHONE_IN_1] …
 const finalAnswer = shield.restore(answer, redactionMap); // also fixes "[NAME 1]", "[name_1]", "NAME_1"
 ```
+
+**RAG: question, passages and history together.** Use a session so the same person gets the same placeholder
+everywhere. Once "Rahul Sharma" is found in a passage, a bare "rahul" in the question is masked to the same
+`[NAME_1]`, even with no clue around it:
+
+```js
+const session = shield.session();
+const [q, ...context] = session.redactAll([question, ...passages, history]);
+// q: "what did [NAME_1] approve?"   passages: "... approved by [NAME_1] ..."
+const answer = await callYourModel(q, context);
+const reply = session.restore(answer);
+
+// streamed answers: never shows half a placeholder ("[NAME" then "_1]")
+for await (const piece of session.restoreStream(modelTextStream)) res.write(piece);
+```
+
+Masking a question with 8 passages and 2 KB of history (about 9 KB) takes about 8 ms (p95 13 ms) on a 4-core
+server; restoring the answer takes under 1 ms.
 
 **Streaming answers.** Text is held back just long enough that a value split across two chunks is never
 leaked:
@@ -109,7 +127,7 @@ new Piilite({ preset: "dpdp" });   // India's DPDP Act 2023: any data about an i
 | `hr` | UAN, ESIC, contact details, Aadhaar, PAN, bank, IFSC, passport, DOB, DL |
 | `secrets` | API keys, private keys, JWTs, tokens, connection strings, passwords, OTPs, PINs |
 | `gdpr`, `hipaa` | the identifiers those laws name, as far as they apply to text |
-| `strict` | everything, a lower (0.4) confidence cut-off, test-looking numbers and company addresses too |
+| `strict` | everything, a lower (0.4) confidence cut-off, test-looking numbers too |
 | `precise` | everything, with a higher (0.8) confidence cut-off |
 
 Your own options override the preset: `new Piilite({ preset: "kyc", exclude: ["PINCODE"] })`.
@@ -155,8 +173,9 @@ a résumé is taken as the name when contact details follow.
 **Addresses** are found after labels (`Address:`, `Permanent address`, `Ship to:`, `mera pata`, `ঠিকানা:`,
 `முகவரி:` …), from house and village markers (`Flat no`, `H.No`, `Vill.`, `Post`, `Dist.`), from landmarks
 (`near Hanuman Mandir, Sector 15, Noida`), after verbs (`shifted to`, `update address to`), and with no label at
-all when a comma-separated tail ends in `City PIN`. A company's own address ("Example Technologies Pvt Ltd, Sector 62,
-Noida") is not personal data, so it is left alone by default; the `strict` preset masks it too.
+all when a comma-separated tail ends in `City PIN`. Addresses after a company name are masked too, because "Engineer at
+Acme Technologies, 45 Civil Lines, Jaipur" may be a home; set `keepCompanyAddresses: true` to leave company-looking
+addresses ("Example Technologies Pvt Ltd, Sector 62, Noida") unmasked.
 
 ### Global
 
@@ -233,6 +252,9 @@ new Piilite({
   allow: ["support@acme.in", /@acme\.in$/], // never redact these values
   minConfidence: 0.5,
   skipFakeNumbers: true,        // false also masks test numbers like 9876543210 / 9999999999
+  matchCase: false,             // true: "RAHUL" and "Rahul" get separate placeholders
+  propagate: true,              // mask values seen earlier wherever they appear again
+  keepCompanyAddresses: false,  // true: leave "Acme Pvt Ltd, Sector 62, Noida" unmasked
   maskChar: "X",
   keepLast: 4,                  // digits left visible in "mask" mode
   placeholder: (type, n) => `<<${type}-${n}>>`,
@@ -249,7 +271,10 @@ new Piilite({
 | `scan(text)` | matches only: `[{ type, value, start, end, severity, confidence }]` |
 | `hasPII(text)` | `boolean` |
 | `redactObject(obj, { skipKeys })` | `{ value, redactionMap }` |
-| `restore(text, map, { fuzzy })` | text with placeholders replaced by the original values |
+| `restore(text, map, { fuzzy })` | text with placeholders replaced by the original values (`fuzzy`: `true`, `"brackets"` or `false`) |
+| `detectAll(texts)` / `redactAll(texts)` | several texts with shared placeholders, all scanned first |
+| `session()` | `{ detect, redact, redactAll, redactObject, restore, restoreStream, createRestoreStream, redactionMap }` |
+| `createRestoreStream(map)` / `restoreStream(iterable, map)` | streaming restore that never emits half a placeholder |
 | `createStream()` / `redactStream(iterable)` / `transformStream()` | streaming redaction |
 
 Shortcuts with default options: `redact`, `scan`, `detect`, `hasPII`, `restore`. Validators are exported too:
@@ -301,6 +326,10 @@ npm run eval:all    # every set + the OpenRedaction noise check
 - **The `redactionMap` holds the real values.** Keep it on the server and never log it. `mask` mode is not
   anonymisation, it keeps the last digits.
 - **Restore depends on the model** keeping placeholders recognisable; fuzzy matching covers the common rewrites.
+  Use `fuzzy: "brackets"` if your output may contain words like `EMAIL_1` on purpose.
+- **The model works on placeholders.** It cannot correct the spelling of a masked name or say which city a masked
+  address is in. Exclude a type (`exclude: ["ADDRESS"]`) for flows that need the real value, such as drafting a
+  letter, and only where that data may be shared with the model.
 - Some public figures' names are redacted too ("Sachin Tendulkar"), since piilite can't tell who is famous.
 
 ## Development

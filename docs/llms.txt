@@ -1,6 +1,6 @@
 # piilite
 
-> piilite is a lightweight (26.9 KB gzipped), zero-dependency JavaScript library for India-first PII detection and masking. It detects Aadhaar (Verhoeff checksum), PAN, GSTIN (mod-36 checksum), UPI IDs, +91 phone numbers, bank accounts, voter IDs, vehicle numbers, Indian names and addresses (Hinglish and 10 Indian languages), OTPs and API keys, and is built for apps that send user text to LLMs. MIT licensed. Install: `npm install piilite`. Current version: 0.2.1.
+> piilite is a lightweight (28.0 KB gzipped), zero-dependency JavaScript library for India-first PII detection and masking. It detects Aadhaar (Verhoeff checksum), PAN, GSTIN (mod-36 checksum), UPI IDs, +91 phone numbers, bank accounts, voter IDs, vehicle numbers, Indian names and addresses (Hinglish and 10 Indian languages), OTPs and API keys, and is built for apps that send user text to LLMs. MIT licensed. Install: `npm install piilite`. Current version: 0.3.0.
 
 Key facts:
 - Usage: `import { Piilite } from "piilite"; new Piilite().detect(text)` returns `{ redacted, detections, redactionMap }`; `restore(answer, redactionMap)` puts values back.
