@@ -1,6 +1,6 @@
 {
   "name": "piilite",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Lightweight, zero-dependency, India-first PII detection and masking for JavaScript. Aadhaar, PAN, GSTIN, UPI, +91 phones, Indian names and addresses, OTPs and secrets, with an optional OpenRedaction bridge for 110 global ID types.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -35,6 +35,7 @@
     "index.d.ts",
     "types",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE"
   ],
   "scripts": {

@@ -255,6 +255,7 @@ ${table(["Option", "Default", "What it does"], [
   ["<code>types</code> / <code>exclude</code> / <code>include</code>", "all", "Choose which types run"],
   ["<code>allow</code>", "[]", "Values never redacted"],
   ["<code>minConfidence</code>", "0.5", "Drop weaker matches; 0.4 catches more, 0.8 is stricter"],
+  ["<code>skipFakeNumbers</code>", "true", "Skip test-looking numbers such as 9876543210; <code>false</code> masks them too"],
   ["<code>maskChar</code> / <code>keepLast</code>", "X / 4", "Mask character and digits left visible in <code>mask</code> mode"],
   ["<code>placeholder</code>", "<code>[TYPE_n]</code>", "Function that builds placeholder text"],
   ["<code>maxInputSize</code>", "5,000,000", "Throws a RangeError above this length; stream larger input"],
@@ -335,7 +336,7 @@ ${table(["Written as", "Detected"], [
   ["091234 56780, 011-23456781 (landline)", "Yes"],
   ["९१२३४५६७८० (Devanagari), ৯১২৩৪৫৬৭৮০ (Bengali)", "Yes"],
   ["nine one two three &hellip;, nau ek do teen &hellip;", "Yes"],
-  ["9999999999, 9876543210 (test numbers)", "No, skipped on purpose"],
+  ["9999999999, 9876543210 (test numbers)", "Skipped by default; masked with <code>skipFakeNumbers: false</code> or the <code>strict</code> preset"],
 ])}
 
 ${h2("How do I detect bank account numbers and IFSC codes?")}
@@ -355,6 +356,7 @@ ${h2("How does piilite find Indian names?")}
 
 ${h2("How does piilite find Indian addresses?")}
 <p class="answer">piilite finds addresses that start at a label (Address:, Ship to:, mera pata, ঠিকানা:), a house or village marker (Flat no, H.No, Vill., Post, Dist.) or a landmark (near, opp, Sector 15), and ends them at the PIN code.</p>
+<p>A company's own address, such as &ldquo;Example Technologies Pvt Ltd, Sector 62, Noida&rdquo;, is not personal data and is left alone by default. The <code>strict</code> preset masks it too.</p>
 ${code(`redact("Address: Flat no 302, Sai Krupa Apartment, MG Road, Pune - 411001. Phone 9123456780");
 // "Address: [ADDRESS_1]. Phone [PHONE_IN_1]"`)}
 
@@ -397,6 +399,7 @@ const reply = shield.restore(answer, redactionMap);
 
 ${h2("What if the model changes the placeholders?")}
 <p class="answer">restore() is fuzzy by default: it also restores placeholders a model rewrote, such as [NAME 1], [name_1], NAME_1 or [ NAME-1 ]. Pass <code>{ fuzzy: false }</code> for exact matching only.</p>
+<p>Placeholders are case-exact: &ldquo;RAHUL&rdquo; and &ldquo;Rahul&rdquo; get separate placeholders, so each comes back exactly as the user wrote it.</p>
 
 ${h2("How do I redact streaming LLM output?")}
 <p class="answer">Use <code>redactStream()</code> on any async iterable of text chunks. piilite holds back a short tail of text, so a value split across two chunks is never emitted half-redacted.</p>
@@ -480,7 +483,7 @@ ${table(["Preset", "Use it for", "Covers"], [
   ["<code>secrets</code>", "Logs, code, support tickets", "API keys, private keys, JWTs, tokens, connection strings, passwords, OTPs, PINs"],
   ["<code>gdpr</code>", "EU personal data", "Contact details, IDs, financial, health and device data, DOB, IBAN, SWIFT, SSN"],
   ["<code>hipaa</code>", "US health data", "Contact details, health IDs, device IDs, DOB, SSN, vehicle number, bank, cards"],
-  ["<code>strict</code>", "Prompts sent to third-party models", "Everything, with a lower confidence cut-off (0.4)"],
+  ["<code>strict</code>", "Prompts sent to third-party models", "Everything, with a lower confidence cut-off (0.4), test-looking numbers and company addresses too"],
   ["<code>precise</code>", "Analytics where false alarms are costly", "Everything, with a higher confidence cut-off (0.8)"],
 ])}
 

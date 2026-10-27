@@ -109,7 +109,8 @@ new Piilite({ preset: "dpdp" });   // India's DPDP Act 2023: any data about an i
 | `hr` | UAN, ESIC, contact details, Aadhaar, PAN, bank, IFSC, passport, DOB, DL |
 | `secrets` | API keys, private keys, JWTs, tokens, connection strings, passwords, OTPs, PINs |
 | `gdpr`, `hipaa` | the identifiers those laws name, as far as they apply to text |
-| `strict` / `precise` | everything, with a lower (0.4) or higher (0.8) confidence cut-off |
+| `strict` | everything, a lower (0.4) confidence cut-off, test-looking numbers and company addresses too |
+| `precise` | everything, with a higher (0.8) confidence cut-off |
 
 Your own options override the preset: `new Piilite({ preset: "kyc", exclude: ["PINCODE"] })`.
 
@@ -154,7 +155,8 @@ a résumé is taken as the name when contact details follow.
 **Addresses** are found after labels (`Address:`, `Permanent address`, `Ship to:`, `mera pata`, `ঠিকানা:`,
 `முகவரி:` …), from house and village markers (`Flat no`, `H.No`, `Vill.`, `Post`, `Dist.`), from landmarks
 (`near Hanuman Mandir, Sector 15, Noida`), after verbs (`shifted to`, `update address to`), and with no label at
-all when a comma-separated tail ends in `City PIN`.
+all when a comma-separated tail ends in `City PIN`. A company's own address ("Example Technologies Pvt Ltd, Sector 62,
+Noida") is not personal data, so it is left alone by default; the `strict` preset masks it too.
 
 ### Global
 
@@ -230,6 +232,7 @@ new Piilite({
   include: ["LOCATION"],        // also run opt-in types
   allow: ["support@acme.in", /@acme\.in$/], // never redact these values
   minConfidence: 0.5,
+  skipFakeNumbers: true,        // false also masks test numbers like 9876543210 / 9999999999
   maskChar: "X",
   keepLast: 4,                  // digits left visible in "mask" mode
   placeholder: (type, n) => `<<${type}-${n}>>`,
@@ -293,6 +296,8 @@ npm run eval:all    # every set + the OpenRedaction noise check
 - **Context-only types** (bank account, passport, UAN, ESIC, OTP, PIN code) need a nearby label.
 - **Synthetic evaluation.** The eval sets are generated, not real user data; real text will have cases they
   don't. Please send failing examples (with fake data) as issues so they become tests.
+- **Test numbers are skipped on purpose.** Sequences like `9876543210` and `9999999999` are almost always fake, so they
+  are not masked unless you set `skipFakeNumbers: false` or use the `strict` preset.
 - **The `redactionMap` holds the real values.** Keep it on the server and never log it. `mask` mode is not
   anonymisation, it keeps the last digits.
 - **Restore depends on the model** keeping placeholders recognisable; fuzzy matching covers the common rewrites.
@@ -300,7 +305,11 @@ npm run eval:all    # every set + the OpenRedaction noise check
 
 ## Development
 
+Tests, the evaluation sets and the website source live in the [GitHub repository](https://github.com/aman5062/Piilite),
+not in the npm package (they need dev-only packages such as Express, React and OpenRedaction).
+
 ```bash
+git clone https://github.com/aman5062/Piilite.git && cd Piilite && npm install
 npm test         # 80+ tests, node:test, no runtime dependencies
 npm run build    # CommonJS builds in dist/
 npm run bench

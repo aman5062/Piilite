@@ -23,6 +23,8 @@ const EXAMPLES = [
   [() => new Piilite({ mode: (m) => `<${m.type}>` }).redact("call 9123456780"), "call <PHONE_IN>"],
   [() => new Piilite({ customPatterns: [{ type: "EMPLOYEE_ID", regex: /\bEMP-\d{5}\b/g, priority: 90, severity: "medium" }] }).redact("id EMP-00421"), "id [EMPLOYEE_ID_1]"],
   [() => redact("call 9123456780"), "call [PHONE_IN_1]"],
+  [() => new Piilite({ skipFakeNumbers: false }).redact("call 9876543210"), "call [PHONE_IN_1]"],
+  [() => new Piilite().scan("Office: Example Technologies Pvt Ltd, Sector 62, Noida").length, 0],
   [() => new Piilite({ types: ["AADHAAR"] }).scan("Aadhaar: 4918 3726 5017").map((d) => d.value).join(), "4918 3726 5017"],
   [() => new Piilite({ types: ["AADHAAR"] }).scan("UTR 412398765432 credited").length, 0],
   [() => aadhaar("491837265017"), true],
