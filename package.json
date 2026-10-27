@@ -43,7 +43,8 @@
     "bench": "node bench/bench.js",
     "eval": "node eval/run.js",
     "eval:all": "node eval/generate.js && node eval/run.js dataset.json && node eval/run.js holdout.json && node eval/run.js holdout2.json && node eval/openredaction-noise.js",
-    "prepublishOnly": "npm run build && npm test"
+    "prepublishOnly": "npm run build && npm test",
+    "site": "node site/build.mjs"
   },
   "keywords": [
     "aadhaar",
@@ -67,9 +68,13 @@
   ],
   "author": "Aman kumar keshri <amank232004@gmail.com>",
   "license": "MIT",
+  "homepage": "https://aman5062.github.io/Piilite/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aman5062/Piilite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aman5062/Piilite/issues"
   },
   "engines": {
     "node": ">=18"

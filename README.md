@@ -1,6 +1,14 @@
 # piilite
 
+[![npm version](https://img.shields.io/npm/v/piilite.svg)](https://www.npmjs.com/package/piilite)
+[![npm downloads](https://img.shields.io/npm/dm/piilite.svg)](https://www.npmjs.com/package/piilite)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/piilite)](https://bundlephobia.com/package/piilite)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![types: TypeScript](https://img.shields.io/badge/types-TypeScript-3178c6.svg)](index.d.ts)
+
 **Lightweight, zero-dependency, India-first PII detection and masking for JavaScript.**
+
+**Docs and live playground: [aman5062.github.io/Piilite](https://aman5062.github.io/Piilite/)** · **npm: [piilite](https://www.npmjs.com/package/piilite)**
 
 piilite finds and masks personal data before it reaches your logs, your database or an AI model:
 Aadhaar, PAN, GSTIN, UPI IDs, +91 phone numbers, bank accounts, voter IDs, vehicle numbers, Indian names and
@@ -21,9 +29,7 @@ pattern library and document processors on top.
 ## Install
 
 ```bash
-npm install piilite
-# or straight from GitHub
-npm install github:aman5062/Piilite
+npm install piilite        # or: pnpm add piilite · yarn add piilite · bun add piilite
 
 # optional: global ID types + PDF / DOCX / CSV / JSON / XLSX processors
 npm install @openredaction/core
@@ -113,7 +119,7 @@ Your own options override the preset: `new Piilite({ preset: "kyc", exclude: ["P
 
 | Type | Example | How it is checked |
 |---|---|---|
-| `AADHAAR` | `4918 3726 5013` | 12 digits, starts 2-9, **Verhoeff checksum**; "aadhaar" in any of 8 scripts allows a typo'd number; UTR / order / ref numbers are skipped |
+| `AADHAAR` | `4918 3726 5017` | 12 digits, starts 2-9, **Verhoeff checksum**; "aadhaar" in any of 8 scripts allows a typo'd number; UTR / order / ref numbers are skipped |
 | `AADHAAR_VID` | 16-digit Virtual ID | Verhoeff + "VID" nearby |
 | `PAN` | `ABCPS1234K` | structure + valid holder type; skipped after SKU / model / product labels |
 | `GSTIN` | `27AAPFU0939F1ZV` | state code + embedded PAN + **mod-36 checksum** |
@@ -299,6 +305,7 @@ npm test         # 80+ tests, node:test, no runtime dependencies
 npm run build    # CommonJS builds in dist/
 npm run bench
 npm run eval:all
+npm run site     # rebuilds the docs website in docs/
 ```
 
 ## Credits
