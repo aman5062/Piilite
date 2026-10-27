@@ -88,3 +88,73 @@ test("Hinglish address labels", () => {
   assert.deepEqual(addresses("mera pata hai 21, Lajpat Nagar, Delhi 110024"), ["21, Lajpat Nagar, Delhi 110024"]);
   assert.deepEqual(addresses("पता: 14, गांधी मार्ग, जयपुर 302001"), ["14, गांधी मार्ग, जयपुर 302001"]);
 });
+
+test("initial-first South Indian names", () => {
+  assert.deepEqual(names("Report by K. Ramesh today"), ["K. Ramesh"]);
+  assert.deepEqual(names("Signed: A.K. Sharma"), ["A.K. Sharma"]);
+  assert.deepEqual(names("Meet R Madhavan at 5"), ["R Madhavan"]);
+});
+
+test("places named after people are not names", () => {
+  assert.deepEqual(names("Shop in Gandhi Nagar market"), []);
+  assert.deepEqual(names("Meet at Nehru Place metro"), []);
+  assert.deepEqual(names("Indira Gandhi Airport is busy"), []);
+});
+
+test("bigger name dictionary covers all regions", () => {
+  for (const n of ["Sukhpreet Dhaliwal", "Anwesha Bhattacharyya", "Tabrez Ansari", "Dinshaw Wadia", "Jince Varghese", "Bhargav Phukan", "Lavanya Iyengar"]) {
+    assert.ok(names(`Please contact ${n} soon`).some((v) => v.includes(n.split(" ")[1])), n);
+  }
+});
+
+test("name triggers in Indian scripts", () => {
+  assert.deepEqual(names("আমার নাম সৌরভ গাঙ্গুলী"), ["সৌরভ গাঙ্গুলী"]);
+  assert.deepEqual(names("என் பெயர் கார்த்திக்"), ["கார்த்திக்"]);
+  assert.deepEqual(names("నా పేరు రాము"), ["రాము"]);
+  assert.deepEqual(names("મારું નામ હેતલ પટેલ છે"), ["હેતલ પટેલ"]);
+  assert.deepEqual(names("ਮੇਰਾ ਨਾਮ ਗੁਰਪ੍ਰੀਤ ਹੈ"), ["ਗੁਰਪ੍ਰੀਤ"]);
+  assert.deepEqual(names("ನನ್ನ ಹೆಸರು ಮಂಜುನಾಥ"), ["ಮಂಜುನಾಥ"]);
+  assert.deepEqual(names("എന്റെ പേര് അനു ആണ്"), ["അനു"]);
+  assert.deepEqual(names("माझे नाव सचिन आहे"), ["सचिन"]);
+  assert.deepEqual(names("नाम से पता चलता है"), []);
+});
+
+test("addresses from landmarks and localities", () => {
+  assert.deepEqual(addresses("Come to near Hanuman Mandir, Sector 15, Noida"), ["near Hanuman Mandir, Sector 15, Noida"]);
+  assert.deepEqual(addresses("Office: 3rd Cross, Koramangala, Bengaluru 560034"), ["3rd Cross, Koramangala, Bengaluru 560034"]);
+  assert.deepEqual(addresses("Sector 5 sales grew by 10%"), []);
+});
+
+test("address labels in Indian scripts", () => {
+  assert.deepEqual(addresses("ঠিকানা: ১২ পার্ক স্ট্রিট, কলকাতা ৭০০০১৬"), ["১২ পার্ক স্ট্রিট, কলকাতা ৭০০০১৬"]);
+  assert.deepEqual(addresses("முகவரி: 5, அண்ணா சாலை, சென்னை 600002"), ["5, அண்ணா சாலை, சென்னை 600002"]);
+});
+
+test("unlabelled address after a name, anchored on the PIN code", () => {
+  assert.deepEqual(addresses("Shri Ram Lal S/O Mohan Lal, 45, Civil Lines, Jaipur 302001"), ["45, Civil Lines, Jaipur 302001"]);
+  assert.deepEqual(addresses("Deliver it: Neha, 149, 2nd Cross, Indiranagar, Bengaluru - 560038"), ["149, 2nd Cross, Indiranagar, Bengaluru - 560038"]);
+  assert.deepEqual(addresses("Our Pune 411045 office is open"), []);
+});
+
+test("rooms and blocks in office text are not addresses", () => {
+  assert.deepEqual(addresses("Room 204, Block B is reserved for the workshop."), []);
+});
+
+test("role labels and 'myself' take unknown capitalised names", () => {
+  assert.deepEqual(names("Myself Pratyush Nandwana from Pune"), ["Pratyush Nandwana"]);
+  assert.deepEqual(names("Candidate: Tejaswini Rangnekar | x@y.in"), ["Tejaswini Rangnekar"]);
+  assert.deepEqual(names("Spoke to Ojasvi Thakre about it"), ["Ojasvi Thakre"]);
+  assert.deepEqual(names("S/O Gurpreet Singh Sandhu"), ["Gurpreet Singh Sandhu"]);
+  assert.deepEqual(names("myself going to market"), []);
+});
+
+test("typical Indian surname endings", () => {
+  assert.deepEqual(names("Thanks Hrishikesh Joglekar for the help"), ["Hrishikesh Joglekar"]);
+  assert.deepEqual(names("Ask Darshil Vekariya"), ["Darshil Vekariya"]);
+});
+
+test("CSV rows: name cell followed by a phone or email cell", () => {
+  assert.deepEqual(names("Nirav Thummar,9123456780,nirav@x.in"), ["Nirav Thummar"]);
+  assert.deepEqual(names("Gargi Ranadive; gargi@mail.com"), ["Gargi Ranadive"]);
+  assert.deepEqual(names("Monthly Report, sent to 9123456780"), []);
+});

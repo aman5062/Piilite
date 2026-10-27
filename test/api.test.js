@@ -63,3 +63,10 @@ test("works with await like OpenRedaction", async () => {
   const r = await new Piilite().detect("PAN ABCPS1234K");
   assert.equal(r.redacted, "PAN [PAN_1]");
 });
+
+test("README quick start output", () => {
+  assert.equal(
+    new Piilite().redact("Myself Ankit Kumar Gupta, call 9123456780 or pay ankit@okhdfcbank. PAN ABCPS1234K, OTP is 482913"),
+    "Myself [NAME_1], call [PHONE_IN_1] or pay [UPI_ID_1]. PAN [PAN_1], OTP is [OTP_1]"
+  );
+});

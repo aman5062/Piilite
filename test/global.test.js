@@ -59,3 +59,7 @@ test("social profile links", () => {
   assert.deepEqual(types("chat on https://wa.me/919123456780"), ["SOCIAL_PROFILE"]);
   assert.deepEqual(types("see https://github.com/login"), []);
 });
+
+test("Maestro cards", () => {
+  assert.deepEqual(types(`card ${makeCard("502334319557466")}`), ["CREDIT_CARD"]);
+});

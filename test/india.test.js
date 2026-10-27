@@ -134,3 +134,26 @@ test("UPI ID at the end of a sentence", () => {
   assert.deepEqual(values("gpay on priya@newbank.", "UPI_ID"), ["priya@newbank"]);
   assert.deepEqual(types("mail rahul@okhdfcbank.com"), ["EMAIL"]);
 });
+
+test("reference numbers are not Aadhaar / PAN", () => {
+  const a = makeAadhaar("49183726501");
+  assert.deepEqual(types(`UPI ref no ${a}`), []);
+  assert.deepEqual(types(`UTR ${a} credited`), []);
+  assert.deepEqual(types(`order id ${a}`), []);
+  assert.deepEqual(types(`SKU ABCPS1234K`), []);
+  assert.deepEqual(types(`Aadhaar ${a} (ref verified)`), ["AADHAAR"]);
+});
+
+test("bank names count as account context", () => {
+  assert.deepEqual(types("my SBI 50100234567890"), ["BANK_ACCOUNT"]);
+  assert.deepEqual(types("HDFC a/c 50100234567890"), ["BANK_ACCOUNT"]);
+});
+
+test("Aadhaar keyword in other scripts", () => {
+  const bad = "491837265010";
+  assert.deepEqual(types(`আধার ${bad}`), ["AADHAAR"]);
+});
+
+test("91 prefix without separator", () => {
+  assert.deepEqual(values("Mobile: 919583727552", "PHONE_IN"), ["919583727552"]);
+});
