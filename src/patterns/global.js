@@ -8,7 +8,7 @@ import { keywords } from "../text.js";
 const TLD = "[a-z]{2,24}";
 const OBF_AT = String.raw`(?:\s*[\(\[\{<]\s*at\s*[\)\]\}>]\s*|\s+at\s+|\s*@\s*)`;
 const OBF_DOT = String.raw`(?:\s*[\(\[\{<]\s*dot\s*[\)\]\}>]\s*|\s+dot\s+|\.)`;
-const PART = "[a-z0-9_+-]+";
+const PART = "[a-z0-9_+-]{1,64}";
 
 export const globalPatterns = [
   {
@@ -23,7 +23,7 @@ export const globalPatterns = [
     // "rahul dot sharma at gmail dot com", "rahul[at]gmail[dot]com"
     type: "EMAIL",
     regex: new RegExp(
-      String.raw`(?<![\w.])${PART}(?:${OBF_DOT}${PART})*${OBF_AT}${PART}(?:${OBF_DOT}${PART})*${OBF_DOT}(?:com|in|co\.in|co|net|org|edu|gov|io|ai|me|info|biz|ac|nic|res|us|uk)(?![\w])`,
+      String.raw`(?<![\w.+-])${PART}(?:${OBF_DOT}${PART}){0,4}${OBF_AT}${PART}(?:${OBF_DOT}${PART}){0,4}${OBF_DOT}(?:com|in|co\.in|co|net|org|edu|gov|io|ai|me|info|biz|ac|nic|res|us|uk)(?![\w])`,
       "gi"
     ),
     // must actually be disguised; plain emails are handled above

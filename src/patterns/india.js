@@ -19,6 +19,22 @@ const UPI_HANDLES = [
   "mobikwik", "ezeepay", "fam", "omni", "pingpay", "jarunion", "shriramhdfcbank", "yescred", "niyoicici", "cmsidfc",
 ].join("|");
 
+// Reference numbers that look like IDs: UPI UTR / RRN, orders, invoices, SKUs
+const REFERENCE = keywords([
+  "utr", "rrn", "upi ref", "ref", "ref no", "reference", "txn", "transaction", "txn id", "order", "order id",
+  "invoice", "inv", "receipt", "ticket", "awb", "tracking", "pnr", "booking", "sku", "item", "product",
+  "model", "part", "serial", "batch", "lot", "imei", "folio", "policy", "claim", "loan", "emi", "cust id",
+]);
+
+// Bank names count as account context: "my SBI 50100234567890"
+const BANKS = [
+  "sbi", "state bank", "hdfc", "icici", "axis", "kotak", "pnb", "punjab national", "bob", "bank of baroda",
+  "canara", "union bank", "boi", "bank of india", "idbi", "idfc", "indusind", "yes bank", "federal",
+  "indian bank", "iob", "uco", "central bank", "bandhan", "au bank", "rbl", "south indian bank", "karnataka bank",
+  "kvb", "city union", "dbs", "hsbc", "citi", "standard chartered", "paytm payments", "airtel payments",
+  "india post", "ippb", "cooperative bank", "gramin bank",
+];
+
 const MONTHS = "jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?";
 
 const noState = (value) => {
@@ -69,7 +85,8 @@ export const indiaPatterns = [
     type: "AADHAAR",
     regex: /(?<![\w])[2-9]\d{3}([\s-]?)\d{4}\1\d{4}(?![\w-])/g,
     validator: v.aadhaar,
-    context: keywords(["aadhaar", "aadhar", "adhaar", "adhar", "aadhaar card", "uid", "uidai", "आधार"]),
+    context: keywords(["aadhaar", "aadhar", "adhaar", "adhar", "aadhaar card", "uid", "uidai", "आधार", "আধার", "ஆதார்", "ఆధార్", "ಆಧಾರ್", "ആധാർ", "આધાર", "ਆਧਾਰ"]),
+    negativeContext: REFERENCE,
     lenient: true,
     priority: 93,
     severity: "critical",
@@ -132,6 +149,7 @@ export const indiaPatterns = [
     regex: /(?<![A-Za-z0-9])[A-Za-z]{5}\d{4}[A-Za-z](?![A-Za-z0-9])/g,
     validator: v.pan,
     context: keywords(["pan", "pan card", "pan no", "pan number", "permanent account", "पैन"]),
+    negativeContext: REFERENCE,
     lenient: true,
     priority: 90,
     severity: "critical",
@@ -176,7 +194,7 @@ export const indiaPatterns = [
     validator: (val) => !v.isJunkNumber(v.digitsOf(val)),
     context: keywords([
       "a/c", "a/c no", "ac no", "acc", "acc no", "acct", "account", "account no", "account number",
-      "bank", "khata", "khata number", "saving", "savings", "current account", "बैंक", "खाता",
+      "bank", "khata", "khata number", "saving", "savings", "current account", "बैंक", "खाता", ...BANKS,
     ]),
     requireContext: true,
     contextOnly: "before",
@@ -196,9 +214,10 @@ export const indiaPatterns = [
   // ---------------------------------------------------------------- phones
   {
     type: "PHONE_IN",
-    regex: /(?<![\w+])(?:(?:\+|00)\s?91[\s.-]*|91[\s.-]+|0)?[6-9](?:[\s.-]?\d){9}(?![\w])/g,
+    regex: /(?<![\w+])(?:(?:\+|00)\s?91[\s.-]*|91[\s.-]+|91(?=[6-9]\d{9}(?!\d))|0)?[6-9](?:[\s.-]?\d){9}(?![\w])/g,
     validator: v.indianMobile,
     context: keywords(["phone", "mobile", "mob", "cell", "call", "contact", "whatsapp", "number", "no", "ph", "tel", "फ़ोन", "मोबाइल"]),
+    negativeContext: REFERENCE,
     priority: 80,
     severity: "high",
     confidence: 0.85,
@@ -229,6 +248,7 @@ export const indiaPatterns = [
     type: "VOTER_ID",
     regex: /(?<![A-Za-z0-9])[A-Za-z]{3}\d{7}(?![A-Za-z0-9])/g,
     validator: (val, ctx) => val === val.toUpperCase() || /voter|epic|election/i.test(ctx),
+    negativeContext: REFERENCE,
     context: keywords(["voter", "voter id", "epic", "election card", "election id", "matdata", "मतदाता"]),
     priority: 85,
     severity: "high",
@@ -321,7 +341,7 @@ export const indiaPatterns = [
   {
     // "Mumbai 400053", "Patna - 800001", "Delhi-110001"
     type: "PINCODE",
-    regex: new RegExp(`(?<=\\b(?:${CITY_OR_STATE})[\\s,.-]{1,3})[1-9]\\d{2}\\s?\\d{3}(?![\\w])`, "gi"),
+    regex: new RegExp(`(?<=\\b(?:${CITY_OR_STATE})[\\s,.-]{1,3})[1-9]\\d{2}\\s?\\d{3}(?![\\w])(?!\\s+(?:area|areas|region|zone|belt|circle|division))`, "gi"),
     priority: 50,
     severity: "medium",
   },
