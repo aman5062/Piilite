@@ -1,0 +1,6721 @@
+[
+ {
+  "id": "pii-0",
+  "text": "My name is Gurpreet Singh Sandhu and my number is 919583727552",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 32,
+    "value": "Gurpreet Singh Sandhu"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 50,
+    "end": 62,
+    "value": "919583727552"
+   }
+  ]
+ },
+ {
+  "id": "pii-1",
+  "text": "Name: Vikram Rathore\nMobile: 919951312361\nEmail: arjun.m60@gmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 20,
+    "value": "Vikram Rathore"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 29,
+    "end": 41,
+    "value": "919951312361"
+   },
+   {
+    "type": "EMAIL",
+    "start": 49,
+    "end": 68,
+    "value": "arjun.m60@gmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-2",
+  "text": "Name: Tejaswini Rangnekar\nPhone: 08368278557",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 25,
+    "value": "Tejaswini Rangnekar",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 33,
+    "end": 44,
+    "value": "08368278557"
+   }
+  ]
+ },
+ {
+  "id": "pii-3",
+  "text": "mera naam Lavanya Iyengar hai, mera number 82603 73035 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 25,
+    "value": "Lavanya Iyengar"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 43,
+    "end": 54,
+    "value": "82603 73035"
+   }
+  ]
+ },
+ {
+  "id": "pii-4",
+  "text": "hi this is Sneha Kulkarni, pls call me on 6599246468",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 25,
+    "value": "Sneha Kulkarni"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 42,
+    "end": 52,
+    "value": "6599246468"
+   }
+  ]
+ },
+ {
+  "id": "pii-5",
+  "text": "Myself Pratyush Nandwana from Pune, my mail id is kavita.n66@gmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 24,
+    "value": "Pratyush Nandwana",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 50,
+    "end": 70,
+    "value": "kavita.n66@gmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-6",
+  "text": "Please forward the offer letter to Neha Agarwal today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 47,
+    "value": "Neha Agarwal"
+   }
+  ]
+ },
+ {
+  "id": "pii-7",
+  "text": "Spoke to Ojasvi Thakre about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 22,
+    "value": "Ojasvi Thakre",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-8",
+  "text": "Dear Fatima Ansari,\nYour OTP is 281108. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 18,
+    "value": "Fatima Ansari"
+   },
+   {
+    "type": "OTP",
+    "start": 32,
+    "end": 38,
+    "value": "281108"
+   }
+  ]
+ },
+ {
+  "id": "pii-9",
+  "text": "Aadhaar: 3794-1560-4584  PAN: EPLBJ6154R",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 23,
+    "value": "3794-1560-4584"
+   },
+   {
+    "type": "PAN",
+    "start": 30,
+    "end": 40,
+    "value": "EPLBJ6154R"
+   }
+  ]
+ },
+ {
+  "id": "pii-10",
+  "text": "aadhar number 3658-9114-8360 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 28,
+    "value": "3658-9114-8360"
+   }
+  ]
+ },
+ {
+  "id": "pii-11",
+  "text": "Sir my PAN card no is DARPG4217D and DOB 07/06/1968",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "DARPG4217D"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "07/06/1968"
+   }
+  ]
+ },
+ {
+  "id": "pii-12",
+  "text": "GSTIN of the firm: 27FWAPX3780Q1ZG",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "27FWAPX3780Q1ZG"
+   }
+  ]
+ },
+ {
+  "id": "pii-13",
+  "text": "bhai paise ankit.g@okaxis pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 25,
+    "value": "ankit.g@okaxis"
+   }
+  ]
+ },
+ {
+  "id": "pii-14",
+  "text": "Pay to rahul@okaxis and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 19,
+    "value": "rahul@okaxis"
+   }
+  ]
+ },
+ {
+  "id": "pii-15",
+  "text": "A/c no 8355339169469678, IFSC HDFC0389341, name Neha Agarwal",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 23,
+    "value": "8355339169469678"
+   },
+   {
+    "type": "IFSC",
+    "start": 30,
+    "end": 41,
+    "value": "HDFC0389341"
+   },
+   {
+    "type": "NAME",
+    "start": 48,
+    "end": 60,
+    "value": "Neha Agarwal"
+   }
+  ]
+ },
+ {
+  "id": "pii-16",
+  "text": "my HDFC account 14681932277766 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 30,
+    "value": "14681932277766"
+   }
+  ]
+ },
+ {
+  "id": "pii-17",
+  "text": "Card 4028 6484 5735 7099 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "4028 6484 5735 7099"
+   }
+  ]
+ },
+ {
+  "id": "pii-18",
+  "text": "Voter ID: DFY5326753",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "DFY5326753"
+   }
+  ]
+ },
+ {
+  "id": "pii-19",
+  "text": "passport no L4598554 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "L4598554"
+   }
+  ]
+ },
+ {
+  "id": "pii-20",
+  "text": "DL MP27 20036957023 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "MP27 20036957023"
+   }
+  ]
+ },
+ {
+  "id": "pii-21",
+  "text": "my car DL 11 WY 1486 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "DL 11 WY 1486"
+   }
+  ]
+ },
+ {
+  "id": "pii-22",
+  "text": "Address: 287, Civil Lines, Bhopal - 462001",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 42,
+    "value": "287, Civil Lines, Bhopal - 462001"
+   }
+  ]
+ },
+ {
+  "id": "pii-23",
+  "text": "I live in 204, Arera Colony, Pune 411045",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 40,
+    "value": "204, Arera Colony, Pune 411045"
+   }
+  ]
+ },
+ {
+  "id": "pii-24",
+  "text": "Ship to: 284, Civil Lines, Bengaluru 560038. Contact +91-9340773193",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 43,
+    "value": "284, Civil Lines, Bengaluru 560038"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 53,
+    "end": 67,
+    "value": "+91-9340773193"
+   }
+  ]
+ },
+ {
+  "id": "pii-25",
+  "text": "Customer Rahul Sharma (ankit_g20@gmail.com) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 21,
+    "value": "Rahul Sharma"
+   },
+   {
+    "type": "EMAIL",
+    "start": 23,
+    "end": 42,
+    "value": "ankit_g20@gmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-26",
+  "text": "Candidate: Tejaswini Rangnekar | kavita.n22@yahoo.co.in | +91 69486 62273",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 30,
+    "value": "Tejaswini Rangnekar",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 33,
+    "end": 55,
+    "value": "kavita.n22@yahoo.co.in"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 58,
+    "end": 73,
+    "value": "+91 69486 62273"
+   }
+  ]
+ },
+ {
+  "id": "pii-27",
+  "text": "OPENAI_API_KEY=sk-proj-ymme6khksopet6vcui6sfdc1w2h4w6mg",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-ymme6khksopet6vcui6sfdc1w2h4w6mg"
+   }
+  ]
+ },
+ {
+  "id": "pii-28",
+  "text": "Shri Hrishikesh Joglekar S/O Gurpreet Singh Sandhu, 45, Civil Lines, Jaipur 302001",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 24,
+    "value": "Hrishikesh Joglekar",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 29,
+    "end": 50,
+    "value": "Gurpreet Singh Sandhu"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 52,
+    "end": 82,
+    "value": "45, Civil Lines, Jaipur 302001"
+   }
+  ]
+ },
+ {
+  "id": "pii-29",
+  "text": "Applicant Mrs. Ankit Gupta, DOB: 07/09/2004, Aadhaar 635674867490",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 26,
+    "value": "Ankit Gupta"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 33,
+    "end": 43,
+    "value": "07/09/2004"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 53,
+    "end": 65,
+    "value": "635674867490"
+   }
+  ]
+ },
+ {
+  "id": "pii-30",
+  "text": "call kar +91 72425 19241 pe, otp 845297 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 24,
+    "value": "+91 72425 19241"
+   },
+   {
+    "type": "OTP",
+    "start": 33,
+    "end": 39,
+    "value": "845297"
+   }
+  ]
+ },
+ {
+  "id": "pii-31",
+  "text": "Regards,\nFatima Ansari\n77576 21116",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 22,
+    "value": "Fatima Ansari"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 23,
+    "end": 34,
+    "value": "77576 21116"
+   }
+  ]
+ },
+ {
+  "id": "pii-32",
+  "text": "My name is Pooja Patel and my number is 70187 40773",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 22,
+    "value": "Pooja Patel"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 51,
+    "value": "70187 40773"
+   }
+  ]
+ },
+ {
+  "id": "pii-33",
+  "text": "Name: Mohd Imran Qureshi\nMobile: 80321 24707\nEmail: ankit_g24@rediffmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 24,
+    "value": "Mohd Imran Qureshi"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 33,
+    "end": 44,
+    "value": "80321 24707"
+   },
+   {
+    "type": "EMAIL",
+    "start": 52,
+    "end": 76,
+    "value": "ankit_g24@rediffmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-34",
+  "text": "Name: Ishwari Kolte\nPhone: +91-6903136856",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 19,
+    "value": "Ishwari Kolte",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 27,
+    "end": 41,
+    "value": "+91-6903136856"
+   }
+  ]
+ },
+ {
+  "id": "pii-35",
+  "text": "mera naam Ankit Gupta hai, mera number 918898734781 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 21,
+    "value": "Ankit Gupta"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 39,
+    "end": 51,
+    "value": "918898734781"
+   }
+  ]
+ },
+ {
+  "id": "pii-36",
+  "text": "hi this is Sneha Kulkarni, pls call me on 08686477068",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 25,
+    "value": "Sneha Kulkarni"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 42,
+    "end": 53,
+    "value": "08686477068"
+   }
+  ]
+ },
+ {
+  "id": "pii-37",
+  "text": "Myself Hrishikesh Joglekar from Pune, my mail id is priya.k46@gmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 26,
+    "value": "Hrishikesh Joglekar",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 52,
+    "end": 71,
+    "value": "priya.k46@gmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-38",
+  "text": "Please forward the offer letter to Deepika Reddy today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 48,
+    "value": "Deepika Reddy"
+   }
+  ]
+ },
+ {
+  "id": "pii-39",
+  "text": "Spoke to Hrishikesh Joglekar about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 28,
+    "value": "Hrishikesh Joglekar",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-40",
+  "text": "Dear Neha Agarwal,\nYour OTP is 670666. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 17,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "OTP",
+    "start": 31,
+    "end": 37,
+    "value": "670666"
+   }
+  ]
+ },
+ {
+  "id": "pii-41",
+  "text": "Aadhaar: 9731 9313 8948  PAN: RJYBX1605G",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 23,
+    "value": "9731 9313 8948"
+   },
+   {
+    "type": "PAN",
+    "start": 30,
+    "end": 40,
+    "value": "RJYBX1605G"
+   }
+  ]
+ },
+ {
+  "id": "pii-42",
+  "text": "aadhar number 562943102880 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 26,
+    "value": "562943102880"
+   }
+  ]
+ },
+ {
+  "id": "pii-43",
+  "text": "Sir my PAN card no is LQQLB6972E and DOB 13/08/1976",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "LQQLB6972E"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "13/08/1976"
+   }
+  ]
+ },
+ {
+  "id": "pii-44",
+  "text": "GSTIN of the firm: 18WGXPR2361B1ZI",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "18WGXPR2361B1ZI"
+   }
+  ]
+ },
+ {
+  "id": "pii-45",
+  "text": "bhai paise rahul@oksbi pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 22,
+    "value": "rahul@oksbi"
+   }
+  ]
+ },
+ {
+  "id": "pii-46",
+  "text": "Pay to rahul@okhdfcbank and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 23,
+    "value": "rahul@okhdfcbank"
+   }
+  ]
+ },
+ {
+  "id": "pii-47",
+  "text": "A/c no 89292002657956, IFSC UTIB0473297, name Ankit Gupta",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 21,
+    "value": "89292002657956"
+   },
+   {
+    "type": "IFSC",
+    "start": 28,
+    "end": 39,
+    "value": "UTIB0473297"
+   },
+   {
+    "type": "NAME",
+    "start": 46,
+    "end": 57,
+    "value": "Ankit Gupta"
+   }
+  ]
+ },
+ {
+  "id": "pii-48",
+  "text": "my HDFC account 31725514472362 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 30,
+    "value": "31725514472362"
+   }
+  ]
+ },
+ {
+  "id": "pii-49",
+  "text": "Card 6527 1923 2038 2613 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "6527 1923 2038 2613"
+   }
+  ]
+ },
+ {
+  "id": "pii-50",
+  "text": "Voter ID: INB2423544",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "INB2423544"
+   }
+  ]
+ },
+ {
+  "id": "pii-51",
+  "text": "passport no P8456295 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "P8456295"
+   }
+  ]
+ },
+ {
+  "id": "pii-52",
+  "text": "DL WB02 20198351149 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "WB02 20198351149"
+   }
+  ]
+ },
+ {
+  "id": "pii-53",
+  "text": "my car MH 31 FN 7230 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "MH 31 FN 7230"
+   }
+  ]
+ },
+ {
+  "id": "pii-54",
+  "text": "Address: 237, Lajpat Nagar, Patna 800001",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 40,
+    "value": "237, Lajpat Nagar, Patna 800001"
+   }
+  ]
+ },
+ {
+  "id": "pii-55",
+  "text": "I live in 143, Banjara Hills, Mumbai 400053",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 43,
+    "value": "143, Banjara Hills, Mumbai 400053"
+   }
+  ]
+ },
+ {
+  "id": "pii-56",
+  "text": "Ship to: 110, Baner Road, Hyderabad 500008. Contact 08787684221",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 42,
+    "value": "110, Baner Road, Hyderabad 500008"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 52,
+    "end": 63,
+    "value": "08787684221"
+   }
+  ]
+ },
+ {
+  "id": "pii-57",
+  "text": "Customer Arjun Mehta (sneha9784@outlook.com) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 20,
+    "value": "Arjun Mehta"
+   },
+   {
+    "type": "EMAIL",
+    "start": 22,
+    "end": 43,
+    "value": "sneha9784@outlook.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-58",
+  "text": "Candidate: Pratyush Nandwana | kavita.n31@yahoo.co.in | +91-6346431176",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 28,
+    "value": "Pratyush Nandwana",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 31,
+    "end": 53,
+    "value": "kavita.n31@yahoo.co.in"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 56,
+    "end": 70,
+    "value": "+91-6346431176"
+   }
+  ]
+ },
+ {
+  "id": "pii-59",
+  "text": "OPENAI_API_KEY=sk-proj-01vwt3vc6e2fls4v1ennc0ztwq8q4t56",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-01vwt3vc6e2fls4v1ennc0ztwq8q4t56"
+   }
+  ]
+ },
+ {
+  "id": "pii-60",
+  "text": "Shri Ojasvi Thakre S/O Gurpreet Singh Sandhu, 80, Civil Lines, Pune - 411045",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 18,
+    "value": "Ojasvi Thakre",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 23,
+    "end": 44,
+    "value": "Gurpreet Singh Sandhu"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 46,
+    "end": 76,
+    "value": "80, Civil Lines, Pune - 411045"
+   }
+  ]
+ },
+ {
+  "id": "pii-61",
+  "text": "Applicant Mrs. Kavita Nair, DOB: 14/11/1980, Aadhaar 267907161853",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 26,
+    "value": "Kavita Nair"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 33,
+    "end": 43,
+    "value": "14/11/1980"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 53,
+    "end": 65,
+    "value": "267907161853"
+   }
+  ]
+ },
+ {
+  "id": "pii-62",
+  "text": "call kar 6710322739 pe, otp 198348 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 19,
+    "value": "6710322739"
+   },
+   {
+    "type": "OTP",
+    "start": 28,
+    "end": 34,
+    "value": "198348"
+   }
+  ]
+ },
+ {
+  "id": "pii-63",
+  "text": "Regards,\nVikram Rathore\n+91-6434974001",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 23,
+    "value": "Vikram Rathore"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 24,
+    "end": 38,
+    "value": "+91-6434974001"
+   }
+  ]
+ },
+ {
+  "id": "pii-64",
+  "text": "My name is Sourav Banerjee and my number is +91 85124 73760",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 26,
+    "value": "Sourav Banerjee"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 44,
+    "end": 59,
+    "value": "+91 85124 73760"
+   }
+  ]
+ },
+ {
+  "id": "pii-65",
+  "text": "Name: Mohd Imran Qureshi\nMobile: 918492692896\nEmail: ankit_g9@company.in",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 24,
+    "value": "Mohd Imran Qureshi"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 33,
+    "end": 45,
+    "value": "918492692896"
+   },
+   {
+    "type": "EMAIL",
+    "start": 53,
+    "end": 72,
+    "value": "ankit_g9@company.in"
+   }
+  ]
+ },
+ {
+  "id": "pii-66",
+  "text": "Name: Ishwari Kolte\nPhone: 7295915933",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 19,
+    "value": "Ishwari Kolte",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 27,
+    "end": 37,
+    "value": "7295915933"
+   }
+  ]
+ },
+ {
+  "id": "pii-67",
+  "text": "mera naam Neha Agarwal hai, mera number 61076 97424 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 22,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 51,
+    "value": "61076 97424"
+   }
+  ]
+ },
+ {
+  "id": "pii-68",
+  "text": "hi this is Neha Agarwal, pls call me on 9476247857",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 23,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 50,
+    "value": "9476247857"
+   }
+  ]
+ },
+ {
+  "id": "pii-69",
+  "text": "Myself Bhoomika Sonkusare from Pune, my mail id is sneha970@outlook.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 25,
+    "value": "Bhoomika Sonkusare",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 51,
+    "end": 71,
+    "value": "sneha970@outlook.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-70",
+  "text": "Please forward the offer letter to Fatima Ansari today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 48,
+    "value": "Fatima Ansari"
+   }
+  ]
+ },
+ {
+  "id": "pii-71",
+  "text": "Spoke to Tejaswini Rangnekar about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 28,
+    "value": "Tejaswini Rangnekar",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-72",
+  "text": "Dear Pooja Patel,\nYour OTP is 994611. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 16,
+    "value": "Pooja Patel"
+   },
+   {
+    "type": "OTP",
+    "start": 30,
+    "end": 36,
+    "value": "994611"
+   }
+  ]
+ },
+ {
+  "id": "pii-73",
+  "text": "Aadhaar: 8122 8546 5587  PAN: JSAPX7857Z",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 23,
+    "value": "8122 8546 5587"
+   },
+   {
+    "type": "PAN",
+    "start": 30,
+    "end": 40,
+    "value": "JSAPX7857Z"
+   }
+  ]
+ },
+ {
+  "id": "pii-74",
+  "text": "aadhar number 4209 2451 8766 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 28,
+    "value": "4209 2451 8766"
+   }
+  ]
+ },
+ {
+  "id": "pii-75",
+  "text": "Sir my PAN card no is CVJCG4449Y and DOB 13/09/1983",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "CVJCG4449Y"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "13/09/1983"
+   }
+  ]
+ },
+ {
+  "id": "pii-76",
+  "text": "GSTIN of the firm: 37UZNPS6305G1ZG",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "37UZNPS6305G1ZG"
+   }
+  ]
+ },
+ {
+  "id": "pii-77",
+  "text": "bhai paise ankit.g@okaxis pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 25,
+    "value": "ankit.g@okaxis"
+   }
+  ]
+ },
+ {
+  "id": "pii-78",
+  "text": "Pay to ankit.g@okaxis and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 21,
+    "value": "ankit.g@okaxis"
+   }
+  ]
+ },
+ {
+  "id": "pii-79",
+  "text": "A/c no 3437138211647966, IFSC KKBK0896487, name Pooja Patel",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 23,
+    "value": "3437138211647966"
+   },
+   {
+    "type": "IFSC",
+    "start": 30,
+    "end": 41,
+    "value": "KKBK0896487"
+   },
+   {
+    "type": "NAME",
+    "start": 48,
+    "end": 59,
+    "value": "Pooja Patel"
+   }
+  ]
+ },
+ {
+  "id": "pii-80",
+  "text": "my HDFC account 172708965887 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 28,
+    "value": "172708965887"
+   }
+  ]
+ },
+ {
+  "id": "pii-81",
+  "text": "Card 6575 6949 5937 3897 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "6575 6949 5937 3897"
+   }
+  ]
+ },
+ {
+  "id": "pii-82",
+  "text": "Voter ID: LKU5575352",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "LKU5575352"
+   }
+  ]
+ },
+ {
+  "id": "pii-83",
+  "text": "passport no R8235991 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "R8235991"
+   }
+  ]
+ },
+ {
+  "id": "pii-84",
+  "text": "DL WB20 20023681461 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "WB20 20023681461"
+   }
+  ]
+ },
+ {
+  "id": "pii-85",
+  "text": "my car WB 39 DI 4794 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "WB 39 DI 4794"
+   }
+  ]
+ },
+ {
+  "id": "pii-86",
+  "text": "Address: 160, Baner Road, Lucknow 226001",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 40,
+    "value": "160, Baner Road, Lucknow 226001"
+   }
+  ]
+ },
+ {
+  "id": "pii-87",
+  "text": "I live in 33, 2nd Cross, Indiranagar, Mumbai - 400053",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 53,
+    "value": "33, 2nd Cross, Indiranagar, Mumbai - 400053"
+   }
+  ]
+ },
+ {
+  "id": "pii-88",
+  "text": "Ship to: 61, Lajpat Nagar, Jaipur 302001. Contact 07700794370",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 40,
+    "value": "61, Lajpat Nagar, Jaipur 302001"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 50,
+    "end": 61,
+    "value": "07700794370"
+   }
+  ]
+ },
+ {
+  "id": "pii-89",
+  "text": "Customer Joseph Varghese (rahul7@gmail.com) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 24,
+    "value": "Joseph Varghese"
+   },
+   {
+    "type": "EMAIL",
+    "start": 26,
+    "end": 42,
+    "value": "rahul7@gmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-90",
+  "text": "Candidate: Hrishikesh Joglekar | sneha9786@gmail.com | +91-9194052394",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 30,
+    "value": "Hrishikesh Joglekar",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 33,
+    "end": 52,
+    "value": "sneha9786@gmail.com"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 55,
+    "end": 69,
+    "value": "+91-9194052394"
+   }
+  ]
+ },
+ {
+  "id": "pii-91",
+  "text": "OPENAI_API_KEY=sk-proj-5ww9fs9uokh8zby0oibj8kxv5ekb47ue",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-5ww9fs9uokh8zby0oibj8kxv5ekb47ue"
+   }
+  ]
+ },
+ {
+  "id": "pii-92",
+  "text": "Shri Kshama Ghodke S/O Fatima Ansari, 11, Banjara Hills, Bhopal 462001",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 18,
+    "value": "Kshama Ghodke",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 23,
+    "end": 36,
+    "value": "Fatima Ansari"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 38,
+    "end": 70,
+    "value": "11, Banjara Hills, Bhopal 462001"
+   }
+  ]
+ },
+ {
+  "id": "pii-93",
+  "text": "Applicant Mrs. Arjun Mehta, DOB: 26/05/1964, Aadhaar 931793829955",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 26,
+    "value": "Arjun Mehta"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 33,
+    "end": 43,
+    "value": "26/05/1964"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 53,
+    "end": 65,
+    "value": "931793829955"
+   }
+  ]
+ },
+ {
+  "id": "pii-94",
+  "text": "call kar +91 97296 60124 pe, otp 805685 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 24,
+    "value": "+91 97296 60124"
+   },
+   {
+    "type": "OTP",
+    "start": 33,
+    "end": 39,
+    "value": "805685"
+   }
+  ]
+ },
+ {
+  "id": "pii-95",
+  "text": "Regards,\nMohd Imran Qureshi\n+91 78898 35710",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 27,
+    "value": "Mohd Imran Qureshi"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 28,
+    "end": 43,
+    "value": "+91 78898 35710"
+   }
+  ]
+ },
+ {
+  "id": "pii-96",
+  "text": "My name is Kavita Nair and my number is +91 98229 24424",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 22,
+    "value": "Kavita Nair"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 55,
+    "value": "+91 98229 24424"
+   }
+  ]
+ },
+ {
+  "id": "pii-97",
+  "text": "Name: Ankit Gupta\nMobile: +91 77403 12791\nEmail: sneha9753@yahoo.co.in",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 17,
+    "value": "Ankit Gupta"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 26,
+    "end": 41,
+    "value": "+91 77403 12791"
+   },
+   {
+    "type": "EMAIL",
+    "start": 49,
+    "end": 70,
+    "value": "sneha9753@yahoo.co.in"
+   }
+  ]
+ },
+ {
+  "id": "pii-98",
+  "text": "Name: Yuvika Bhandwalkar\nPhone: 7057113997",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 24,
+    "value": "Yuvika Bhandwalkar",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 32,
+    "end": 42,
+    "value": "7057113997"
+   }
+  ]
+ },
+ {
+  "id": "pii-99",
+  "text": "mera naam Rahul Sharma hai, mera number 919785871621 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 22,
+    "value": "Rahul Sharma"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 52,
+    "value": "919785871621"
+   }
+  ]
+ },
+ {
+  "id": "pii-100",
+  "text": "hi this is Deepika Reddy, pls call me on 09092079228",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 24,
+    "value": "Deepika Reddy"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 41,
+    "end": 52,
+    "value": "09092079228"
+   }
+  ]
+ },
+ {
+  "id": "pii-101",
+  "text": "Myself Hrishikesh Joglekar from Pune, my mail id is sneha972@gmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 26,
+    "value": "Hrishikesh Joglekar",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 52,
+    "end": 70,
+    "value": "sneha972@gmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-102",
+  "text": "Please forward the offer letter to Deepika Reddy today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 48,
+    "value": "Deepika Reddy"
+   }
+  ]
+ },
+ {
+  "id": "pii-103",
+  "text": "Spoke to Ojasvi Thakre about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 22,
+    "value": "Ojasvi Thakre",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-104",
+  "text": "Dear Ankit Gupta,\nYour OTP is 475236. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 16,
+    "value": "Ankit Gupta"
+   },
+   {
+    "type": "OTP",
+    "start": 30,
+    "end": 36,
+    "value": "475236"
+   }
+  ]
+ },
+ {
+  "id": "pii-105",
+  "text": "Aadhaar: 752228120592  PAN: CFTBJ5365H",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 21,
+    "value": "752228120592"
+   },
+   {
+    "type": "PAN",
+    "start": 28,
+    "end": 38,
+    "value": "CFTBJ5365H"
+   }
+  ]
+ },
+ {
+  "id": "pii-106",
+  "text": "aadhar number 7543-0380-3471 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 28,
+    "value": "7543-0380-3471"
+   }
+  ]
+ },
+ {
+  "id": "pii-107",
+  "text": "Sir my PAN card no is OHFLG7286Z and DOB 14/12/2000",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "OHFLG7286Z"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "14/12/2000"
+   }
+  ]
+ },
+ {
+  "id": "pii-108",
+  "text": "GSTIN of the firm: 12XAIPG1029K1ZH",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "12XAIPG1029K1ZH"
+   }
+  ]
+ },
+ {
+  "id": "pii-109",
+  "text": "bhai paise rahul@ybl pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 20,
+    "value": "rahul@ybl"
+   }
+  ]
+ },
+ {
+  "id": "pii-110",
+  "text": "Pay to priya@okhdfcbank and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 23,
+    "value": "priya@okhdfcbank"
+   }
+  ]
+ },
+ {
+  "id": "pii-111",
+  "text": "A/c no 60032729943318, IFSC HDFC0366520, name Deepika Reddy",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 21,
+    "value": "60032729943318"
+   },
+   {
+    "type": "IFSC",
+    "start": 28,
+    "end": 39,
+    "value": "HDFC0366520"
+   },
+   {
+    "type": "NAME",
+    "start": 46,
+    "end": 59,
+    "value": "Deepika Reddy"
+   }
+  ]
+ },
+ {
+  "id": "pii-112",
+  "text": "my HDFC account 5240532787945329 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 32,
+    "value": "5240532787945329"
+   }
+  ]
+ },
+ {
+  "id": "pii-113",
+  "text": "Card 6533 5130 3920 1384 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "6533 5130 3920 1384"
+   }
+  ]
+ },
+ {
+  "id": "pii-114",
+  "text": "Voter ID: FCG7710754",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "FCG7710754"
+   }
+  ]
+ },
+ {
+  "id": "pii-115",
+  "text": "passport no D1821891 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "D1821891"
+   }
+  ]
+ },
+ {
+  "id": "pii-116",
+  "text": "DL GJ48 20122310272 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "GJ48 20122310272"
+   }
+  ]
+ },
+ {
+  "id": "pii-117",
+  "text": "my car DL 47 EN 6524 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "DL 47 EN 6524"
+   }
+  ]
+ },
+ {
+  "id": "pii-118",
+  "text": "Address: 60, Arera Colony, Hyderabad - 500008",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 45,
+    "value": "60, Arera Colony, Hyderabad - 500008"
+   }
+  ]
+ },
+ {
+  "id": "pii-119",
+  "text": "I live in 134, 2nd Cross, Indiranagar, Mumbai - 400053",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 54,
+    "value": "134, 2nd Cross, Indiranagar, Mumbai - 400053"
+   }
+  ]
+ },
+ {
+  "id": "pii-120",
+  "text": "Ship to: 80, Anna Salai, Mumbai 400053. Contact 916480667966",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 38,
+    "value": "80, Anna Salai, Mumbai 400053"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 48,
+    "end": 60,
+    "value": "916480667966"
+   }
+  ]
+ },
+ {
+  "id": "pii-121",
+  "text": "Customer Rahul Sharma (arjun.m34@gmail.com) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 21,
+    "value": "Rahul Sharma"
+   },
+   {
+    "type": "EMAIL",
+    "start": 23,
+    "end": 42,
+    "value": "arjun.m34@gmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-122",
+  "text": "Candidate: Tejaswini Rangnekar | rahul92@outlook.com | 6608405440",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 30,
+    "value": "Tejaswini Rangnekar",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 33,
+    "end": 52,
+    "value": "rahul92@outlook.com"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 55,
+    "end": 65,
+    "value": "6608405440"
+   }
+  ]
+ },
+ {
+  "id": "pii-123",
+  "text": "OPENAI_API_KEY=sk-proj-fsnctv5um95u94jqu2ubuonh8x6n2pju",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-fsnctv5um95u94jqu2ubuonh8x6n2pju"
+   }
+  ]
+ },
+ {
+  "id": "pii-124",
+  "text": "Shri Darshil Vekariya S/O Neha Agarwal, 140, Gomti Nagar, Pune - 411045",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 21,
+    "value": "Darshil Vekariya",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 26,
+    "end": 38,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 40,
+    "end": 71,
+    "value": "140, Gomti Nagar, Pune - 411045"
+   }
+  ]
+ },
+ {
+  "id": "pii-125",
+  "text": "Applicant Mrs. Neha Agarwal, DOB: 28/12/1972, Aadhaar 786933583341",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 27,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 34,
+    "end": 44,
+    "value": "28/12/1972"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 54,
+    "end": 66,
+    "value": "786933583341"
+   }
+  ]
+ },
+ {
+  "id": "pii-126",
+  "text": "call kar 88176 06621 pe, otp 562287 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 20,
+    "value": "88176 06621"
+   },
+   {
+    "type": "OTP",
+    "start": 29,
+    "end": 35,
+    "value": "562287"
+   }
+  ]
+ },
+ {
+  "id": "pii-127",
+  "text": "Regards,\nPooja Patel\n89032 18346",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 20,
+    "value": "Pooja Patel"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 21,
+    "end": 32,
+    "value": "89032 18346"
+   }
+  ]
+ },
+ {
+  "id": "pii-128",
+  "text": "My name is Fatima Ansari and my number is 6906034759",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 24,
+    "value": "Fatima Ansari"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 42,
+    "end": 52,
+    "value": "6906034759"
+   }
+  ]
+ },
+ {
+  "id": "pii-129",
+  "text": "Name: Pooja Patel\nMobile: +91-6228127754\nEmail: arjun.m88@gmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 17,
+    "value": "Pooja Patel"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 26,
+    "end": 40,
+    "value": "+91-6228127754"
+   },
+   {
+    "type": "EMAIL",
+    "start": 48,
+    "end": 67,
+    "value": "arjun.m88@gmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-130",
+  "text": "Name: Ojasvi Thakre\nPhone: +91 70157 17558",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 19,
+    "value": "Ojasvi Thakre",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 27,
+    "end": 42,
+    "value": "+91 70157 17558"
+   }
+  ]
+ },
+ {
+  "id": "pii-131",
+  "text": "mera naam Fatima Ansari hai, mera number 09972006190 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 23,
+    "value": "Fatima Ansari"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 41,
+    "end": 52,
+    "value": "09972006190"
+   }
+  ]
+ },
+ {
+  "id": "pii-132",
+  "text": "hi this is Vikram Rathore, pls call me on +91 78065 22826",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 25,
+    "value": "Vikram Rathore"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 42,
+    "end": 57,
+    "value": "+91 78065 22826"
+   }
+  ]
+ },
+ {
+  "id": "pii-133",
+  "text": "Myself Yuvika Bhandwalkar from Pune, my mail id is priya.k23@gmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 25,
+    "value": "Yuvika Bhandwalkar",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 51,
+    "end": 70,
+    "value": "priya.k23@gmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-134",
+  "text": "Please forward the offer letter to Ankit Gupta today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 46,
+    "value": "Ankit Gupta"
+   }
+  ]
+ },
+ {
+  "id": "pii-135",
+  "text": "Spoke to Ishwari Kolte about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 22,
+    "value": "Ishwari Kolte",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-136",
+  "text": "Dear Vikram Rathore,\nYour OTP is 881521. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 19,
+    "value": "Vikram Rathore"
+   },
+   {
+    "type": "OTP",
+    "start": 33,
+    "end": 39,
+    "value": "881521"
+   }
+  ]
+ },
+ {
+  "id": "pii-137",
+  "text": "Aadhaar: 8724-3421-1103  PAN: PSSFT2294Q",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 23,
+    "value": "8724-3421-1103"
+   },
+   {
+    "type": "PAN",
+    "start": 30,
+    "end": 40,
+    "value": "PSSFT2294Q"
+   }
+  ]
+ },
+ {
+  "id": "pii-138",
+  "text": "aadhar number 8024 8872 3370 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 28,
+    "value": "8024 8872 3370"
+   }
+  ]
+ },
+ {
+  "id": "pii-139",
+  "text": "Sir my PAN card no is HMILZ7377X and DOB 01/10/1987",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "HMILZ7377X"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "01/10/1987"
+   }
+  ]
+ },
+ {
+  "id": "pii-140",
+  "text": "GSTIN of the firm: 02MEAPQ7117K1ZA",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "02MEAPQ7117K1ZA"
+   }
+  ]
+ },
+ {
+  "id": "pii-141",
+  "text": "bhai paise 9691050857@paytm pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 27,
+    "value": "9691050857@paytm"
+   }
+  ]
+ },
+ {
+  "id": "pii-142",
+  "text": "Pay to ankit.g@ibl and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 18,
+    "value": "ankit.g@ibl"
+   }
+  ]
+ },
+ {
+  "id": "pii-143",
+  "text": "A/c no 462479368673, IFSC KKBK0636627, name Pooja Patel",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 19,
+    "value": "462479368673"
+   },
+   {
+    "type": "IFSC",
+    "start": 26,
+    "end": 37,
+    "value": "KKBK0636627"
+   },
+   {
+    "type": "NAME",
+    "start": 44,
+    "end": 55,
+    "value": "Pooja Patel"
+   }
+  ]
+ },
+ {
+  "id": "pii-144",
+  "text": "my HDFC account 50342749691 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 27,
+    "value": "50342749691"
+   }
+  ]
+ },
+ {
+  "id": "pii-145",
+  "text": "Card 5134 6361 8882 9039 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "5134 6361 8882 9039"
+   }
+  ]
+ },
+ {
+  "id": "pii-146",
+  "text": "Voter ID: FNU9705300",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "FNU9705300"
+   }
+  ]
+ },
+ {
+  "id": "pii-147",
+  "text": "passport no G5011342 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "G5011342"
+   }
+  ]
+ },
+ {
+  "id": "pii-148",
+  "text": "DL TN33 20181722681 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "TN33 20181722681"
+   }
+  ]
+ },
+ {
+  "id": "pii-149",
+  "text": "my car KA 17 FU 8371 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "KA 17 FU 8371"
+   }
+  ]
+ },
+ {
+  "id": "pii-150",
+  "text": "Address: 74, MG Road, Patna 800001",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 34,
+    "value": "74, MG Road, Patna 800001"
+   }
+  ]
+ },
+ {
+  "id": "pii-151",
+  "text": "I live in 26, Civil Lines, Kolkata - 700016",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 43,
+    "value": "26, Civil Lines, Kolkata - 700016"
+   }
+  ]
+ },
+ {
+  "id": "pii-152",
+  "text": "Ship to: 188, Baner Road, Jaipur - 302001. Contact 92775 29703",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 41,
+    "value": "188, Baner Road, Jaipur - 302001"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 51,
+    "end": 62,
+    "value": "92775 29703"
+   }
+  ]
+ },
+ {
+  "id": "pii-153",
+  "text": "Customer Priya Verma (sneha9730@rediffmail.com) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 20,
+    "value": "Priya Verma"
+   },
+   {
+    "type": "EMAIL",
+    "start": 22,
+    "end": 46,
+    "value": "sneha9730@rediffmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-154",
+  "text": "Candidate: Ishwari Kolte | kavita.n95@gmail.com | +91-6178446016",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 24,
+    "value": "Ishwari Kolte",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 27,
+    "end": 47,
+    "value": "kavita.n95@gmail.com"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 50,
+    "end": 64,
+    "value": "+91-6178446016"
+   }
+  ]
+ },
+ {
+  "id": "pii-155",
+  "text": "OPENAI_API_KEY=sk-proj-1ii4tyok6ms7ccr3iippjmb2due41w3g",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-1ii4tyok6ms7ccr3iippjmb2due41w3g"
+   }
+  ]
+ },
+ {
+  "id": "pii-156",
+  "text": "Shri Yuvika Bhandwalkar S/O Mohd Imran Qureshi, 30, Civil Lines, Chennai - 600002",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 23,
+    "value": "Yuvika Bhandwalkar",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 28,
+    "end": 46,
+    "value": "Mohd Imran Qureshi"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 48,
+    "end": 81,
+    "value": "30, Civil Lines, Chennai - 600002"
+   }
+  ]
+ },
+ {
+  "id": "pii-157",
+  "text": "Applicant Mrs. Gurpreet Singh Sandhu, DOB: 11/03/1963, Aadhaar 9784 0534 4258",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 36,
+    "value": "Gurpreet Singh Sandhu"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 43,
+    "end": 53,
+    "value": "11/03/1963"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 63,
+    "end": 77,
+    "value": "9784 0534 4258"
+   }
+  ]
+ },
+ {
+  "id": "pii-158",
+  "text": "call kar 08765531495 pe, otp 623570 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 20,
+    "value": "08765531495"
+   },
+   {
+    "type": "OTP",
+    "start": 29,
+    "end": 35,
+    "value": "623570"
+   }
+  ]
+ },
+ {
+  "id": "pii-159",
+  "text": "Regards,\nLavanya Iyengar\n+91-6949289404",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 24,
+    "value": "Lavanya Iyengar"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 25,
+    "end": 39,
+    "value": "+91-6949289404"
+   }
+  ]
+ },
+ {
+  "id": "pii-160",
+  "text": "My name is Mohd Imran Qureshi and my number is 918454498984",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 29,
+    "value": "Mohd Imran Qureshi"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 47,
+    "end": 59,
+    "value": "918454498984"
+   }
+  ]
+ },
+ {
+  "id": "pii-161",
+  "text": "Name: Fatima Ansari\nMobile: 7659368992\nEmail: arjun.m46@outlook.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 19,
+    "value": "Fatima Ansari"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 28,
+    "end": 38,
+    "value": "7659368992"
+   },
+   {
+    "type": "EMAIL",
+    "start": 46,
+    "end": 67,
+    "value": "arjun.m46@outlook.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-162",
+  "text": "Name: Yuvika Bhandwalkar\nPhone: 917652164605",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 24,
+    "value": "Yuvika Bhandwalkar",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 32,
+    "end": 44,
+    "value": "917652164605"
+   }
+  ]
+ },
+ {
+  "id": "pii-163",
+  "text": "mera naam Lavanya Iyengar hai, mera number 6177483106 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 25,
+    "value": "Lavanya Iyengar"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 43,
+    "end": 53,
+    "value": "6177483106"
+   }
+  ]
+ },
+ {
+  "id": "pii-164",
+  "text": "hi this is Ankit Gupta, pls call me on 9877358845",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 22,
+    "value": "Ankit Gupta"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 39,
+    "end": 49,
+    "value": "9877358845"
+   }
+  ]
+ },
+ {
+  "id": "pii-165",
+  "text": "Myself Tejaswini Rangnekar from Pune, my mail id is ankit_g92@rediffmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 26,
+    "value": "Tejaswini Rangnekar",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 52,
+    "end": 76,
+    "value": "ankit_g92@rediffmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-166",
+  "text": "Please forward the offer letter to Neha Agarwal today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 47,
+    "value": "Neha Agarwal"
+   }
+  ]
+ },
+ {
+  "id": "pii-167",
+  "text": "Spoke to Yuvika Bhandwalkar about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 27,
+    "value": "Yuvika Bhandwalkar",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-168",
+  "text": "Dear Mohd Imran Qureshi,\nYour OTP is 668497. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 23,
+    "value": "Mohd Imran Qureshi"
+   },
+   {
+    "type": "OTP",
+    "start": 37,
+    "end": 43,
+    "value": "668497"
+   }
+  ]
+ },
+ {
+  "id": "pii-169",
+  "text": "Aadhaar: 7540 8414 4107  PAN: PAZAT6209P",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 23,
+    "value": "7540 8414 4107"
+   },
+   {
+    "type": "PAN",
+    "start": 30,
+    "end": 40,
+    "value": "PAZAT6209P"
+   }
+  ]
+ },
+ {
+  "id": "pii-170",
+  "text": "aadhar number 3274-8516-2441 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 28,
+    "value": "3274-8516-2441"
+   }
+  ]
+ },
+ {
+  "id": "pii-171",
+  "text": "Sir my PAN card no is GYZAE3475Q and DOB 17/01/1969",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "GYZAE3475Q"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "17/01/1969"
+   }
+  ]
+ },
+ {
+  "id": "pii-172",
+  "text": "GSTIN of the firm: 10ZBHPA2078Y1ZL",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "10ZBHPA2078Y1ZL"
+   }
+  ]
+ },
+ {
+  "id": "pii-173",
+  "text": "bhai paise priya@ybl pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 20,
+    "value": "priya@ybl"
+   }
+  ]
+ },
+ {
+  "id": "pii-174",
+  "text": "Pay to rahul@okicici and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 20,
+    "value": "rahul@okicici"
+   }
+  ]
+ },
+ {
+  "id": "pii-175",
+  "text": "A/c no 988732833956, IFSC UTIB0441406, name Joseph Varghese",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 19,
+    "value": "988732833956"
+   },
+   {
+    "type": "IFSC",
+    "start": 26,
+    "end": 37,
+    "value": "UTIB0441406"
+   },
+   {
+    "type": "NAME",
+    "start": 44,
+    "end": 59,
+    "value": "Joseph Varghese"
+   }
+  ]
+ },
+ {
+  "id": "pii-176",
+  "text": "my HDFC account 64512823448 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 27,
+    "value": "64512823448"
+   }
+  ]
+ },
+ {
+  "id": "pii-177",
+  "text": "Card 5460 3775 3679 6562 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "5460 3775 3679 6562"
+   }
+  ]
+ },
+ {
+  "id": "pii-178",
+  "text": "Voter ID: YJB3430177",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "YJB3430177"
+   }
+  ]
+ },
+ {
+  "id": "pii-179",
+  "text": "passport no H8886586 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "H8886586"
+   }
+  ]
+ },
+ {
+  "id": "pii-180",
+  "text": "DL MP45 20148175740 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "MP45 20148175740"
+   }
+  ]
+ },
+ {
+  "id": "pii-181",
+  "text": "my car UP 21 WJ 2098 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "UP 21 WJ 2098"
+   }
+  ]
+ },
+ {
+  "id": "pii-182",
+  "text": "Address: 257, Anna Salai, Kolkata - 700016",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 42,
+    "value": "257, Anna Salai, Kolkata - 700016"
+   }
+  ]
+ },
+ {
+  "id": "pii-183",
+  "text": "I live in 30, Baner Road, Kolkata 700016",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 40,
+    "value": "30, Baner Road, Kolkata 700016"
+   }
+  ]
+ },
+ {
+  "id": "pii-184",
+  "text": "Ship to: 295, Arera Colony, Jaipur 302001. Contact +91-7157423632",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 41,
+    "value": "295, Arera Colony, Jaipur 302001"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 51,
+    "end": 65,
+    "value": "+91-7157423632"
+   }
+  ]
+ },
+ {
+  "id": "pii-185",
+  "text": "Customer Deepika Reddy (arjun.m98@company.in) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 22,
+    "value": "Deepika Reddy"
+   },
+   {
+    "type": "EMAIL",
+    "start": 24,
+    "end": 44,
+    "value": "arjun.m98@company.in"
+   }
+  ]
+ },
+ {
+  "id": "pii-186",
+  "text": "Candidate: Kshama Ghodke | ankit_g35@gmail.com | 8491649686",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 24,
+    "value": "Kshama Ghodke",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 27,
+    "end": 46,
+    "value": "ankit_g35@gmail.com"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 49,
+    "end": 59,
+    "value": "8491649686"
+   }
+  ]
+ },
+ {
+  "id": "pii-187",
+  "text": "OPENAI_API_KEY=sk-proj-7ltym59fbbz40tjlrwq74dkgxeq4pe0e",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-7ltym59fbbz40tjlrwq74dkgxeq4pe0e"
+   }
+  ]
+ },
+ {
+  "id": "pii-188",
+  "text": "Shri Pratyush Nandwana S/O Pooja Patel, 207, Anna Salai, Mumbai - 400053",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 22,
+    "value": "Pratyush Nandwana",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 27,
+    "end": 38,
+    "value": "Pooja Patel"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 40,
+    "end": 72,
+    "value": "207, Anna Salai, Mumbai - 400053"
+   }
+  ]
+ },
+ {
+  "id": "pii-189",
+  "text": "Applicant Mrs. Rahul Sharma, DOB: 01/12/1995, Aadhaar 4279 1315 3757",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 27,
+    "value": "Rahul Sharma"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 34,
+    "end": 44,
+    "value": "01/12/1995"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 54,
+    "end": 68,
+    "value": "4279 1315 3757"
+   }
+  ]
+ },
+ {
+  "id": "pii-190",
+  "text": "call kar 916194501937 pe, otp 978221 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 21,
+    "value": "916194501937"
+   },
+   {
+    "type": "OTP",
+    "start": 30,
+    "end": 36,
+    "value": "978221"
+   }
+  ]
+ },
+ {
+  "id": "pii-191",
+  "text": "Regards,\nLavanya Iyengar\n8128922826",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 24,
+    "value": "Lavanya Iyengar"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 25,
+    "end": 35,
+    "value": "8128922826"
+   }
+  ]
+ },
+ {
+  "id": "pii-192",
+  "text": "My name is Priya Verma and my number is +91-6578915685",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 22,
+    "value": "Priya Verma"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 54,
+    "value": "+91-6578915685"
+   }
+  ]
+ },
+ {
+  "id": "pii-193",
+  "text": "Name: Priya Verma\nMobile: 74199 97142\nEmail: priya.k85@yahoo.co.in",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 17,
+    "value": "Priya Verma"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 26,
+    "end": 37,
+    "value": "74199 97142"
+   },
+   {
+    "type": "EMAIL",
+    "start": 45,
+    "end": 66,
+    "value": "priya.k85@yahoo.co.in"
+   }
+  ]
+ },
+ {
+  "id": "pii-194",
+  "text": "Name: Ritvika Pendharkar\nPhone: 06530217389",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 24,
+    "value": "Ritvika Pendharkar",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 32,
+    "end": 43,
+    "value": "06530217389"
+   }
+  ]
+ },
+ {
+  "id": "pii-195",
+  "text": "mera naam Arjun Mehta hai, mera number 916673035604 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 21,
+    "value": "Arjun Mehta"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 39,
+    "end": 51,
+    "value": "916673035604"
+   }
+  ]
+ },
+ {
+  "id": "pii-196",
+  "text": "hi this is Rahul Sharma, pls call me on 08486748950",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 23,
+    "value": "Rahul Sharma"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 51,
+    "value": "08486748950"
+   }
+  ]
+ },
+ {
+  "id": "pii-197",
+  "text": "Myself Ojasvi Thakre from Pune, my mail id is priya.k10@rediffmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 20,
+    "value": "Ojasvi Thakre",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 46,
+    "end": 70,
+    "value": "priya.k10@rediffmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-198",
+  "text": "Please forward the offer letter to Neha Agarwal today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 47,
+    "value": "Neha Agarwal"
+   }
+  ]
+ },
+ {
+  "id": "pii-199",
+  "text": "Spoke to Ritvika Pendharkar about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 27,
+    "value": "Ritvika Pendharkar",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-200",
+  "text": "Dear Ankit Gupta,\nYour OTP is 907992. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 16,
+    "value": "Ankit Gupta"
+   },
+   {
+    "type": "OTP",
+    "start": 30,
+    "end": 36,
+    "value": "907992"
+   }
+  ]
+ },
+ {
+  "id": "pii-201",
+  "text": "Aadhaar: 5492-7781-2748  PAN: QHWLE8406I",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 23,
+    "value": "5492-7781-2748"
+   },
+   {
+    "type": "PAN",
+    "start": 30,
+    "end": 40,
+    "value": "QHWLE8406I"
+   }
+  ]
+ },
+ {
+  "id": "pii-202",
+  "text": "aadhar number 4605 3222 2864 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 28,
+    "value": "4605 3222 2864"
+   }
+  ]
+ },
+ {
+  "id": "pii-203",
+  "text": "Sir my PAN card no is TTZFX2276T and DOB 08/04/1969",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "TTZFX2276T"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "08/04/1969"
+   }
+  ]
+ },
+ {
+  "id": "pii-204",
+  "text": "GSTIN of the firm: 08OLNPR6132U1ZM",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "08OLNPR6132U1ZM"
+   }
+  ]
+ },
+ {
+  "id": "pii-205",
+  "text": "bhai paise 9481160158@okicici pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 29,
+    "value": "9481160158@okicici"
+   }
+  ]
+ },
+ {
+  "id": "pii-206",
+  "text": "Pay to 7903735209@ibl and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 21,
+    "value": "7903735209@ibl"
+   }
+  ]
+ },
+ {
+  "id": "pii-207",
+  "text": "A/c no 28709322432765, IFSC UTIB0216022, name Sneha Kulkarni",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 21,
+    "value": "28709322432765"
+   },
+   {
+    "type": "IFSC",
+    "start": 28,
+    "end": 39,
+    "value": "UTIB0216022"
+   },
+   {
+    "type": "NAME",
+    "start": 46,
+    "end": 60,
+    "value": "Sneha Kulkarni"
+   }
+  ]
+ },
+ {
+  "id": "pii-208",
+  "text": "my HDFC account 53856733497 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 27,
+    "value": "53856733497"
+   }
+  ]
+ },
+ {
+  "id": "pii-209",
+  "text": "Card 4189 0035 7188 4864 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "4189 0035 7188 4864"
+   }
+  ]
+ },
+ {
+  "id": "pii-210",
+  "text": "Voter ID: IZG8559013",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "IZG8559013"
+   }
+  ]
+ },
+ {
+  "id": "pii-211",
+  "text": "passport no K9163838 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "K9163838"
+   }
+  ]
+ },
+ {
+  "id": "pii-212",
+  "text": "DL GJ05 20223678783 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "GJ05 20223678783"
+   }
+  ]
+ },
+ {
+  "id": "pii-213",
+  "text": "my car MH 22 IL 1566 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "MH 22 IL 1566"
+   }
+  ]
+ },
+ {
+  "id": "pii-214",
+  "text": "Address: 162, Arera Colony, Bengaluru 560038",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 44,
+    "value": "162, Arera Colony, Bengaluru 560038"
+   }
+  ]
+ },
+ {
+  "id": "pii-215",
+  "text": "I live in 116, Park Street, Patna 800001",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 40,
+    "value": "116, Park Street, Patna 800001"
+   }
+  ]
+ },
+ {
+  "id": "pii-216",
+  "text": "Ship to: 1, Banjara Hills, Kolkata 700016. Contact 9780239797",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 41,
+    "value": "1, Banjara Hills, Kolkata 700016"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 51,
+    "end": 61,
+    "value": "9780239797"
+   }
+  ]
+ },
+ {
+  "id": "pii-217",
+  "text": "Customer Neha Agarwal (priya.k72@rediffmail.com) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 21,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "EMAIL",
+    "start": 23,
+    "end": 47,
+    "value": "priya.k72@rediffmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-218",
+  "text": "Candidate: Hrishikesh Joglekar | priya.k36@company.in | 89725 56754",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 30,
+    "value": "Hrishikesh Joglekar",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 33,
+    "end": 53,
+    "value": "priya.k36@company.in"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 56,
+    "end": 67,
+    "value": "89725 56754"
+   }
+  ]
+ },
+ {
+  "id": "pii-219",
+  "text": "OPENAI_API_KEY=sk-proj-y4h7xl7amgafogcu192w799edjkpd7ds",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-y4h7xl7amgafogcu192w799edjkpd7ds"
+   }
+  ]
+ },
+ {
+  "id": "pii-220",
+  "text": "Shri Ritvika Pendharkar S/O Pooja Patel, 149, Lajpat Nagar, Jaipur 302001",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 23,
+    "value": "Ritvika Pendharkar",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 28,
+    "end": 39,
+    "value": "Pooja Patel"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 41,
+    "end": 73,
+    "value": "149, Lajpat Nagar, Jaipur 302001"
+   }
+  ]
+ },
+ {
+  "id": "pii-221",
+  "text": "Applicant Mrs. Ankit Gupta, DOB: 03/10/1971, Aadhaar 360847993493",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 26,
+    "value": "Ankit Gupta"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 33,
+    "end": 43,
+    "value": "03/10/1971"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 53,
+    "end": 65,
+    "value": "360847993493"
+   }
+  ]
+ },
+ {
+  "id": "pii-222",
+  "text": "call kar 7520733664 pe, otp 826696 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 19,
+    "value": "7520733664"
+   },
+   {
+    "type": "OTP",
+    "start": 28,
+    "end": 34,
+    "value": "826696"
+   }
+  ]
+ },
+ {
+  "id": "pii-223",
+  "text": "Regards,\nArjun Mehta\n+91-8594713712",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 20,
+    "value": "Arjun Mehta"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 21,
+    "end": 35,
+    "value": "+91-8594713712"
+   }
+  ]
+ },
+ {
+  "id": "pii-224",
+  "text": "My name is Sneha Kulkarni and my number is 84911 49673",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 25,
+    "value": "Sneha Kulkarni"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 43,
+    "end": 54,
+    "value": "84911 49673"
+   }
+  ]
+ },
+ {
+  "id": "pii-225",
+  "text": "Name: Gurpreet Singh Sandhu\nMobile: 09559035121\nEmail: ankit_g52@outlook.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 27,
+    "value": "Gurpreet Singh Sandhu"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 36,
+    "end": 47,
+    "value": "09559035121"
+   },
+   {
+    "type": "EMAIL",
+    "start": 55,
+    "end": 76,
+    "value": "ankit_g52@outlook.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-226",
+  "text": "Name: Tejaswini Rangnekar\nPhone: 6075166833",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 25,
+    "value": "Tejaswini Rangnekar",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 33,
+    "end": 43,
+    "value": "6075166833"
+   }
+  ]
+ },
+ {
+  "id": "pii-227",
+  "text": "mera naam Fatima Ansari hai, mera number +91 92746 62755 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 23,
+    "value": "Fatima Ansari"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 41,
+    "end": 56,
+    "value": "+91 92746 62755"
+   }
+  ]
+ },
+ {
+  "id": "pii-228",
+  "text": "hi this is Arjun Mehta, pls call me on 8304258102",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 22,
+    "value": "Arjun Mehta"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 39,
+    "end": 49,
+    "value": "8304258102"
+   }
+  ]
+ },
+ {
+  "id": "pii-229",
+  "text": "Myself Ojasvi Thakre from Pune, my mail id is priya.k12@outlook.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 20,
+    "value": "Ojasvi Thakre",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 46,
+    "end": 67,
+    "value": "priya.k12@outlook.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-230",
+  "text": "Please forward the offer letter to Neha Agarwal today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 47,
+    "value": "Neha Agarwal"
+   }
+  ]
+ },
+ {
+  "id": "pii-231",
+  "text": "Spoke to Hrishikesh Joglekar about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 28,
+    "value": "Hrishikesh Joglekar",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-232",
+  "text": "Dear Joseph Varghese,\nYour OTP is 624131. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 20,
+    "value": "Joseph Varghese"
+   },
+   {
+    "type": "OTP",
+    "start": 34,
+    "end": 40,
+    "value": "624131"
+   }
+  ]
+ },
+ {
+  "id": "pii-233",
+  "text": "Aadhaar: 631147677650  PAN: TFQTO1844B",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 21,
+    "value": "631147677650"
+   },
+   {
+    "type": "PAN",
+    "start": 28,
+    "end": 38,
+    "value": "TFQTO1844B"
+   }
+  ]
+ },
+ {
+  "id": "pii-234",
+  "text": "aadhar number 9662-3167-3411 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 28,
+    "value": "9662-3167-3411"
+   }
+  ]
+ },
+ {
+  "id": "pii-235",
+  "text": "Sir my PAN card no is CXVHL4862I and DOB 23/08/1985",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "CXVHL4862I"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "23/08/1985"
+   }
+  ]
+ },
+ {
+  "id": "pii-236",
+  "text": "GSTIN of the firm: 29PNZPZ6457B1ZK",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "29PNZPZ6457B1ZK"
+   }
+  ]
+ },
+ {
+  "id": "pii-237",
+  "text": "bhai paise 8985626243@ybl pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 25,
+    "value": "8985626243@ybl"
+   }
+  ]
+ },
+ {
+  "id": "pii-238",
+  "text": "Pay to 9466982368@okhdfcbank and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 28,
+    "value": "9466982368@okhdfcbank"
+   }
+  ]
+ },
+ {
+  "id": "pii-239",
+  "text": "A/c no 3689361265856291, IFSC KKBK0967721, name Rahul Sharma",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 23,
+    "value": "3689361265856291"
+   },
+   {
+    "type": "IFSC",
+    "start": 30,
+    "end": 41,
+    "value": "KKBK0967721"
+   },
+   {
+    "type": "NAME",
+    "start": 48,
+    "end": 60,
+    "value": "Rahul Sharma"
+   }
+  ]
+ },
+ {
+  "id": "pii-240",
+  "text": "my HDFC account 886691138391 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 28,
+    "value": "886691138391"
+   }
+  ]
+ },
+ {
+  "id": "pii-241",
+  "text": "Card 5023 3431 9557 4666 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "5023 3431 9557 4666"
+   }
+  ]
+ },
+ {
+  "id": "pii-242",
+  "text": "Voter ID: CST1315656",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "CST1315656"
+   }
+  ]
+ },
+ {
+  "id": "pii-243",
+  "text": "passport no A9178894 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "A9178894"
+   }
+  ]
+ },
+ {
+  "id": "pii-244",
+  "text": "DL BR23 20109009166 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "BR23 20109009166"
+   }
+  ]
+ },
+ {
+  "id": "pii-245",
+  "text": "my car TN 02 XZ 1697 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "TN 02 XZ 1697"
+   }
+  ]
+ },
+ {
+  "id": "pii-246",
+  "text": "Address: 24, Arera Colony, Mumbai - 400053",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 42,
+    "value": "24, Arera Colony, Mumbai - 400053"
+   }
+  ]
+ },
+ {
+  "id": "pii-247",
+  "text": "I live in 50, Arera Colony, Mumbai - 400053",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 43,
+    "value": "50, Arera Colony, Mumbai - 400053"
+   }
+  ]
+ },
+ {
+  "id": "pii-248",
+  "text": "Ship to: 70, MG Road, Pune 411045. Contact +91-6546294529",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 33,
+    "value": "70, MG Road, Pune 411045"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 43,
+    "end": 57,
+    "value": "+91-6546294529"
+   }
+  ]
+ },
+ {
+  "id": "pii-249",
+  "text": "Customer Ankit Gupta (priya.k22@company.in) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 20,
+    "value": "Ankit Gupta"
+   },
+   {
+    "type": "EMAIL",
+    "start": 22,
+    "end": 42,
+    "value": "priya.k22@company.in"
+   }
+  ]
+ },
+ {
+  "id": "pii-250",
+  "text": "Candidate: Kshama Ghodke | priya.k54@gmail.com | 67030 14568",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 24,
+    "value": "Kshama Ghodke",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 27,
+    "end": 46,
+    "value": "priya.k54@gmail.com"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 49,
+    "end": 60,
+    "value": "67030 14568"
+   }
+  ]
+ },
+ {
+  "id": "pii-251",
+  "text": "OPENAI_API_KEY=sk-proj-w9jeh5jh3pnmppm9dqib70f50kc9lqbc",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-w9jeh5jh3pnmppm9dqib70f50kc9lqbc"
+   }
+  ]
+ },
+ {
+  "id": "pii-252",
+  "text": "Shri Kshama Ghodke S/O Neha Agarwal, 149, 2nd Cross, Indiranagar, Bengaluru - 560038",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 18,
+    "value": "Kshama Ghodke",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 23,
+    "end": 35,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 37,
+    "end": 84,
+    "value": "149, 2nd Cross, Indiranagar, Bengaluru - 560038"
+   }
+  ]
+ },
+ {
+  "id": "pii-253",
+  "text": "Applicant Mrs. Neha Agarwal, DOB: 19/06/1999, Aadhaar 8300 9965 0164",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 27,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 34,
+    "end": 44,
+    "value": "19/06/1999"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 54,
+    "end": 68,
+    "value": "8300 9965 0164"
+   }
+  ]
+ },
+ {
+  "id": "pii-254",
+  "text": "call kar 919552999877 pe, otp 758737 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 21,
+    "value": "919552999877"
+   },
+   {
+    "type": "OTP",
+    "start": 30,
+    "end": 36,
+    "value": "758737"
+   }
+  ]
+ },
+ {
+  "id": "pii-255",
+  "text": "Regards,\nArjun Mehta\n7768922705",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 20,
+    "value": "Arjun Mehta"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 21,
+    "end": 31,
+    "value": "7768922705"
+   }
+  ]
+ },
+ {
+  "id": "pii-256",
+  "text": "My name is Vikram Rathore and my number is 83891 17611",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 25,
+    "value": "Vikram Rathore"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 43,
+    "end": 54,
+    "value": "83891 17611"
+   }
+  ]
+ },
+ {
+  "id": "pii-257",
+  "text": "Name: Gurpreet Singh Sandhu\nMobile: 91850 89257\nEmail: sneha9757@outlook.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 27,
+    "value": "Gurpreet Singh Sandhu"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 36,
+    "end": 47,
+    "value": "91850 89257"
+   },
+   {
+    "type": "EMAIL",
+    "start": 55,
+    "end": 76,
+    "value": "sneha9757@outlook.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-258",
+  "text": "Name: Ojasvi Thakre\nPhone: +91 79590 87525",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 19,
+    "value": "Ojasvi Thakre",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 27,
+    "end": 42,
+    "value": "+91 79590 87525"
+   }
+  ]
+ },
+ {
+  "id": "pii-259",
+  "text": "mera naam Rahul Sharma hai, mera number +91 65035 59285 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 22,
+    "value": "Rahul Sharma"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 55,
+    "value": "+91 65035 59285"
+   }
+  ]
+ },
+ {
+  "id": "pii-260",
+  "text": "hi this is Neha Agarwal, pls call me on +91-7710324299",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 23,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 54,
+    "value": "+91-7710324299"
+   }
+  ]
+ },
+ {
+  "id": "pii-261",
+  "text": "Myself Darshil Vekariya from Pune, my mail id is kavita.n82@yahoo.co.in",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 23,
+    "value": "Darshil Vekariya",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 49,
+    "end": 71,
+    "value": "kavita.n82@yahoo.co.in"
+   }
+  ]
+ },
+ {
+  "id": "pii-262",
+  "text": "Please forward the offer letter to Vikram Rathore today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 49,
+    "value": "Vikram Rathore"
+   }
+  ]
+ },
+ {
+  "id": "pii-263",
+  "text": "Spoke to Darshil Vekariya about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 25,
+    "value": "Darshil Vekariya",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-264",
+  "text": "Dear Rahul Sharma,\nYour OTP is 707483. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 17,
+    "value": "Rahul Sharma"
+   },
+   {
+    "type": "OTP",
+    "start": 31,
+    "end": 37,
+    "value": "707483"
+   }
+  ]
+ },
+ {
+  "id": "pii-265",
+  "text": "Aadhaar: 463486883942  PAN: UGAAJ1306N",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 21,
+    "value": "463486883942"
+   },
+   {
+    "type": "PAN",
+    "start": 28,
+    "end": 38,
+    "value": "UGAAJ1306N"
+   }
+  ]
+ },
+ {
+  "id": "pii-266",
+  "text": "aadhar number 9586-0242-5719 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 28,
+    "value": "9586-0242-5719"
+   }
+  ]
+ },
+ {
+  "id": "pii-267",
+  "text": "Sir my PAN card no is AJEAB6212C and DOB 03/06/1979",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "AJEAB6212C"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "03/06/1979"
+   }
+  ]
+ },
+ {
+  "id": "pii-268",
+  "text": "GSTIN of the firm: 15EEBPT2091Y1ZG",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "15EEBPT2091Y1ZG"
+   }
+  ]
+ },
+ {
+  "id": "pii-269",
+  "text": "bhai paise priya@oksbi pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 22,
+    "value": "priya@oksbi"
+   }
+  ]
+ },
+ {
+  "id": "pii-270",
+  "text": "Pay to priya@ibl and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 16,
+    "value": "priya@ibl"
+   }
+  ]
+ },
+ {
+  "id": "pii-271",
+  "text": "A/c no 2560402653216863, IFSC HDFC0722309, name Deepika Reddy",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 23,
+    "value": "2560402653216863"
+   },
+   {
+    "type": "IFSC",
+    "start": 30,
+    "end": 41,
+    "value": "HDFC0722309"
+   },
+   {
+    "type": "NAME",
+    "start": 48,
+    "end": 61,
+    "value": "Deepika Reddy"
+   }
+  ]
+ },
+ {
+  "id": "pii-272",
+  "text": "my HDFC account 68325218258645 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 30,
+    "value": "68325218258645"
+   }
+  ]
+ },
+ {
+  "id": "pii-273",
+  "text": "Card 6067 3351 5546 9858 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "6067 3351 5546 9858"
+   }
+  ]
+ },
+ {
+  "id": "pii-274",
+  "text": "Voter ID: VVN6757008",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "VVN6757008"
+   }
+  ]
+ },
+ {
+  "id": "pii-275",
+  "text": "passport no B3769837 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "B3769837"
+   }
+  ]
+ },
+ {
+  "id": "pii-276",
+  "text": "DL MH47 20156884439 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "MH47 20156884439"
+   }
+  ]
+ },
+ {
+  "id": "pii-277",
+  "text": "my car UP 49 PW 1335 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "UP 49 PW 1335"
+   }
+  ]
+ },
+ {
+  "id": "pii-278",
+  "text": "Address: 233, Baner Road, Hyderabad 500008",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 42,
+    "value": "233, Baner Road, Hyderabad 500008"
+   }
+  ]
+ },
+ {
+  "id": "pii-279",
+  "text": "I live in 294, Anna Salai, Patna - 800001",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 41,
+    "value": "294, Anna Salai, Patna - 800001"
+   }
+  ]
+ },
+ {
+  "id": "pii-280",
+  "text": "Ship to: 117, Park Street, Hyderabad 500008. Contact 9014771474",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 43,
+    "value": "117, Park Street, Hyderabad 500008"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 53,
+    "end": 63,
+    "value": "9014771474"
+   }
+  ]
+ },
+ {
+  "id": "pii-281",
+  "text": "Customer Lavanya Iyengar (sneha9741@company.in) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 24,
+    "value": "Lavanya Iyengar"
+   },
+   {
+    "type": "EMAIL",
+    "start": 26,
+    "end": 46,
+    "value": "sneha9741@company.in"
+   }
+  ]
+ },
+ {
+  "id": "pii-282",
+  "text": "Candidate: Darshil Vekariya | arjun.m84@outlook.com | +91-6969995643",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 27,
+    "value": "Darshil Vekariya",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 30,
+    "end": 51,
+    "value": "arjun.m84@outlook.com"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 54,
+    "end": 68,
+    "value": "+91-6969995643"
+   }
+  ]
+ },
+ {
+  "id": "pii-283",
+  "text": "OPENAI_API_KEY=sk-proj-69vps8nzlwzxx7bvtm0l8587aixs5gav",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-69vps8nzlwzxx7bvtm0l8587aixs5gav"
+   }
+  ]
+ },
+ {
+  "id": "pii-284",
+  "text": "Shri Kshama Ghodke S/O Fatima Ansari, 210, Arera Colony, Pune - 411045",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 18,
+    "value": "Kshama Ghodke",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 23,
+    "end": 36,
+    "value": "Fatima Ansari"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 38,
+    "end": 70,
+    "value": "210, Arera Colony, Pune - 411045"
+   }
+  ]
+ },
+ {
+  "id": "pii-285",
+  "text": "Applicant Mrs. Joseph Varghese, DOB: 09/03/1988, Aadhaar 432780719664",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 30,
+    "value": "Joseph Varghese"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 37,
+    "end": 47,
+    "value": "09/03/1988"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 57,
+    "end": 69,
+    "value": "432780719664"
+   }
+  ]
+ },
+ {
+  "id": "pii-286",
+  "text": "call kar +91-9027541494 pe, otp 912801 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 23,
+    "value": "+91-9027541494"
+   },
+   {
+    "type": "OTP",
+    "start": 32,
+    "end": 38,
+    "value": "912801"
+   }
+  ]
+ },
+ {
+  "id": "pii-287",
+  "text": "Regards,\nPriya Verma\n+91-9235216007",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 20,
+    "value": "Priya Verma"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 21,
+    "end": 35,
+    "value": "+91-9235216007"
+   }
+  ]
+ },
+ {
+  "id": "pii-288",
+  "text": "My name is Neha Agarwal and my number is 7303913523",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 23,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 41,
+    "end": 51,
+    "value": "7303913523"
+   }
+  ]
+ },
+ {
+  "id": "pii-289",
+  "text": "Name: Mohd Imran Qureshi\nMobile: +91-7041074782\nEmail: ankit_g43@rediffmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 24,
+    "value": "Mohd Imran Qureshi"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 33,
+    "end": 47,
+    "value": "+91-7041074782"
+   },
+   {
+    "type": "EMAIL",
+    "start": 55,
+    "end": 79,
+    "value": "ankit_g43@rediffmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-290",
+  "text": "Name: Hrishikesh Joglekar\nPhone: 9749628390",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 25,
+    "value": "Hrishikesh Joglekar",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 33,
+    "end": 43,
+    "value": "9749628390"
+   }
+  ]
+ },
+ {
+  "id": "pii-291",
+  "text": "mera naam Priya Verma hai, mera number 6976652106 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 21,
+    "value": "Priya Verma"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 39,
+    "end": 49,
+    "value": "6976652106"
+   }
+  ]
+ },
+ {
+  "id": "pii-292",
+  "text": "hi this is Kavita Nair, pls call me on +91-6686133835",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 22,
+    "value": "Kavita Nair"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 39,
+    "end": 53,
+    "value": "+91-6686133835"
+   }
+  ]
+ },
+ {
+  "id": "pii-293",
+  "text": "Myself Ishwari Kolte from Pune, my mail id is arjun.m25@rediffmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 20,
+    "value": "Ishwari Kolte",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 46,
+    "end": 70,
+    "value": "arjun.m25@rediffmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-294",
+  "text": "Please forward the offer letter to Kavita Nair today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 46,
+    "value": "Kavita Nair"
+   }
+  ]
+ },
+ {
+  "id": "pii-295",
+  "text": "Spoke to Kshama Ghodke about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 22,
+    "value": "Kshama Ghodke",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-296",
+  "text": "Dear Mohd Imran Qureshi,\nYour OTP is 175801. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 23,
+    "value": "Mohd Imran Qureshi"
+   },
+   {
+    "type": "OTP",
+    "start": 37,
+    "end": 43,
+    "value": "175801"
+   }
+  ]
+ },
+ {
+  "id": "pii-297",
+  "text": "Aadhaar: 9966 0036 5280  PAN: KKHGB1444L",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 23,
+    "value": "9966 0036 5280"
+   },
+   {
+    "type": "PAN",
+    "start": 30,
+    "end": 40,
+    "value": "KKHGB1444L"
+   }
+  ]
+ },
+ {
+  "id": "pii-298",
+  "text": "aadhar number 2975-5369-0855 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 28,
+    "value": "2975-5369-0855"
+   }
+  ]
+ },
+ {
+  "id": "pii-299",
+  "text": "Sir my PAN card no is JEDGR5916V and DOB 13/05/1965",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "JEDGR5916V"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "13/05/1965"
+   }
+  ]
+ },
+ {
+  "id": "pii-300",
+  "text": "GSTIN of the firm: 16DMWPQ3214I1ZL",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "16DMWPQ3214I1ZL"
+   }
+  ]
+ },
+ {
+  "id": "pii-301",
+  "text": "bhai paise 9997151473@paytm pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 27,
+    "value": "9997151473@paytm"
+   }
+  ]
+ },
+ {
+  "id": "pii-302",
+  "text": "Pay to 8309627027@okicici and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 25,
+    "value": "8309627027@okicici"
+   }
+  ]
+ },
+ {
+  "id": "pii-303",
+  "text": "A/c no 518131380719, IFSC ICIC0410122, name Vikram Rathore",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 19,
+    "value": "518131380719"
+   },
+   {
+    "type": "IFSC",
+    "start": 26,
+    "end": 37,
+    "value": "ICIC0410122"
+   },
+   {
+    "type": "NAME",
+    "start": 44,
+    "end": 58,
+    "value": "Vikram Rathore"
+   }
+  ]
+ },
+ {
+  "id": "pii-304",
+  "text": "my HDFC account 2064192989207495 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 32,
+    "value": "2064192989207495"
+   }
+  ]
+ },
+ {
+  "id": "pii-305",
+  "text": "Card 5585 7713 4552 0900 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "5585 7713 4552 0900"
+   }
+  ]
+ },
+ {
+  "id": "pii-306",
+  "text": "Voter ID: OPM2467371",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "OPM2467371"
+   }
+  ]
+ },
+ {
+  "id": "pii-307",
+  "text": "passport no N8532394 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "N8532394"
+   }
+  ]
+ },
+ {
+  "id": "pii-308",
+  "text": "DL DL31 20020846999 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "DL31 20020846999"
+   }
+  ]
+ },
+ {
+  "id": "pii-309",
+  "text": "my car MH 37 CA 8239 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "MH 37 CA 8239"
+   }
+  ]
+ },
+ {
+  "id": "pii-310",
+  "text": "Address: 185, MG Road, Hyderabad - 500008",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 41,
+    "value": "185, MG Road, Hyderabad - 500008"
+   }
+  ]
+ },
+ {
+  "id": "pii-311",
+  "text": "I live in 225, Park Street, Patna - 800001",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 42,
+    "value": "225, Park Street, Patna - 800001"
+   }
+  ]
+ },
+ {
+  "id": "pii-312",
+  "text": "Ship to: 133, Banjara Hills, Bengaluru - 560038. Contact +91-8198781874",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 47,
+    "value": "133, Banjara Hills, Bengaluru - 560038"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 57,
+    "end": 71,
+    "value": "+91-8198781874"
+   }
+  ]
+ },
+ {
+  "id": "pii-313",
+  "text": "Customer Arjun Mehta (priya.k91@gmail.com) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 20,
+    "value": "Arjun Mehta"
+   },
+   {
+    "type": "EMAIL",
+    "start": 22,
+    "end": 41,
+    "value": "priya.k91@gmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-314",
+  "text": "Candidate: Darshil Vekariya | ankit_g42@outlook.com | 7397489276",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 27,
+    "value": "Darshil Vekariya",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 30,
+    "end": 51,
+    "value": "ankit_g42@outlook.com"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 54,
+    "end": 64,
+    "value": "7397489276"
+   }
+  ]
+ },
+ {
+  "id": "pii-315",
+  "text": "OPENAI_API_KEY=sk-proj-2rgdeomhkd8jhkkx1fi2jc10wcszesz0",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-2rgdeomhkd8jhkkx1fi2jc10wcszesz0"
+   }
+  ]
+ },
+ {
+  "id": "pii-316",
+  "text": "Shri Darshil Vekariya S/O Fatima Ansari, 254, Park Street, Bhopal - 462001",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 21,
+    "value": "Darshil Vekariya",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 26,
+    "end": 39,
+    "value": "Fatima Ansari"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 41,
+    "end": 74,
+    "value": "254, Park Street, Bhopal - 462001"
+   }
+  ]
+ },
+ {
+  "id": "pii-317",
+  "text": "Applicant Mrs. Rahul Sharma, DOB: 26/04/1962, Aadhaar 3319 0358 3298",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 27,
+    "value": "Rahul Sharma"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 34,
+    "end": 44,
+    "value": "26/04/1962"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 54,
+    "end": 68,
+    "value": "3319 0358 3298"
+   }
+  ]
+ },
+ {
+  "id": "pii-318",
+  "text": "call kar 9844896032 pe, otp 603320 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 19,
+    "value": "9844896032"
+   },
+   {
+    "type": "OTP",
+    "start": 28,
+    "end": 34,
+    "value": "603320"
+   }
+  ]
+ },
+ {
+  "id": "pii-319",
+  "text": "Regards,\nMohd Imran Qureshi\n+91-9344756927",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 27,
+    "value": "Mohd Imran Qureshi"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 28,
+    "end": 42,
+    "value": "+91-9344756927"
+   }
+  ]
+ },
+ {
+  "id": "pii-320",
+  "text": "My name is Ankit Gupta and my number is +91 81888 12839",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 22,
+    "value": "Ankit Gupta"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 55,
+    "value": "+91 81888 12839"
+   }
+  ]
+ },
+ {
+  "id": "pii-321",
+  "text": "Name: Joseph Varghese\nMobile: 72248 58852\nEmail: ankit_g17@outlook.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 21,
+    "value": "Joseph Varghese"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 30,
+    "end": 41,
+    "value": "72248 58852"
+   },
+   {
+    "type": "EMAIL",
+    "start": 49,
+    "end": 70,
+    "value": "ankit_g17@outlook.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-322",
+  "text": "Name: Yuvika Bhandwalkar\nPhone: 917702994598",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 24,
+    "value": "Yuvika Bhandwalkar",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 32,
+    "end": 44,
+    "value": "917702994598"
+   }
+  ]
+ },
+ {
+  "id": "pii-323",
+  "text": "mera naam Neha Agarwal hai, mera number 916603892372 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 22,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 52,
+    "value": "916603892372"
+   }
+  ]
+ },
+ {
+  "id": "pii-324",
+  "text": "hi this is Vikram Rathore, pls call me on +91 73123 11405",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 25,
+    "value": "Vikram Rathore"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 42,
+    "end": 57,
+    "value": "+91 73123 11405"
+   }
+  ]
+ },
+ {
+  "id": "pii-325",
+  "text": "Myself Bhoomika Sonkusare from Pune, my mail id is priya.k47@company.in",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 25,
+    "value": "Bhoomika Sonkusare",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 51,
+    "end": 71,
+    "value": "priya.k47@company.in"
+   }
+  ]
+ },
+ {
+  "id": "pii-326",
+  "text": "Please forward the offer letter to Rahul Sharma today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 47,
+    "value": "Rahul Sharma"
+   }
+  ]
+ },
+ {
+  "id": "pii-327",
+  "text": "Spoke to Kshama Ghodke about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 22,
+    "value": "Kshama Ghodke",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-328",
+  "text": "Dear Lavanya Iyengar,\nYour OTP is 259105. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 20,
+    "value": "Lavanya Iyengar"
+   },
+   {
+    "type": "OTP",
+    "start": 34,
+    "end": 40,
+    "value": "259105"
+   }
+  ]
+ },
+ {
+  "id": "pii-329",
+  "text": "Aadhaar: 8730-9432-9788  PAN: HINGU7066C",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 23,
+    "value": "8730-9432-9788"
+   },
+   {
+    "type": "PAN",
+    "start": 30,
+    "end": 40,
+    "value": "HINGU7066C"
+   }
+  ]
+ },
+ {
+  "id": "pii-330",
+  "text": "aadhar number 864836682672 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 26,
+    "value": "864836682672"
+   }
+  ]
+ },
+ {
+  "id": "pii-331",
+  "text": "Sir my PAN card no is YASCL1275Y and DOB 22/03/1968",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "YASCL1275Y"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "22/03/1968"
+   }
+  ]
+ },
+ {
+  "id": "pii-332",
+  "text": "GSTIN of the firm: 09HVIPJ7314W1ZE",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "09HVIPJ7314W1ZE"
+   }
+  ]
+ },
+ {
+  "id": "pii-333",
+  "text": "bhai paise priya@oksbi pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 22,
+    "value": "priya@oksbi"
+   }
+  ]
+ },
+ {
+  "id": "pii-334",
+  "text": "Pay to ankit.g@ibl and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 18,
+    "value": "ankit.g@ibl"
+   }
+  ]
+ },
+ {
+  "id": "pii-335",
+  "text": "A/c no 6627366814004074, IFSC UTIB0134352, name Sneha Kulkarni",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 23,
+    "value": "6627366814004074"
+   },
+   {
+    "type": "IFSC",
+    "start": 30,
+    "end": 41,
+    "value": "UTIB0134352"
+   },
+   {
+    "type": "NAME",
+    "start": 48,
+    "end": 62,
+    "value": "Sneha Kulkarni"
+   }
+  ]
+ },
+ {
+  "id": "pii-336",
+  "text": "my HDFC account 76195683367630 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 30,
+    "value": "76195683367630"
+   }
+  ]
+ },
+ {
+  "id": "pii-337",
+  "text": "Card 6083 9886 7726 6465 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "6083 9886 7726 6465"
+   }
+  ]
+ },
+ {
+  "id": "pii-338",
+  "text": "Voter ID: SCG2775246",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "SCG2775246"
+   }
+  ]
+ },
+ {
+  "id": "pii-339",
+  "text": "passport no C1850416 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "C1850416"
+   }
+  ]
+ },
+ {
+  "id": "pii-340",
+  "text": "DL GJ31 20166956771 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "GJ31 20166956771"
+   }
+  ]
+ },
+ {
+  "id": "pii-341",
+  "text": "my car MH 24 UZ 2800 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "MH 24 UZ 2800"
+   }
+  ]
+ },
+ {
+  "id": "pii-342",
+  "text": "Address: 88, Park Street, Chennai 600002",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 40,
+    "value": "88, Park Street, Chennai 600002"
+   }
+  ]
+ },
+ {
+  "id": "pii-343",
+  "text": "I live in 26, Lajpat Nagar, Jaipur 302001",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 41,
+    "value": "26, Lajpat Nagar, Jaipur 302001"
+   }
+  ]
+ },
+ {
+  "id": "pii-344",
+  "text": "Ship to: 157, 2nd Cross, Indiranagar, Jaipur 302001. Contact +91-8740469208",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 51,
+    "value": "157, 2nd Cross, Indiranagar, Jaipur 302001"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 61,
+    "end": 75,
+    "value": "+91-8740469208"
+   }
+  ]
+ },
+ {
+  "id": "pii-345",
+  "text": "Customer Sneha Kulkarni (sneha9717@outlook.com) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 23,
+    "value": "Sneha Kulkarni"
+   },
+   {
+    "type": "EMAIL",
+    "start": 25,
+    "end": 46,
+    "value": "sneha9717@outlook.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-346",
+  "text": "Candidate: Tejaswini Rangnekar | ankit_g59@gmail.com | 918324621804",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 30,
+    "value": "Tejaswini Rangnekar",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 33,
+    "end": 52,
+    "value": "ankit_g59@gmail.com"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 55,
+    "end": 67,
+    "value": "918324621804"
+   }
+  ]
+ },
+ {
+  "id": "pii-347",
+  "text": "OPENAI_API_KEY=sk-proj-gce41c1s93u025fvwqwyf5kmryl9gm6h",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-gce41c1s93u025fvwqwyf5kmryl9gm6h"
+   }
+  ]
+ },
+ {
+  "id": "pii-348",
+  "text": "Shri Pratyush Nandwana S/O Fatima Ansari, 196, Banjara Hills, Bhopal 462001",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 22,
+    "value": "Pratyush Nandwana",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 27,
+    "end": 40,
+    "value": "Fatima Ansari"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 42,
+    "end": 75,
+    "value": "196, Banjara Hills, Bhopal 462001"
+   }
+  ]
+ },
+ {
+  "id": "pii-349",
+  "text": "Applicant Mrs. Sourav Banerjee, DOB: 25/11/1989, Aadhaar 308120495148",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 30,
+    "value": "Sourav Banerjee"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 37,
+    "end": 47,
+    "value": "25/11/1989"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 57,
+    "end": 69,
+    "value": "308120495148"
+   }
+  ]
+ },
+ {
+  "id": "pii-350",
+  "text": "call kar 917857542499 pe, otp 101746 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 21,
+    "value": "917857542499"
+   },
+   {
+    "type": "OTP",
+    "start": 30,
+    "end": 36,
+    "value": "101746"
+   }
+  ]
+ },
+ {
+  "id": "pii-351",
+  "text": "Regards,\nDeepika Reddy\n87565 10805",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 22,
+    "value": "Deepika Reddy"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 23,
+    "end": 34,
+    "value": "87565 10805"
+   }
+  ]
+ },
+ {
+  "id": "pii-352",
+  "text": "My name is Kavita Nair and my number is 6675405149",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 22,
+    "value": "Kavita Nair"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 50,
+    "value": "6675405149"
+   }
+  ]
+ },
+ {
+  "id": "pii-353",
+  "text": "Name: Pooja Patel\nMobile: 70921 16039\nEmail: rahul60@rediffmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 17,
+    "value": "Pooja Patel"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 26,
+    "end": 37,
+    "value": "70921 16039"
+   },
+   {
+    "type": "EMAIL",
+    "start": 45,
+    "end": 67,
+    "value": "rahul60@rediffmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-354",
+  "text": "Name: Darshil Vekariya\nPhone: 07987493180",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 22,
+    "value": "Darshil Vekariya",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 30,
+    "end": 41,
+    "value": "07987493180"
+   }
+  ]
+ },
+ {
+  "id": "pii-355",
+  "text": "mera naam Deepika Reddy hai, mera number +91 91810 63888 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 23,
+    "value": "Deepika Reddy"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 41,
+    "end": 56,
+    "value": "+91 91810 63888"
+   }
+  ]
+ },
+ {
+  "id": "pii-356",
+  "text": "hi this is Ankit Gupta, pls call me on +91-7074805664",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 22,
+    "value": "Ankit Gupta"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 39,
+    "end": 53,
+    "value": "+91-7074805664"
+   }
+  ]
+ },
+ {
+  "id": "pii-357",
+  "text": "Myself Ojasvi Thakre from Pune, my mail id is kavita.n74@rediffmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 20,
+    "value": "Ojasvi Thakre",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 46,
+    "end": 71,
+    "value": "kavita.n74@rediffmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-358",
+  "text": "Please forward the offer letter to Kavita Nair today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 46,
+    "value": "Kavita Nair"
+   }
+  ]
+ },
+ {
+  "id": "pii-359",
+  "text": "Spoke to Yuvika Bhandwalkar about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 27,
+    "value": "Yuvika Bhandwalkar",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-360",
+  "text": "Dear Fatima Ansari,\nYour OTP is 339092. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 18,
+    "value": "Fatima Ansari"
+   },
+   {
+    "type": "OTP",
+    "start": 32,
+    "end": 38,
+    "value": "339092"
+   }
+  ]
+ },
+ {
+  "id": "pii-361",
+  "text": "Aadhaar: 5451 6769 6903  PAN: SNUAW5519K",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 23,
+    "value": "5451 6769 6903"
+   },
+   {
+    "type": "PAN",
+    "start": 30,
+    "end": 40,
+    "value": "SNUAW5519K"
+   }
+  ]
+ },
+ {
+  "id": "pii-362",
+  "text": "aadhar number 567521934976 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 26,
+    "value": "567521934976"
+   }
+  ]
+ },
+ {
+  "id": "pii-363",
+  "text": "Sir my PAN card no is WDWFR1707N and DOB 17/11/1971",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "WDWFR1707N"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "17/11/1971"
+   }
+  ]
+ },
+ {
+  "id": "pii-364",
+  "text": "GSTIN of the firm: 19YTZPZ1656A1ZB",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "19YTZPZ1656A1ZB"
+   }
+  ]
+ },
+ {
+  "id": "pii-365",
+  "text": "bhai paise rahul@oksbi pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 22,
+    "value": "rahul@oksbi"
+   }
+  ]
+ },
+ {
+  "id": "pii-366",
+  "text": "Pay to priya@okaxis and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 19,
+    "value": "priya@okaxis"
+   }
+  ]
+ },
+ {
+  "id": "pii-367",
+  "text": "A/c no 63168766383, IFSC ICIC0329750, name Deepika Reddy",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 18,
+    "value": "63168766383"
+   },
+   {
+    "type": "IFSC",
+    "start": 25,
+    "end": 36,
+    "value": "ICIC0329750"
+   },
+   {
+    "type": "NAME",
+    "start": 43,
+    "end": 56,
+    "value": "Deepika Reddy"
+   }
+  ]
+ },
+ {
+  "id": "pii-368",
+  "text": "my HDFC account 711816222200 is not getting credited",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 16,
+    "end": 28,
+    "value": "711816222200"
+   }
+  ]
+ },
+ {
+  "id": "pii-369",
+  "text": "Card 6055 7967 5561 4504 was charged twice",
+  "spans": [
+   {
+    "type": "CREDIT_CARD",
+    "start": 5,
+    "end": 24,
+    "value": "6055 7967 5561 4504"
+   }
+  ]
+ },
+ {
+  "id": "pii-370",
+  "text": "Voter ID: FKT8445673",
+  "spans": [
+   {
+    "type": "VOTER_ID",
+    "start": 10,
+    "end": 20,
+    "value": "FKT8445673"
+   }
+  ]
+ },
+ {
+  "id": "pii-371",
+  "text": "passport no S8895207 expires next year",
+  "spans": [
+   {
+    "type": "PASSPORT_IN",
+    "start": 12,
+    "end": 20,
+    "value": "S8895207"
+   }
+  ]
+ },
+ {
+  "id": "pii-372",
+  "text": "DL MH29 20233525556 verified",
+  "spans": [
+   {
+    "type": "DRIVING_LICENSE",
+    "start": 3,
+    "end": 19,
+    "value": "MH29 20233525556"
+   }
+  ]
+ },
+ {
+  "id": "pii-373",
+  "text": "my car MP 02 ST 8818 got a challan",
+  "spans": [
+   {
+    "type": "VEHICLE_REG",
+    "start": 7,
+    "end": 20,
+    "value": "MP 02 ST 8818"
+   }
+  ]
+ },
+ {
+  "id": "pii-374",
+  "text": "Address: 152, Arera Colony, Kolkata 700016",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 42,
+    "value": "152, Arera Colony, Kolkata 700016"
+   }
+  ]
+ },
+ {
+  "id": "pii-375",
+  "text": "I live in 233, MG Road, Bengaluru - 560038",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 10,
+    "end": 42,
+    "value": "233, MG Road, Bengaluru - 560038"
+   }
+  ]
+ },
+ {
+  "id": "pii-376",
+  "text": "Ship to: 176, Gomti Nagar, Bengaluru - 560038. Contact +91 95252 36059",
+  "spans": [
+   {
+    "type": "ADDRESS",
+    "start": 9,
+    "end": 45,
+    "value": "176, Gomti Nagar, Bengaluru - 560038"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 55,
+    "end": 70,
+    "value": "+91 95252 36059"
+   }
+  ]
+ },
+ {
+  "id": "pii-377",
+  "text": "Customer Priya Verma (ankit_g21@rediffmail.com) reported a failed payment of Rs 2,499.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 20,
+    "value": "Priya Verma"
+   },
+   {
+    "type": "EMAIL",
+    "start": 22,
+    "end": 46,
+    "value": "ankit_g21@rediffmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-378",
+  "text": "Candidate: Pratyush Nandwana | rahul95@yahoo.co.in | +91 92150 02857",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 28,
+    "value": "Pratyush Nandwana",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 31,
+    "end": 50,
+    "value": "rahul95@yahoo.co.in"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 53,
+    "end": 68,
+    "value": "+91 92150 02857"
+   }
+  ]
+ },
+ {
+  "id": "pii-379",
+  "text": "OPENAI_API_KEY=sk-proj-xlu1ly0h997fl83jvmhz8a3oe2igcg7w",
+  "spans": [
+   {
+    "type": "API_KEY",
+    "start": 15,
+    "end": 55,
+    "value": "sk-proj-xlu1ly0h997fl83jvmhz8a3oe2igcg7w"
+   }
+  ]
+ },
+ {
+  "id": "pii-380",
+  "text": "Shri Tejaswini Rangnekar S/O Sneha Kulkarni, 239, Gomti Nagar, Chennai - 600002",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 24,
+    "value": "Tejaswini Rangnekar",
+    "hard": true
+   },
+   {
+    "type": "NAME",
+    "start": 29,
+    "end": 43,
+    "value": "Sneha Kulkarni"
+   },
+   {
+    "type": "ADDRESS",
+    "start": 45,
+    "end": 79,
+    "value": "239, Gomti Nagar, Chennai - 600002"
+   }
+  ]
+ },
+ {
+  "id": "pii-381",
+  "text": "Applicant Mrs. Kavita Nair, DOB: 22/05/1967, Aadhaar 5247-7959-5377",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 15,
+    "end": 26,
+    "value": "Kavita Nair"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 33,
+    "end": 43,
+    "value": "22/05/1967"
+   },
+   {
+    "type": "AADHAAR",
+    "start": 53,
+    "end": 67,
+    "value": "5247-7959-5377"
+   }
+  ]
+ },
+ {
+  "id": "pii-382",
+  "text": "call kar 918943267316 pe, otp 213301 aaya hai",
+  "spans": [
+   {
+    "type": "PHONE_IN",
+    "start": 9,
+    "end": 21,
+    "value": "918943267316"
+   },
+   {
+    "type": "OTP",
+    "start": 30,
+    "end": 36,
+    "value": "213301"
+   }
+  ]
+ },
+ {
+  "id": "pii-383",
+  "text": "Regards,\nArjun Mehta\n94746 49359",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 20,
+    "value": "Arjun Mehta"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 21,
+    "end": 32,
+    "value": "94746 49359"
+   }
+  ]
+ },
+ {
+  "id": "pii-384",
+  "text": "My name is Kavita Nair and my number is 7217854098",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 22,
+    "value": "Kavita Nair"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 50,
+    "value": "7217854098"
+   }
+  ]
+ },
+ {
+  "id": "pii-385",
+  "text": "Name: Rahul Sharma\nMobile: 08980246612\nEmail: rahul38@rediffmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 18,
+    "value": "Rahul Sharma"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 27,
+    "end": 38,
+    "value": "08980246612"
+   },
+   {
+    "type": "EMAIL",
+    "start": 46,
+    "end": 68,
+    "value": "rahul38@rediffmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-386",
+  "text": "Name: Ojasvi Thakre\nPhone: 916268016569",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 6,
+    "end": 19,
+    "value": "Ojasvi Thakre",
+    "hard": true
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 27,
+    "end": 39,
+    "value": "916268016569"
+   }
+  ]
+ },
+ {
+  "id": "pii-387",
+  "text": "mera naam Pooja Patel hai, mera number +91 63761 30554 hai",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 10,
+    "end": 21,
+    "value": "Pooja Patel"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 39,
+    "end": 54,
+    "value": "+91 63761 30554"
+   }
+  ]
+ },
+ {
+  "id": "pii-388",
+  "text": "hi this is Neha Agarwal, pls call me on +91 62044 58578",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 11,
+    "end": 23,
+    "value": "Neha Agarwal"
+   },
+   {
+    "type": "PHONE_IN",
+    "start": 40,
+    "end": 55,
+    "value": "+91 62044 58578"
+   }
+  ]
+ },
+ {
+  "id": "pii-389",
+  "text": "Myself Bhoomika Sonkusare from Pune, my mail id is priya.k81@gmail.com",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 7,
+    "end": 25,
+    "value": "Bhoomika Sonkusare",
+    "hard": true
+   },
+   {
+    "type": "EMAIL",
+    "start": 51,
+    "end": 70,
+    "value": "priya.k81@gmail.com"
+   }
+  ]
+ },
+ {
+  "id": "pii-390",
+  "text": "Please forward the offer letter to Joseph Varghese today",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 35,
+    "end": 50,
+    "value": "Joseph Varghese"
+   }
+  ]
+ },
+ {
+  "id": "pii-391",
+  "text": "Spoke to Hrishikesh Joglekar about the renewal yesterday",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 9,
+    "end": 28,
+    "value": "Hrishikesh Joglekar",
+    "hard": true
+   }
+  ]
+ },
+ {
+  "id": "pii-392",
+  "text": "Dear Joseph Varghese,\nYour OTP is 803513. Do not share it with anyone.",
+  "spans": [
+   {
+    "type": "NAME",
+    "start": 5,
+    "end": 20,
+    "value": "Joseph Varghese"
+   },
+   {
+    "type": "OTP",
+    "start": 34,
+    "end": 40,
+    "value": "803513"
+   }
+  ]
+ },
+ {
+  "id": "pii-393",
+  "text": "Aadhaar: 8311 0737 5022  PAN: GRGPN6493W",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 9,
+    "end": 23,
+    "value": "8311 0737 5022"
+   },
+   {
+    "type": "PAN",
+    "start": 30,
+    "end": 40,
+    "value": "GRGPN6493W"
+   }
+  ]
+ },
+ {
+  "id": "pii-394",
+  "text": "aadhar number 435033239676 hai mera",
+  "spans": [
+   {
+    "type": "AADHAAR",
+    "start": 14,
+    "end": 26,
+    "value": "435033239676"
+   }
+  ]
+ },
+ {
+  "id": "pii-395",
+  "text": "Sir my PAN card no is UOUHI5888H and DOB 22/03/1998",
+  "spans": [
+   {
+    "type": "PAN",
+    "start": 22,
+    "end": 32,
+    "value": "UOUHI5888H"
+   },
+   {
+    "type": "DATE_OF_BIRTH",
+    "start": 41,
+    "end": 51,
+    "value": "22/03/1998"
+   }
+  ]
+ },
+ {
+  "id": "pii-396",
+  "text": "GSTIN of the firm: 20POOPO1230W1Z2",
+  "spans": [
+   {
+    "type": "GSTIN",
+    "start": 19,
+    "end": 34,
+    "value": "20POOPO1230W1Z2"
+   }
+  ]
+ },
+ {
+  "id": "pii-397",
+  "text": "bhai paise rahul@oksbi pe bhej de",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 11,
+    "end": 22,
+    "value": "rahul@oksbi"
+   }
+  ]
+ },
+ {
+  "id": "pii-398",
+  "text": "Pay to 8522725891@paytm and share screenshot",
+  "spans": [
+   {
+    "type": "UPI_ID",
+    "start": 7,
+    "end": 23,
+    "value": "8522725891@paytm"
+   }
+  ]
+ },
+ {
+  "id": "pii-399",
+  "text": "A/c no 3769112500513947, IFSC PUNB0357551, name Mohd Imran Qureshi",
+  "spans": [
+   {
+    "type": "BANK_ACCOUNT",
+    "start": 7,
+    "end": 23,
+    "value": "3769112500513947"
+   },
+   {
+    "type": "IFSC",
+    "start": 30,
+    "end": 41,
+    "value": "PUNB0357551"
+   },
+   {
+    "type": "NAME",
+    "start": 48,
+    "end": 66,
+    "value": "Mohd Imran Qureshi"
+   }
+  ]
+ },
+ {
+  "id": "clean-0",
+  "text": "India's GDP grew 7.2% in FY24 according to the Ministry of Statistics.",
+  "spans": []
+ },
+ {
+  "id": "clean-1",
+  "text": "The RBI kept the repo rate at 6.5% on 08/02/2024.",
+  "spans": []
+ },
+ {
+  "id": "clean-2",
+  "text": "Tata Motors sold 45,000 units in March, up 12% year on year.",
+  "spans": []
+ },
+ {
+  "id": "clean-3",
+  "text": "Mumbai Indians beat Chennai Super Kings by 5 wickets at Wankhede.",
+  "spans": []
+ },
+ {
+  "id": "clean-4",
+  "text": "Flight AI 101 departs at 14:30 from T3, gate 42.",
+  "spans": []
+ },
+ {
+  "id": "clean-5",
+  "text": "Install with npm i react@18.3.1, then run on port 3000.",
+  "spans": []
+ },
+ {
+  "id": "clean-6",
+  "text": "Section 80C allows deduction up to Rs 1,50,000.",
+  "spans": []
+ },
+ {
+  "id": "clean-7",
+  "text": "Train 12301 Rajdhani Express arrives at platform 16.",
+  "spans": []
+ },
+ {
+  "id": "clean-8",
+  "text": "Pune Metro phase 2 will cost 3,300 crore.",
+  "spans": []
+ },
+ {
+  "id": "clean-9",
+  "text": "Order #123456789 total Rs 4500 on 12/05/2024.",
+  "spans": []
+ },
+ {
+  "id": "clean-10",
+  "text": "Invoice INV-2024-0042 is due in 30 days.",
+  "spans": []
+ },
+ {
+  "id": "clean-11",
+  "text": "UPI ref no 412398765432 credited successfully.",
+  "spans": []
+ },
+ {
+  "id": "clean-12",
+  "text": "UTR 512345678901 for Rs 1,200 has been processed.",
+  "spans": []
+ },
+ {
+  "id": "clean-13",
+  "text": "SKU ABCDE1234F is out of stock.",
+  "spans": []
+ },
+ {
+  "id": "clean-14",
+  "text": "Model XYZ1234567 ships next week.",
+  "spans": []
+ },
+ {
+  "id": "clean-15",
+  "text": "Version 2.4.1 fixes 12 bugs and adds dark mode.",
+  "spans": []
+ },
+ {
+  "id": "clean-16",
+  "text": "Sensex closed at 81,245 while Nifty ended at 24,780.",
+  "spans": []
+ },
+ {
+  "id": "clean-17",
+  "text": "The match starts at 7:30 PM IST on Sunday.",
+  "spans": []
+ },
+ {
+  "id": "clean-18",
+  "text": "Revenue grew 18% to Rs 4,52,000 in Q3.",
+  "spans": []
+ },
+ {
+  "id": "clean-19",
+  "text": "Room 204, Block B is reserved for the workshop.",
+  "spans": []
+ },
+ {
+  "id": "clean-20",
+  "text": "Call the toll-free helpline 1800-180-1111 for help.",
+  "spans": []
+ },
+ {
+  "id": "clean-21",
+  "text": "The meeting is in the State Bank of India building.",
+  "spans": []
+ },
+ {
+  "id": "clean-22",
+  "text": "mujhe nahi pata yaar, kal dekhte hai",
+  "spans": []
+ },
+ {
+  "id": "clean-23",
+  "text": "bhai kal match dekha? Kohli ne century maari",
+  "spans": []
+ },
+ {
+  "id": "clean-24",
+  "text": "aaj office mein meeting thi 3 baje, phir lunch",
+  "spans": []
+ },
+ {
+  "id": "clean-25",
+  "text": "pata hai kal chhutti hai?",
+  "spans": []
+ },
+ {
+  "id": "clean-26",
+  "text": "Gandhi Nagar market is closed on Monday.",
+  "spans": []
+ },
+ {
+  "id": "clean-27",
+  "text": "We need to address the issue before the release.",
+  "spans": []
+ },
+ {
+  "id": "clean-28",
+  "text": "Prime Minister addressed the nation from Red Fort.",
+  "spans": []
+ },
+ {
+  "id": "clean-29",
+  "text": "Read More about the latest offers from Reliance Jio.",
+  "spans": []
+ },
+ {
+  "id": "clean-30",
+  "text": "Sprint 2024-11 planning is on Tuesday at 10:30.",
+  "spans": []
+ },
+ {
+  "id": "clean-31",
+  "text": "Ticket TKT-55621 has been closed.",
+  "spans": []
+ },
+ {
+  "id": "clean-32",
+  "text": "Batch 2019 alumni meet is on 14 December.",
+  "spans": []
+ },
+ {
+  "id": "clean-33",
+  "text": "Temperature in Delhi touched 45 degrees on Friday.",
+  "spans": []
+ },
+ {
+  "id": "clean-34",
+  "text": "The parcel weighs 2.5 kg and costs Rs 180 to ship.",
+  "spans": []
+ },
+ {
+  "id": "clean-35",
+  "text": "Please use code SAVE20 for 20% off.",
+  "spans": []
+ },
+ {
+  "id": "clean-36",
+  "text": "Our office in Bengaluru has 120 employees.",
+  "spans": []
+ },
+ {
+  "id": "clean-37",
+  "text": "Python 3.12 and Node 22 are supported.",
+  "spans": []
+ },
+ {
+  "id": "clean-38",
+  "text": "Chapter 7 covers the Indian Contract Act, 1872.",
+  "spans": []
+ },
+ {
+  "id": "clean-39",
+  "text": "The Supreme Court heard 34 cases today.",
+  "spans": []
+ }
+]
