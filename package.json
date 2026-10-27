@@ -1,39 +1,69 @@
 {
   "name": "piilite",
-  "version": "0.1.0",
-  "description": "Lightweight, zero-dependency, India-first PII detection and masking for JavaScript. Aadhaar, PAN, GSTIN, UPI, +91 phones, names, addresses and more, using patterns only (no AI model).",
+  "version": "0.2.0",
+  "description": "Lightweight, zero-dependency, India-first PII detection and masking for JavaScript. Aadhaar, PAN, GSTIN, UPI, +91 phones, Indian names and addresses, OTPs and secrets, with an optional OpenRedaction bridge for 110 global ID types.",
   "type": "module",
-  "main": "./src/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./src/index.js",
   "types": "./index.d.ts",
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "default": "./src/index.js"
-    }
+      "import": "./src/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./openredaction": {
+      "types": "./types/openredaction.d.ts",
+      "import": "./src/openredaction.js",
+      "require": "./dist/openredaction.cjs"
+    },
+    "./express": {
+      "types": "./types/express.d.ts",
+      "import": "./src/express.js",
+      "require": "./dist/express.cjs"
+    },
+    "./react": {
+      "types": "./types/react.d.ts",
+      "import": "./src/react.js",
+      "require": "./dist/react.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "src",
+    "dist",
     "index.d.ts",
+    "types",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "test": "node --test test/*.test.js",
-    "bench": "node bench/bench.js"
+    "build": "node build.js",
+    "bench": "node bench/bench.js",
+    "eval": "node eval/run.js",
+    "eval:all": "node eval/generate.js && node eval/run.js dataset.json && node eval/run.js holdout.json && node eval/run.js holdout2.json && node eval/openredaction-noise.js",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
-    "pii",
-    "redaction",
-    "masking",
-    "privacy",
-    "india",
     "aadhaar",
-    "pan",
-    "gstin",
-    "upi",
+    "anonymization",
+    "data-masking",
     "dpdp",
+    "gstin",
+    "india",
+    "kyc",
     "llm",
-    "anonymization"
+    "masking",
+    "openredaction",
+    "pan",
+    "pii",
+    "presidio",
+    "privacy",
+    "redact",
+    "redaction",
+    "streaming",
+    "upi"
   ],
   "author": "Aman kumar keshri <amank232004@gmail.com>",
   "license": "MIT",
@@ -44,5 +74,24 @@
   "engines": {
     "node": ">=18"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "peerDependencies": {
+    "@openredaction/core": ">=1.1.5",
+    "react": ">=16.8"
+  },
+  "peerDependenciesMeta": {
+    "@openredaction/core": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@openredaction/core": "^1.1.5",
+    "esbuild": "^0.24.2",
+    "express": "^4.21.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
 }
