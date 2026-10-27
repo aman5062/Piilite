@@ -70,8 +70,8 @@ export function isJunkNumber(d) {
   return "01234567890".includes(d) || "09876543210".includes(d);
 }
 
-// Card network prefixes, including RuPay (60, 65, 81, 82, 508, 353, 356)
-const CARD_PREFIX = /^(?:4|5[1-5]|2[2-7]|3[47]|3[0689]|35|6|81|82|508)/;
+// Card network prefixes, including RuPay (60, 65, 81, 82, 508, 353, 356) and Maestro (50, 56-58, 63, 67)
+const CARD_PREFIX = /^(?:4|5[0-8]|2[2-7]|3[47]|3[0689]|35|6|81|82)/;
 export function creditCard(value) {
   const d = digitsOf(value);
   return d.length >= 13 && d.length <= 19 && CARD_PREFIX.test(d) && luhn(d) && !isJunkNumber(d);

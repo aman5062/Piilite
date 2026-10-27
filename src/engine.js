@@ -10,6 +10,7 @@ import { normalize, contextAround, contextBefore } from "./text.js";
  * - context:        keyword regex looked for around the match; boosts confidence
  * - contextOnly:    'before' to only look before the match
  * - requireContext: drop the match when no context keyword is present
+ * - negativeContext: keyword regex that rejects the match (unless `context` also matches)
  * - lenient:        accept a failed validator when context is present
  * - region:         span may be trimmed around higher-priority matches
  *
@@ -55,6 +56,7 @@ function runPattern(p, norm) {
         : contextAround(norm, start, end, p.contextWindow ?? 40, p.contextAfter ?? 20);
     const hasContext = p.context ? p.context.test(ctx) : false;
     if (p.requireContext && !hasContext) continue;
+    if (p.negativeContext && !hasContext && p.negativeContext.test(contextBefore(norm, start, 30))) continue;
     let conf = p.confidence ?? DEFAULT_CONFIDENCE;
     if (p.validator && !p.validator(value, ctx, norm, start, end)) {
       if (!(p.lenient && hasContext)) continue;
@@ -97,6 +99,11 @@ function subtract(start, end, accepted) {
 const overlaps = (a, b) => a.start < b.end && b.start < a.end;
 
 export function findAll(text, patterns, opts) {
+  if (opts.maxInputSize && text.length > opts.maxInputSize) {
+    throw new RangeError(
+      `piilite: input is ${text.length} characters, above maxInputSize (${opts.maxInputSize}). Split it or use the stream API.`
+    );
+  }
   const norm = normalize(text);
   const candidates = [];
   for (const p of patterns) {
