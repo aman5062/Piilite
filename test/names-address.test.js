@@ -158,3 +158,40 @@ test("CSV rows: name cell followed by a phone or email cell", () => {
   assert.deepEqual(names("Gargi Ranadive; gargi@mail.com"), ["Gargi Ranadive"]);
   assert.deepEqual(names("Monthly Report, sent to 9123456780"), []);
 });
+
+test("résumé header line is a name", () => {
+  assert.deepEqual(names("Aarav Neel Mehrotra\nBackend Developer | APIs\naarav.m@mail.test | +91 91234 56780"), ["Aarav Neel Mehrotra"]);
+  assert.deepEqual(names("TANVI RAO\ntanvi.r@mail.test"), ["TANVI RAO"]);
+  assert.deepEqual(names("Software Developer\ndev@mail.test"), []);
+});
+
+test("schools and tools are not names", () => {
+  assert.deepEqual(names("CBSE at Sunrise Vidya Mandir, Bhopal"), []);
+  assert.deepEqual(names("Skills: Power BI, MS Excel, MS Word"), []);
+  assert.deepEqual(names("Ms. Kavya Rao will join"), ["Kavya Rao"]);
+});
+
+test("first name + unknown middle + surname", () => {
+  assert.deepEqual(names("Contact Suresh Lal Yadav today"), ["Suresh Lal Yadav"]);
+});
+
+test("LOCATION is opt-in", async () => {
+  const { Piilite } = await import("../src/index.js");
+  const text = "Based in: Kotputli, Rajasthan\nLanguages: English";
+  assert.deepEqual(new Piilite().scan(text), []);
+  const loc = new Piilite({ include: ["LOCATION"] }).scan(text);
+  assert.deepEqual(loc.map((d) => [d.type, d.value]), [["LOCATION", "Kotputli, Rajasthan"]]);
+  assert.deepEqual(new Piilite({ include: ["LOCATION"] }).scan("Studied at Example State University, Jaipur"), []);
+});
+
+test("LOCATION stops before the next profile field", async () => {
+  const { Piilite } = await import("../src/index.js");
+  const s = new Piilite({ include: ["LOCATION"] });
+  assert.deepEqual(s.scan("class of 2026 Based in: Kotputli Open to: Full-time").map((d) => d.value), ["Kotputli"]);
+});
+
+test("after a Name: label, take capitalised words up to the next field", () => {
+  assert.deepEqual(names("Name: Test Student Two Skills: React"), ["Test Student Two"]);
+  assert.deepEqual(names("Name: Aarav Mehrotra\nSkills: Go"), ["Aarav Mehrotra"]);
+  assert.deepEqual(names("my name is rahul and I code"), ["rahul"]);
+});

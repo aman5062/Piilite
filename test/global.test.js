@@ -63,3 +63,14 @@ test("social profile links", () => {
 test("Maestro cards", () => {
   assert.deepEqual(types(`card ${makeCard("502334319557466")}`), ["CREDIT_CARD"]);
 });
+
+test("coding profile handles and links", () => {
+  assert.deepEqual(values("GitHub: devtester42", "SOCIAL_PROFILE"), ["devtester42"]);
+  assert.deepEqual(values("Leetcode (devtester42): 300 solved", "SOCIAL_PROFILE"), ["devtester42"]);
+  assert.deepEqual(values("leetcode.com/u/devtester42", "SOCIAL_PROFILE"), ["leetcode.com/u/devtester42"]);
+  assert.deepEqual(values("codechef.com/users/dev_tester", "SOCIAL_PROFILE"), ["codechef.com/users/dev_tester"]);
+  assert.deepEqual(values("| aarav-mehrotra-a1b2c3d4e |", "SOCIAL_PROFILE"), ["aarav-mehrotra-a1b2c3d4e"]);
+  assert.deepEqual(types("GitHub: Projects"), []);
+  assert.deepEqual(types("see leetcode.com/problems/two-sum"), []);
+  assert.deepEqual(types("state-of-the-art model"), []);
+});
