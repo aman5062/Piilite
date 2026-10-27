@@ -24,7 +24,7 @@ const DEFAULT_CONFIDENCE = 0.8;
 function runPattern(p, norm, opts) {
   const out = [];
   if (p.find) {
-    for (const m of p.find(norm)) out.push({ ...m, conf: m.confidence ?? p.confidence ?? DEFAULT_CONFIDENCE });
+    for (const m of p.find(norm, opts)) out.push({ ...m, conf: m.confidence ?? p.confidence ?? DEFAULT_CONFIDENCE });
     return out;
   }
   let re = p.regex;

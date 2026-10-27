@@ -50,12 +50,12 @@ const ABBR = /(?:^|[\s,])(?:no|nr|opp|rd|st|h|d|flat|sec|ph|dist|distt|po|ps|p\.
 
 const MAX_LEN = 180;
 
-// A company's own address ("GoTrust Technologies Pvt Ltd, Sector 62, Noida") is not personal
-// data. It stays below the default confidence cut-off (0.5); the strict preset (0.4) still masks it.
+// A company's own address ("Example Technologies Pvt Ltd, Sector 62, Noida") is not personal
+// data, but "Engineer at Acme Technologies, 45 Civil Lines, Jaipur" may be a home. So every
+// address is masked by default; `keepCompanyAddresses: true` leaves the company-looking ones.
 const COMPANY = String.raw`(?:pvt\.?\s*ltd|private\s+limited|ltd|limited|llp|inc|corp|corporation|technologies|solutions|infotech|industries|enterprises|software|systems|consultancy)\.?`;
 const COMPANY_BEFORE = new RegExp(`\\b${COMPANY}\\s*[,\\-–:]?\\s*$`, "i");
 const COMPANY_FIRST = new RegExp(`^[^,\\n]*\\b${COMPANY}\\s*(?:,|$)`, "i");
-const BUSINESS_CONFIDENCE = 0.45;
 
 function isBusiness(text, start, end) {
   const lineStart = text.lastIndexOf("\n", start - 1) + 1;
@@ -99,7 +99,7 @@ function extend(text, start, from) {
   return { start, end: start + value.length, value };
 }
 
-export function findAddresses(text) {
+export function findAddresses(text, opts) {
   const found = [];
   let m;
 
@@ -157,5 +157,5 @@ export function findAddresses(text) {
     if (!/,/.test(a.value) || !(endsInPin || HAS_PLACE.test(a.value))) continue;
     found.push({ start: a.start, end: a.end, confidence: 0.75 });
   }
-  return found.map((a) => (isBusiness(text, a.start, a.end) ? { ...a, confidence: BUSINESS_CONFIDENCE } : a));
+  return opts?.keepCompanyAddresses ? found.filter((a) => !isBusiness(text, a.start, a.end)) : found;
 }

@@ -5,7 +5,8 @@ import { secretPatterns } from "./patterns/secrets.js";
 import { findNames } from "./finders/names.js";
 import { findAddresses } from "./finders/address.js";
 import { resolvePreset } from "./presets.js";
-import { StreamRedactor, redactAsyncIterable, createTransformStream } from "./stream.js";
+import { StreamRedactor, redactAsyncIterable, createTransformStream, RestoreStream, restoreAsyncIterable } from "./stream.js";
+import { valueKey, learn, matchKnown } from "./known.js";
 
 const finderPatterns = [
   { type: "NAME", find: findNames, priority: 66, severity: "high", region: true },
@@ -78,7 +79,20 @@ export class Piilite {
 
   /** Fresh placeholder state; share one across calls to keep numbering consistent. */
   newState() {
-    return { counters: {}, seen: new Map(), map: {} };
+    return { counters: {}, seen: new Map(), map: {}, known: new Map() };
+  }
+
+  /**
+   * Matches in `text`: what the rules find, plus every value this state has seen
+   * before (or that appears elsewhere in the same text), even without a clue.
+   */
+  find(text, state = this.newState(), scanned) {
+    const found = scanned ?? this.scan(text);
+    state.known ??= new Map();
+    learn(found, state.known);
+    if (this.options.propagate === false) return found;
+    const extra = matchKnown(text, state.known, found);
+    return extra.length ? [...found, ...extra].sort((a, b) => a.start - b.start) : found;
   }
 
   /** Replace already-found matches in `text`. Used by detect() and the stream API. */
@@ -89,8 +103,10 @@ export class Piilite {
     const detections = [];
 
     for (const d of found) {
-      // exact value, so "RAHUL" and "Rahul" are each restored as written
-      const key = d.type + "\u0000" + d.value;
+      // "Rahul Sharma", "rahul sharma" and a later bare "rahul" share one placeholder
+      // (matchCase: true keeps each spelling apart); `alias` is the full value a part belongs to
+      const original = d.alias ?? d.value;
+      const key = d.type + "\u0000" + valueKey(d.type, original, opts.matchCase);
       let placeholder = state.seen.get(key);
       if (placeholder === undefined) {
         if (typeof opts.mode === "function") placeholder = opts.mode(d);
@@ -102,7 +118,10 @@ export class Piilite {
         } else if (opts.mode === "remove") placeholder = "";
         else placeholder = mask(d.value, d.type, opts);
         state.seen.set(key, placeholder);
-        if (placeholder) state.map[placeholder] = d.value;
+        if (placeholder) state.map[placeholder] = original;
+      } else if (placeholder && /\p{Lu}/u.test(original) && state.map[placeholder] === state.map[placeholder].toLowerCase()) {
+        // restore the best spelling seen: "Rahul Sharma" from a document over "rahul sharma" from the question
+        state.map[placeholder] = original;
       }
       out += text.slice(last, d.start) + placeholder;
       last = d.end;
@@ -123,10 +142,10 @@ export class Piilite {
    * Detect and redact PII. Returns the same shape as OpenRedaction's detect(),
    * so `await shield.detect(text)` works for both libraries.
    */
-  detect(text, state = this.newState()) {
+  detect(text, state = this.newState(), scanned) {
     const t0 = Date.now();
     const input = typeof text === "string" ? text : "";
-    const { redacted, detections } = this.apply(input, this.scan(input), state);
+    const { redacted, detections } = this.apply(input, this.find(input, state, scanned), state);
     const byType = {};
     for (const d of detections) byType[d.type] = (byType[d.type] ?? 0) + 1;
     const result = {
@@ -147,27 +166,88 @@ export class Piilite {
   }
 
   /**
-   * Redact every string inside an object or array (e.g. a chat payload or a
-   * tool result). Placeholders are shared across all strings, so the same
-   * value always gets the same placeholder. `skipKeys` leaves fields as-is.
+   * Detect in several texts with one set of placeholders. Every text is scanned
+   * first, so a name found in a document is also masked in a question that only
+   * says "rahul" (RAG: pass the question, the passages and the history together).
    */
-  redactObject(value, { skipKeys = [] } = {}) {
-    const state = this.newState();
+  detectAll(texts, state = this.newState()) {
+    const inputs = texts.map((t) => (typeof t === "string" ? t : ""));
+    const scans = inputs.map((t) => this.scan(t));
+    state.known ??= new Map();
+    for (const found of scans) learn(found, state.known);
+    return inputs.map((t, i) => this.detect(t, state, scans[i]));
+  }
+
+  /** detectAll() that returns only the redacted strings. */
+  redactAll(texts, state) {
+    return this.detectAll(texts, state).map((r) => r.redacted);
+  }
+
+  /**
+   * Redact every string inside an object or array (e.g. a chat payload or a
+   * tool result). All strings are scanned first and share placeholders, so the
+   * same value always gets the same placeholder. `skipKeys` leaves fields as-is.
+   */
+  redactObject(value, { skipKeys = [], state = this.newState() } = {}) {
     const skip = new Set(skipKeys);
-    const walk = (v) => {
-      if (typeof v === "string") return this.detect(v, state).redacted;
-      if (Array.isArray(v)) return v.map(walk);
+    const strings = [];
+    const collect = (v) => {
+      if (typeof v === "string") strings.push(v);
+      else if (Array.isArray(v)) v.forEach(collect);
+      else if (v && typeof v === "object" && !(v instanceof Date)) for (const [k, x] of Object.entries(v)) if (!skip.has(k)) collect(x);
+    };
+    collect(value);
+    const redacted = this.redactAll(strings, state);
+    let i = 0;
+    const rebuild = (v) => {
+      if (typeof v === "string") return redacted[i++];
+      if (Array.isArray(v)) return v.map(rebuild);
       if (v && typeof v === "object" && !(v instanceof Date)) {
-        return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, skip.has(k) ? x : walk(x)]));
+        return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, skip.has(k) ? x : rebuild(x)]));
       }
       return v;
     };
-    return { value: walk(value), redactionMap: state.map };
+    return { value: rebuild(value), redactionMap: state.map };
+  }
+
+  /**
+   * A session keeps one set of placeholders across many calls: mask the
+   * question, the passages and the history, then restore the answer (also as a
+   * stream) with the same map.
+   */
+  session() {
+    const state = this.newState();
+    const self = this;
+    return {
+      state,
+      get redactionMap() {
+        return state.map;
+      },
+      detect: (text) => self.detect(text, state),
+      redact: (text) => self.detect(text, state).redacted,
+      detectAll: (texts) => self.detectAll(texts, state),
+      redactAll: (texts) => self.redactAll(texts, state),
+      redactObject: (value, options) => self.redactObject(value, { ...options, state }),
+      restore: (text, options) => restore(text, state.map, options),
+      createRestoreStream: (options) => new RestoreStream(state.map, options),
+      restoreStream: (source, options) => restoreAsyncIterable(state.map, source, options),
+      createStream: (options) => new StreamRedactor(self, { ...options, state }),
+    };
   }
 
   /** Put the original values back, e.g. into an LLM answer. */
   restore(text, redactionMap, options) {
     return restore(text, redactionMap, options);
+  }
+
+  /** Restore placeholders in a stream of model output, never emitting half a placeholder. */
+  createRestoreStream(redactionMap, options) {
+    return new RestoreStream(redactionMap, options);
+  }
+
+  /** restore() over an async iterable of text chunks. */
+  restoreStream(source, redactionMap, options) {
+    return restoreAsyncIterable(redactionMap, source, options);
   }
 
   /** Streaming redactor: push(chunk) → safe text, end() → the rest. */
@@ -196,9 +276,10 @@ export class Piilite {
 }
 
 /**
- * Replace placeholders with their original values. With `fuzzy` (default) it
- * also understands how models tend to rewrite them: "[NAME 1]", "[name_1]",
- * "NAME_1", "[ NAME-1 ]".
+ * Replace placeholders with their original values. With `fuzzy` (default true)
+ * it also understands how models rewrite them: "[NAME 1]", "[name_1]",
+ * "[ NAME-1 ]" and the bare "NAME_1". `fuzzy: "brackets"` restores only
+ * bracketed forms, for text that may contain words like EMAIL_1 on purpose.
  */
 export function restore(text, redactionMap, { fuzzy = true } = {}) {
   const keys = Object.keys(redactionMap ?? {}).sort((a, b) => b.length - a.length);
@@ -212,11 +293,17 @@ export function restore(text, redactionMap, { fuzzy = true } = {}) {
     if (m) canonical.set(`${m[1]}_${m[2]}`, redactionMap[k]);
   }
   if (!canonical.size) return out;
-  return out.replace(/\[\s*([A-Za-z][A-Za-z0-9_]*?)[\s_-]+(\d+)\s*\]|\b([A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*?)_(\d+)\b/g, (whole, a, b, c, d) => {
+  const re = fuzzy === "brackets" ? FUZZY_BRACKETS : FUZZY_ALL;
+  re.lastIndex = 0;
+  return out.replace(re, (whole, a, b, c, d) => {
     const key = `${(a ?? c).toUpperCase().replace(/[\s-]+/g, "_")}_${b ?? d}`;
     return canonical.get(key) ?? whole;
   });
 }
+
+// type words may be split by spaces or dashes too: "[PHONE IN 1]", "[phone-in-1]"
+const FUZZY_BRACKETS = /\[\s*([A-Za-z][A-Za-z0-9_]*(?:[\s-]+[A-Za-z][A-Za-z0-9_]*)*?)[\s_-]+(\d+)\s*\]/g;
+const FUZZY_ALL = new RegExp(`${FUZZY_BRACKETS.source}|\\b([A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*?)_(\\d+)\\b`, "g");
 
 let shared;
 const defaultInstance = () => (shared ??= new Piilite());
@@ -231,7 +318,7 @@ export const detect = (text) => defaultInstance().detect(text);
 export const hasPII = (text) => defaultInstance().hasPII(text);
 
 export { presets } from "./presets.js";
-export { StreamRedactor } from "./stream.js";
+export { StreamRedactor, RestoreStream } from "./stream.js";
 export { verhoeff, verhoeffDigit, luhn, aadhaar, pan, gstin, gstinChecksum } from "./validators.js";
 
 export default Piilite;

@@ -92,6 +92,12 @@ export interface PiiliteOptions {
   allow?: Array<string | RegExp>;
   /** Extra patterns; OpenRedaction PIIPattern objects work as-is */
   customPatterns?: PiiPattern[];
+  /** Give "RAHUL" and "Rahul" separate placeholders (default false: one placeholder, best spelling restored) */
+  matchCase?: boolean;
+  /** Mask values seen earlier in the text or session wherever they appear again, incl. parts of names (default true) */
+  propagate?: boolean;
+  /** Leave addresses that follow a company name ("Acme Pvt Ltd, Sector 62, Noida") unmasked (default false) */
+  keepCompanyAddresses?: boolean;
   /** Skip test-looking numbers such as 9876543210 or 9999999999 (default true) */
   skipFakeNumbers?: boolean;
   /** Drop matches below this confidence (default 0.5) */
@@ -108,11 +114,14 @@ export interface RedactionState {
   counters: Record<string, number>;
   seen: Map<string, string>;
   map: Record<string, string>;
+  known: Map<string, { type: string; alias: string; severity?: Severity; part?: boolean }>;
 }
 
 export interface StreamOptions {
   /** Characters held back until it is safe to emit them (default 200) */
   holdBack?: number;
+  /** Share placeholders with a session or other calls */
+  state?: RedactionState;
 }
 
 export declare class StreamRedactor {
@@ -125,8 +134,33 @@ export declare class StreamRedactor {
 }
 
 export interface RestoreOptions {
-  /** Also restore "[NAME 1]", "[name_1]", "NAME_1" (default true) */
-  fuzzy?: boolean;
+  /**
+   * true (default): also restore "[NAME 1]", "[name_1]", "[PHONE IN 1]" and bare "NAME_1".
+   * "brackets": only bracketed forms. false: exact placeholders only.
+   */
+  fuzzy?: boolean | "brackets";
+}
+
+export declare class RestoreStream {
+  constructor(redactionMap: Record<string, string>, options?: RestoreOptions);
+  /** Add a chunk of model output; returns restored text, holding back a possible partial placeholder */
+  push(chunk: string): string;
+  end(): string;
+}
+
+/** One set of placeholders shared across many calls (question, passages, history, answer). */
+export interface PiiliteSession {
+  readonly state: RedactionState;
+  readonly redactionMap: Record<string, string>;
+  detect(text: string): DetectionResult;
+  redact(text: string): string;
+  detectAll(texts: string[]): DetectionResult[];
+  redactAll(texts: string[]): string[];
+  redactObject<T>(value: T, options?: { skipKeys?: string[] }): { value: T; redactionMap: Record<string, string> };
+  restore(text: string, options?: RestoreOptions): string;
+  createRestoreStream(options?: RestoreOptions): RestoreStream;
+  restoreStream(source: AsyncIterable<string>, options?: RestoreOptions): AsyncGenerator<string>;
+  createStream(options?: StreamOptions): StreamRedactor;
 }
 
 export declare class Piilite {
@@ -137,7 +171,15 @@ export declare class Piilite {
   hasPII(text: string): boolean;
   detect(text: string, state?: RedactionState): DetectionResult;
   redact(text: string): string;
-  redactObject<T>(value: T, options?: { skipKeys?: string[] }): { value: T; redactionMap: Record<string, string> };
+  /** Scan all texts first, then redact each with shared placeholders */
+  detectAll(texts: string[], state?: RedactionState): DetectionResult[];
+  redactAll(texts: string[], state?: RedactionState): string[];
+  /** Rule matches plus values already known to the state */
+  find(text: string, state?: RedactionState): PiiMatch[];
+  session(): PiiliteSession;
+  redactObject<T>(value: T, options?: { skipKeys?: string[]; state?: RedactionState }): { value: T; redactionMap: Record<string, string> };
+  createRestoreStream(redactionMap: Record<string, string>, options?: RestoreOptions): RestoreStream;
+  restoreStream(source: AsyncIterable<string>, redactionMap: Record<string, string>, options?: RestoreOptions): AsyncGenerator<string>;
   restore(text: string, redactionMap: Record<string, string>, options?: RestoreOptions): string;
   createStream(options?: StreamOptions): StreamRedactor;
   redactStream(source: AsyncIterable<string>, options?: StreamOptions): AsyncGenerator<string>;

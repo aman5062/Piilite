@@ -1,3 +1,5 @@
+import { restore } from "./index.js";
+
 // Redact text that arrives in pieces (LLM token streams, sockets, log tails).
 // Text is held back until it is safe: a PII value split across two chunks is
 // only emitted once both halves have arrived.
@@ -10,7 +12,7 @@ export class StreamRedactor {
   constructor(shield, options = {}) {
     this.shield = shield;
     this.holdBack = options.holdBack ?? DEFAULT_HOLD_BACK;
-    this.state = shield.newState();
+    this.state = options.state ?? shield.newState();
     this.context = ""; // already emitted original text, used only for keyword context
     this.buffer = "";
   }
@@ -34,7 +36,7 @@ export class StreamRedactor {
   #emit(final) {
     const full = this.context + this.buffer;
     const base = this.context.length;
-    const found = this.shield.scan(full).filter((d) => d.end > base);
+    const found = this.shield.find(full, this.state).filter((d) => d.end > base);
 
     let cut = full.length;
     if (!final) {
@@ -82,4 +84,47 @@ export function createTransformStream(shield, options) {
       if (rest) controller.enqueue(rest);
     },
   });
+}
+
+// Trailing text that may be the first part of a placeholder: "[", "[NAME", "[NAME 1",
+// or a bare "NAME_" / "NAME_1" that could still grow ("NAME_12")
+const PARTIAL = /(?:\[[^\[\]\n]{0,48}|\b[A-Z][A-Z0-9]*(?:_[A-Z0-9]*)*_?\d*)$/;
+
+/**
+ * Restores placeholders in model output that arrives in chunks. Text that could
+ * be the start of a placeholder is held back until the next chunk shows how it
+ * ends, so the reader never sees half of "[NAME_1]".
+ */
+export class RestoreStream {
+  constructor(redactionMap, options = {}) {
+    this.map = redactionMap;
+    this.options = options;
+    this.buffer = "";
+  }
+
+  push(chunk) {
+    this.buffer += chunk;
+    const m = this.buffer.match(PARTIAL);
+    const cut = m ? m.index : this.buffer.length;
+    if (cut === 0) return "";
+    const out = restore(this.buffer.slice(0, cut), this.map, this.options);
+    this.buffer = this.buffer.slice(cut);
+    return out;
+  }
+
+  end() {
+    const out = restore(this.buffer, this.map, this.options);
+    this.buffer = "";
+    return out;
+  }
+}
+
+export async function* restoreAsyncIterable(redactionMap, source, options) {
+  const r = new RestoreStream(redactionMap, options);
+  for await (const chunk of source) {
+    const out = r.push(typeof chunk === "string" ? chunk : String(chunk));
+    if (out) yield out;
+  }
+  const rest = r.end();
+  if (rest) yield rest;
 }

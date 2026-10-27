@@ -21,6 +21,7 @@ var index_exports = {};
 __export(index_exports, {
   PII_TYPES: () => PII_TYPES,
   Piilite: () => Piilite,
+  RestoreStream: () => RestoreStream,
   StreamRedactor: () => StreamRedactor,
   aadhaar: () => aadhaar,
   builtinPatterns: () => builtinPatterns,
@@ -75,7 +76,7 @@ var DEFAULT_CONFIDENCE = 0.8;
 function runPattern(p, norm, opts) {
   const out = [];
   if (p.find) {
-    for (const m2 of p.find(norm)) out.push({ ...m2, conf: m2.confidence ?? p.confidence ?? DEFAULT_CONFIDENCE });
+    for (const m2 of p.find(norm, opts)) out.push({ ...m2, conf: m2.confidence ?? p.confidence ?? DEFAULT_CONFIDENCE });
     return out;
   }
   let re = p.regex;
@@ -1662,7 +1663,6 @@ var MAX_LEN = 180;
 var COMPANY = String.raw`(?:pvt\.?\s*ltd|private\s+limited|ltd|limited|llp|inc|corp|corporation|technologies|solutions|infotech|industries|enterprises|software|systems|consultancy)\.?`;
 var COMPANY_BEFORE = new RegExp(`\\b${COMPANY}\\s*[,\\-\u2013:]?\\s*$`, "i");
 var COMPANY_FIRST = new RegExp(`^[^,\\n]*\\b${COMPANY}\\s*(?:,|$)`, "i");
-var BUSINESS_CONFIDENCE = 0.45;
 function isBusiness(text, start, end) {
   const lineStart = text.lastIndexOf("\n", start - 1) + 1;
   const before = text.slice(Math.max(lineStart, start - 80), start);
@@ -1700,7 +1700,7 @@ function extend(text, start, from) {
   const value = text.slice(start, end).replace(/[\s,.\-:]+$/, "");
   return { start, end: start + value.length, value };
 }
-function findAddresses(text) {
+function findAddresses(text, opts) {
   const found = [];
   let m;
   LABEL.lastIndex = 0;
@@ -1749,7 +1749,7 @@ function findAddresses(text) {
     if (!/,/.test(a.value) || !(endsInPin || HAS_PLACE.test(a.value))) continue;
     found.push({ start: a.start, end: a.end, confidence: 0.75 });
   }
-  return found.map((a) => isBusiness(text, a.start, a.end) ? { ...a, confidence: BUSINESS_CONFIDENCE } : a);
+  return opts?.keepCompanyAddresses ? found.filter((a) => !isBusiness(text, a.start, a.end)) : found;
 }
 
 // src/presets.js
@@ -1823,7 +1823,7 @@ var StreamRedactor = class {
   constructor(shield, options = {}) {
     this.shield = shield;
     this.holdBack = options.holdBack ?? DEFAULT_HOLD_BACK;
-    this.state = shield.newState();
+    this.state = options.state ?? shield.newState();
     this.context = "";
     this.buffer = "";
   }
@@ -1843,7 +1843,7 @@ var StreamRedactor = class {
   #emit(final) {
     const full = this.context + this.buffer;
     const base = this.context.length;
-    const found = this.shield.scan(full).filter((d) => d.end > base);
+    const found = this.shield.find(full, this.state).filter((d) => d.end > base);
     let cut = full.length;
     if (!final) {
       cut = full.length - this.holdBack;
@@ -1881,6 +1881,87 @@ function createTransformStream(shield, options) {
       if (rest) controller.enqueue(rest);
     }
   });
+}
+var PARTIAL = /(?:\[[^\[\]\n]{0,48}|\b[A-Z][A-Z0-9]*(?:_[A-Z0-9]*)*_?\d*)$/;
+var RestoreStream = class {
+  constructor(redactionMap, options = {}) {
+    this.map = redactionMap;
+    this.options = options;
+    this.buffer = "";
+  }
+  push(chunk) {
+    this.buffer += chunk;
+    const m = this.buffer.match(PARTIAL);
+    const cut = m ? m.index : this.buffer.length;
+    if (cut === 0) return "";
+    const out = restore(this.buffer.slice(0, cut), this.map, this.options);
+    this.buffer = this.buffer.slice(cut);
+    return out;
+  }
+  end() {
+    const out = restore(this.buffer, this.map, this.options);
+    this.buffer = "";
+    return out;
+  }
+};
+async function* restoreAsyncIterable(redactionMap, source, options) {
+  const r = new RestoreStream(redactionMap, options);
+  for await (const chunk of source) {
+    const out = r.push(typeof chunk === "string" ? chunk : String(chunk));
+    if (out) yield out;
+  }
+  const rest = r.end();
+  if (rest) yield rest;
+}
+
+// src/known.js
+var GENERIC_PARTS = new Set(
+  "kumar singh kaur devi lal ram bai ben bhai md mohd mohammad muhammad mohammed sri shri smt kumari begum khan sheikh shaikh syed".split(" ")
+);
+function valueKey(type, value, matchCase) {
+  if (matchCase) return value;
+  if (type === "PHONE_IN") {
+    const d = value.replace(/\D/g, "");
+    if (d.length >= 10) return d.slice(-10);
+  }
+  if (/\d/.test(value) && !new RegExp("\\p{L}{3,}[\\s,]+\\p{L}{2,}", "u").test(value)) return value.replace(/[\s.\-\/()]/g, "").toUpperCase();
+  return value.toLowerCase().replace(/\s+/g, " ").trim();
+}
+function learn(found, known2) {
+  for (const d of found) {
+    const full = d.value.toLowerCase().replace(/\s+/g, " ").trim();
+    if (full.length >= 3 && !known2.has(full)) known2.set(full, { type: d.type, alias: d.alias ?? d.value, severity: d.severity });
+    if (d.type !== "NAME") continue;
+    for (const part of full.split(/[\s.]+/)) {
+      if (part.length < 3 || !new RegExp("^\\p{L}+$", "u").test(part) || NOT_NAME.has(part) || GENERIC_PARTS.has(part) || known2.has(part)) continue;
+      known2.set(part, { type: "NAME", alias: d.alias ?? d.value, severity: d.severity, part: true });
+    }
+  }
+}
+var cache = /* @__PURE__ */ new WeakMap();
+function knownRegex(known2) {
+  const hit = cache.get(known2);
+  if (hit && hit.size === known2.size) return hit.re;
+  const alts = [...known2.keys()].sort((a, b) => b.length - a.length).map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/ /g, "\\s+"));
+  const re = alts.length ? new RegExp(`(?<![\\p{L}\\p{N}_@.])(?:${alts.join("|")})(?![\\p{L}\\p{N}_@])`, "giu") : null;
+  cache.set(known2, { size: known2.size, re });
+  return re;
+}
+function matchKnown(text, known2, found) {
+  const re = knownRegex(known2);
+  if (!re) return [];
+  const out = [];
+  re.lastIndex = 0;
+  let m;
+  while (m = re.exec(text)) {
+    const start = m.index;
+    const end = start + m[0].length;
+    if (found.some((d) => d.start < end && start < d.end)) continue;
+    const k = known2.get(m[0].toLowerCase().replace(/\s+/g, " "));
+    if (!k) continue;
+    out.push({ type: k.type, value: m[0], alias: k.alias, start, end, severity: k.severity ?? "high", confidence: k.part ? 0.75 : 0.9 });
+  }
+  return out;
 }
 
 // src/index.js
@@ -1942,7 +2023,19 @@ var Piilite = class {
   }
   /** Fresh placeholder state; share one across calls to keep numbering consistent. */
   newState() {
-    return { counters: {}, seen: /* @__PURE__ */ new Map(), map: {} };
+    return { counters: {}, seen: /* @__PURE__ */ new Map(), map: {}, known: /* @__PURE__ */ new Map() };
+  }
+  /**
+   * Matches in `text`: what the rules find, plus every value this state has seen
+   * before (or that appears elsewhere in the same text), even without a clue.
+   */
+  find(text, state = this.newState(), scanned) {
+    const found = scanned ?? this.scan(text);
+    state.known ??= /* @__PURE__ */ new Map();
+    learn(found, state.known);
+    if (this.options.propagate === false) return found;
+    const extra = matchKnown(text, state.known, found);
+    return extra.length ? [...found, ...extra].sort((a, b) => a.start - b.start) : found;
   }
   /** Replace already-found matches in `text`. Used by detect() and the stream API. */
   apply(text, found, state = this.newState()) {
@@ -1951,7 +2044,8 @@ var Piilite = class {
     let last = 0;
     const detections = [];
     for (const d of found) {
-      const key = d.type + "\0" + d.value;
+      const original = d.alias ?? d.value;
+      const key = d.type + "\0" + valueKey(d.type, original, opts.matchCase);
       let placeholder = state.seen.get(key);
       if (placeholder === void 0) {
         if (typeof opts.mode === "function") placeholder = opts.mode(d);
@@ -1961,7 +2055,9 @@ var Piilite = class {
         } else if (opts.mode === "remove") placeholder = "";
         else placeholder = mask(d.value, d.type, opts);
         state.seen.set(key, placeholder);
-        if (placeholder) state.map[placeholder] = d.value;
+        if (placeholder) state.map[placeholder] = original;
+      } else if (placeholder && new RegExp("\\p{Lu}", "u").test(original) && state.map[placeholder] === state.map[placeholder].toLowerCase()) {
+        state.map[placeholder] = original;
       }
       out += text.slice(last, d.start) + placeholder;
       last = d.end;
@@ -1981,10 +2077,10 @@ var Piilite = class {
    * Detect and redact PII. Returns the same shape as OpenRedaction's detect(),
    * so `await shield.detect(text)` works for both libraries.
    */
-  detect(text, state = this.newState()) {
+  detect(text, state = this.newState(), scanned) {
     const t0 = Date.now();
     const input = typeof text === "string" ? text : "";
-    const { redacted, detections } = this.apply(input, this.scan(input), state);
+    const { redacted, detections } = this.apply(input, this.find(input, state, scanned), state);
     const byType = {};
     for (const d of detections) byType[d.type] = (byType[d.type] ?? 0) + 1;
     const result = {
@@ -2002,26 +2098,84 @@ var Piilite = class {
     return this.detect(text).redacted;
   }
   /**
-   * Redact every string inside an object or array (e.g. a chat payload or a
-   * tool result). Placeholders are shared across all strings, so the same
-   * value always gets the same placeholder. `skipKeys` leaves fields as-is.
+   * Detect in several texts with one set of placeholders. Every text is scanned
+   * first, so a name found in a document is also masked in a question that only
+   * says "rahul" (RAG: pass the question, the passages and the history together).
    */
-  redactObject(value, { skipKeys = [] } = {}) {
-    const state = this.newState();
+  detectAll(texts, state = this.newState()) {
+    const inputs = texts.map((t) => typeof t === "string" ? t : "");
+    const scans = inputs.map((t) => this.scan(t));
+    state.known ??= /* @__PURE__ */ new Map();
+    for (const found of scans) learn(found, state.known);
+    return inputs.map((t, i) => this.detect(t, state, scans[i]));
+  }
+  /** detectAll() that returns only the redacted strings. */
+  redactAll(texts, state) {
+    return this.detectAll(texts, state).map((r) => r.redacted);
+  }
+  /**
+   * Redact every string inside an object or array (e.g. a chat payload or a
+   * tool result). All strings are scanned first and share placeholders, so the
+   * same value always gets the same placeholder. `skipKeys` leaves fields as-is.
+   */
+  redactObject(value, { skipKeys = [], state = this.newState() } = {}) {
     const skip = new Set(skipKeys);
-    const walk = (v) => {
-      if (typeof v === "string") return this.detect(v, state).redacted;
-      if (Array.isArray(v)) return v.map(walk);
+    const strings = [];
+    const collect = (v) => {
+      if (typeof v === "string") strings.push(v);
+      else if (Array.isArray(v)) v.forEach(collect);
+      else if (v && typeof v === "object" && !(v instanceof Date)) {
+        for (const [k, x] of Object.entries(v)) if (!skip.has(k)) collect(x);
+      }
+    };
+    collect(value);
+    const redacted = this.redactAll(strings, state);
+    let i = 0;
+    const rebuild = (v) => {
+      if (typeof v === "string") return redacted[i++];
+      if (Array.isArray(v)) return v.map(rebuild);
       if (v && typeof v === "object" && !(v instanceof Date)) {
-        return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, skip.has(k) ? x : walk(x)]));
+        return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, skip.has(k) ? x : rebuild(x)]));
       }
       return v;
     };
-    return { value: walk(value), redactionMap: state.map };
+    return { value: rebuild(value), redactionMap: state.map };
+  }
+  /**
+   * A session keeps one set of placeholders across many calls: mask the
+   * question, the passages and the history, then restore the answer (also as a
+   * stream) with the same map.
+   */
+  session() {
+    const state = this.newState();
+    const self = this;
+    return {
+      state,
+      get redactionMap() {
+        return state.map;
+      },
+      detect: (text) => self.detect(text, state),
+      redact: (text) => self.detect(text, state).redacted,
+      detectAll: (texts) => self.detectAll(texts, state),
+      redactAll: (texts) => self.redactAll(texts, state),
+      redactObject: (value, options) => self.redactObject(value, { ...options, state }),
+      restore: (text, options) => restore(text, state.map, options),
+      createRestoreStream: (options) => new RestoreStream(state.map, options),
+      restoreStream: (source, options) => restoreAsyncIterable(state.map, source, options),
+      createStream: (options) => new StreamRedactor(self, { ...options, state })
+    };
   }
   /** Put the original values back, e.g. into an LLM answer. */
   restore(text, redactionMap, options) {
     return restore(text, redactionMap, options);
+  }
+  /** Restore placeholders in a stream of model output, never emitting half a placeholder. */
+  createRestoreStream(redactionMap, options) {
+    return new RestoreStream(redactionMap, options);
+  }
+  /** restore() over an async iterable of text chunks. */
+  restoreStream(source, redactionMap, options) {
+    return restoreAsyncIterable(redactionMap, source, options);
   }
   /** Streaming redactor: push(chunk) → safe text, end() → the rest. */
   createStream(options) {
@@ -2054,11 +2208,15 @@ function restore(text, redactionMap, { fuzzy = true } = {}) {
     if (m) canonical.set(`${m[1]}_${m[2]}`, redactionMap[k]);
   }
   if (!canonical.size) return out;
-  return out.replace(/\[\s*([A-Za-z][A-Za-z0-9_]*?)[\s_-]+(\d+)\s*\]|\b([A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*?)_(\d+)\b/g, (whole, a, b, c, d) => {
+  const re = fuzzy === "brackets" ? FUZZY_BRACKETS : FUZZY_ALL;
+  re.lastIndex = 0;
+  return out.replace(re, (whole, a, b, c, d) => {
     const key = `${(a ?? c).toUpperCase().replace(/[\s-]+/g, "_")}_${b ?? d}`;
     return canonical.get(key) ?? whole;
   });
 }
+var FUZZY_BRACKETS = /\[\s*([A-Za-z][A-Za-z0-9_]*(?:[\s-]+[A-Za-z][A-Za-z0-9_]*)*?)[\s_-]+(\d+)\s*\]/g;
+var FUZZY_ALL = new RegExp(`${FUZZY_BRACKETS.source}|\\b([A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*?)_(\\d+)\\b`, "g");
 var shared;
 var defaultInstance = () => shared ??= new Piilite();
 var redact = (text) => defaultInstance().redact(text);
