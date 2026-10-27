@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation and playground
+    url: https://aman5062.github.io/Piilite/
+    about: Guides, FAQ and a live playground
+  - name: Report a security issue privately
+    url: https://github.com/aman5062/Piilite/security/advisories/new
+    about: ReDoS, leaks through restore() or the stream API, crashes on crafted input

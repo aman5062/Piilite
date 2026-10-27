@@ -317,6 +317,11 @@ npm run eval:all
 npm run site     # rebuilds the docs website in docs/
 ```
 
+## Contributing
+
+Bug reports and examples of misses are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md). Please use fake data only.
+Security issues: see [SECURITY.md](SECURITY.md).
+
 ## Credits
 
 Built on ideas, the API shape and (through the optional bridge) the pattern library and processors of

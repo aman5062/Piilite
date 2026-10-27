@@ -1,0 +1,25 @@
+name: Bug report
+description: An error, a crash or wrong behaviour that is not about detection accuracy
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "**Use fake data only.** For security issues, use private vulnerability reporting instead (see SECURITY.md)."
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Code to reproduce
+      render: js
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: "piilite 0.2.1, Node 22, ESM"

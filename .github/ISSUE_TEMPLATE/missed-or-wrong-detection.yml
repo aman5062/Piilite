@@ -1,0 +1,41 @@
+name: Missed or wrong detection
+description: piilite missed personal data, or redacted something that is not personal data
+labels: ["accuracy"]
+body:
+  - type: markdown
+    attributes:
+      value: "**Use fake data only.** Do not paste real names, numbers, addresses or IDs."
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What went wrong?
+      options:
+        - It missed personal data
+        - It redacted something that is not personal data
+        - It used the wrong type
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Input text (fake data)
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What piilite returned
+      description: The output of `new Piilite(options).scan(text)` or `.redact(text)`
+      render: js
+  - type: input
+    id: version
+    attributes:
+      label: piilite version and options
+      placeholder: "0.2.1, { preset: 'dpdp' }"
