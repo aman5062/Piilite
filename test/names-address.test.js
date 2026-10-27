@@ -195,3 +195,13 @@ test("after a Name: label, take capitalised words up to the next field", () => {
   assert.deepEqual(names("Name: Aarav Mehrotra\nSkills: Go"), ["Aarav Mehrotra"]);
   assert.deepEqual(names("my name is rahul and I code"), ["rahul"]);
 });
+
+test("company addresses are not personal data (strict preset still masks them)", async () => {
+  const { Piilite } = await import("../src/index.js");
+  const text = "Office: Example Technologies Pvt Ltd, Sector 62, Noida";
+  assert.deepEqual(addresses(text), []);
+  assert.deepEqual(addresses("Bill to Acme Infotech LLP, 12, MG Road, Pune 411001"), []);
+  assert.deepEqual(new Piilite({ preset: "strict" }).scan(text).filter((d) => d.type === "ADDRESS").map((d) => d.value), ["Sector 62, Noida"]);
+  // a bank used as a landmark is still a personal address
+  assert.deepEqual(addresses("Come to near ICICI Bank, Sector 15, Noida"), ["near ICICI Bank, Sector 15, Noida"]);
+});

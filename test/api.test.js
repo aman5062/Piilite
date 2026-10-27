@@ -70,3 +70,16 @@ test("README quick start output", () => {
     "Myself [NAME_1], call [PHONE_IN_1] or pay [UPI_ID_1]. PAN [PAN_1], OTP is [OTP_1]"
   );
 });
+
+test("restore keeps each spelling of a repeated value", () => {
+  const s = new Piilite();
+  const r = s.detect("Mail Ravi.K@Mail.test or ravi.k@mail.test");
+  assert.equal(r.redacted, "Mail [EMAIL_1] or [EMAIL_2]");
+  assert.equal(s.restore(r.redacted, r.redactionMap), "Mail Ravi.K@Mail.test or ravi.k@mail.test");
+});
+
+test("skipFakeNumbers: false redacts test-looking numbers", () => {
+  assert.equal(new Piilite().redact("call +91 98765 43210"), "call +91 98765 43210");
+  assert.equal(new Piilite({ skipFakeNumbers: false }).redact("call +91 98765 43210"), "call [PHONE_IN_1]");
+  assert.equal(new Piilite({ preset: "strict" }).redact("call 9999999999"), "call [PHONE_IN_1]");
+});
