@@ -89,7 +89,8 @@ export class Piilite {
     const detections = [];
 
     for (const d of found) {
-      const key = d.type + "\u0000" + d.value.toLowerCase();
+      // exact value, so "RAHUL" and "Rahul" are each restored as written
+      const key = d.type + "\u0000" + d.value;
       let placeholder = state.seen.get(key);
       if (placeholder === undefined) {
         if (typeof opts.mode === "function") placeholder = opts.mode(d);

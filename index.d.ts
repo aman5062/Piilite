@@ -92,6 +92,8 @@ export interface PiiliteOptions {
   allow?: Array<string | RegExp>;
   /** Extra patterns; OpenRedaction PIIPattern objects work as-is */
   customPatterns?: PiiPattern[];
+  /** Skip test-looking numbers such as 9876543210 or 9999999999 (default true) */
+  skipFakeNumbers?: boolean;
   /** Drop matches below this confidence (default 0.5) */
   minConfidence?: number;
   /** Mask character for mask modes (default "X") */

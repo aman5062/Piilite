@@ -16,11 +16,12 @@ import { normalize, contextAround, contextBefore } from "./text.js";
  *
  * The regex/validator/priority/placeholder/severity fields follow the
  * OpenRedaction PIIPattern shape, so those patterns can be passed in as-is.
+ * Validators are called as (value, context, text, start, end, options).
  */
 
 const DEFAULT_CONFIDENCE = 0.8;
 
-function runPattern(p, norm) {
+function runPattern(p, norm, opts) {
   const out = [];
   if (p.find) {
     for (const m of p.find(norm)) out.push({ ...m, conf: m.confidence ?? p.confidence ?? DEFAULT_CONFIDENCE });
@@ -58,7 +59,7 @@ function runPattern(p, norm) {
     if (p.requireContext && !hasContext) continue;
     if (p.negativeContext && !hasContext && p.negativeContext.test(contextBefore(norm, start, 30))) continue;
     let conf = p.confidence ?? DEFAULT_CONFIDENCE;
-    if (p.validator && !p.validator(value, ctx, norm, start, end)) {
+    if (p.validator && !p.validator(value, ctx, norm, start, end, opts)) {
       if (!(p.lenient && hasContext)) continue;
       conf = Math.min(conf, 0.7);
     } else if (hasContext) {
@@ -107,7 +108,7 @@ export function findAll(text, patterns, opts) {
   const norm = normalize(text);
   const candidates = [];
   for (const p of patterns) {
-    for (const m of runPattern(p, norm)) {
+    for (const m of runPattern(p, norm, opts)) {
       if (m.conf < opts.minConfidence) continue;
       candidates.push({ p, start: m.start, end: m.end, conf: m.conf });
     }

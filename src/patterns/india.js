@@ -194,7 +194,7 @@ export const indiaPatterns = [
   {
     type: "BANK_ACCOUNT",
     regex: /(?<![\w])\d(?:[\s-]?\d){8,17}(?![\w])/g,
-    validator: (val) => !v.isJunkNumber(v.digitsOf(val)),
+    validator: (val, _ctx, _text, _start, _end, opts) => !v.isFake(v.digitsOf(val), opts),
     context: keywords([
       "a/c", "a/c no", "ac no", "acc", "acc no", "acct", "account", "account no", "account number",
       "bank", "khata", "khata number", "saving", "savings", "current account", "बैंक", "खाता", ...BANKS,

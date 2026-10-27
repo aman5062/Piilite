@@ -72,7 +72,7 @@ function keywords(list) {
 
 // src/engine.js
 var DEFAULT_CONFIDENCE = 0.8;
-function runPattern(p, norm) {
+function runPattern(p, norm, opts) {
   const out = [];
   if (p.find) {
     for (const m2 of p.find(norm)) out.push({ ...m2, conf: m2.confidence ?? p.confidence ?? DEFAULT_CONFIDENCE });
@@ -107,7 +107,7 @@ function runPattern(p, norm) {
     if (p.requireContext && !hasContext) continue;
     if (p.negativeContext && !hasContext && p.negativeContext.test(contextBefore(norm, start, 30))) continue;
     let conf = p.confidence ?? DEFAULT_CONFIDENCE;
-    if (p.validator && !p.validator(value, ctx, norm, start, end)) {
+    if (p.validator && !p.validator(value, ctx, norm, start, end, opts)) {
       if (!(p.lenient && hasContext)) continue;
       conf = Math.min(conf, 0.7);
     } else if (hasContext) {
@@ -150,7 +150,7 @@ function findAll(text, patterns, opts) {
   const norm = normalize(text);
   const candidates = [];
   for (const p of patterns) {
-    for (const m of runPattern(p, norm)) {
+    for (const m of runPattern(p, norm, opts)) {
       if (m.conf < opts.minConfidence) continue;
       candidates.push({ p, start: m.start, end: m.end, conf: m.conf });
     }
@@ -245,18 +245,19 @@ function isJunkNumber(d) {
   if (/^(\d)\1+$/.test(d)) return true;
   return "01234567890".includes(d) || "09876543210".includes(d);
 }
+var isFake = (d, opts) => opts?.skipFakeNumbers !== false && isJunkNumber(d);
 var CARD_PREFIX = /^(?:4|5[0-8]|2[2-7]|3[47]|3[0689]|35|6|81|82)/;
-function creditCard(value) {
+function creditCard(value, _ctx, _text, _start, _end, opts) {
   const d = digitsOf(value);
-  return d.length >= 13 && d.length <= 19 && CARD_PREFIX.test(d) && luhn(d) && !isJunkNumber(d);
+  return d.length >= 13 && d.length <= 19 && CARD_PREFIX.test(d) && luhn(d) && !isFake(d, opts);
 }
-function aadhaar(value) {
+function aadhaar(value, _ctx, _text, _start, _end, opts) {
   const d = digitsOf(value);
-  return d.length === 12 && /^[2-9]/.test(d) && !isJunkNumber(d) && verhoeff(d);
+  return d.length === 12 && /^[2-9]/.test(d) && !isFake(d, opts) && verhoeff(d);
 }
-function aadhaarVid(value) {
+function aadhaarVid(value, _ctx, _text, _start, _end, opts) {
   const d = digitsOf(value);
-  return d.length === 16 && !isJunkNumber(d) && verhoeff(d);
+  return d.length === 16 && !isFake(d, opts) && verhoeff(d);
 }
 var PAN_HOLDER = "PCHFATBLJGE";
 function pan(value) {
@@ -290,20 +291,20 @@ function iban(value) {
   for (const ch of re) rem = (rem * 10 + +ch) % 97;
   return rem === 1;
 }
-function indianMobile(value) {
+function indianMobile(value, _ctx, _text, _start, _end, opts) {
   let d = digitsOf(value);
   if (d.length === 12 && d.startsWith("91")) d = d.slice(2);
   else if (d.length === 13 && d.startsWith("091")) d = d.slice(3);
   else if (d.length === 14 && d.startsWith("0091")) d = d.slice(4);
   else if (d.length === 11 && d.startsWith("0")) d = d.slice(1);
-  return d.length === 10 && /^[6-9]/.test(d) && !isJunkNumber(d);
+  return d.length === 10 && /^[6-9]/.test(d) && !isFake(d, opts);
 }
-function indianLandline(value) {
+function indianLandline(value, _ctx, _text, _start, _end, opts) {
   let d = digitsOf(value);
   if (d.startsWith("91") && d.length === 12) d = d.slice(2);
   else if (d.startsWith("0") && d.length === 11) d = d.slice(1);
   else return false;
-  return d.length === 10 && /^[1-5]/.test(d) && !isJunkNumber(d);
+  return d.length === 10 && /^[1-5]/.test(d) && !isFake(d, opts);
 }
 function ipv4(value) {
   const parts = value.split(".");
@@ -867,7 +868,7 @@ var indiaPatterns = [
   {
     type: "BANK_ACCOUNT",
     regex: /(?<![\w])\d(?:[\s-]?\d){8,17}(?![\w])/g,
-    validator: (val) => !isJunkNumber(digitsOf(val)),
+    validator: (val, _ctx, _text, _start, _end, opts) => !isFake(digitsOf(val), opts),
     context: keywords([
       "a/c",
       "a/c no",
@@ -1130,9 +1131,9 @@ var globalPatterns = [
     // international numbers other than +91 (those are handled by PHONE_IN)
     type: "PHONE",
     regex: /(?<![\w+])(?:\+|00)(?!91)[1-9]\d{0,2}[\s.-]?\(?\d{1,4}\)?(?:[\s.-]?\d{2,5}){2,4}(?![\w])/g,
-    validator: (val) => {
+    validator: (val, _ctx, _text, _start, _end, opts) => {
       const d = digitsOf(val).replace(/^00/, "");
-      return d.length >= 8 && d.length <= 15 && !isJunkNumber(d);
+      return d.length >= 8 && d.length <= 15 && !isFake(d, opts);
     },
     priority: 77,
     severity: "high"
@@ -1658,6 +1659,16 @@ var ADDRESS_WORD = /\b(?:road|rd|street|st|lane|marg|path|nagar|colony|sector|se
 var NAME_LINK = /\b(?:s\/o|d\/o|w\/o|c\/o|son of|daughter of|wife of|husband of|name|mr|mrs|ms|shri|smt|dr)\b/i;
 var ABBR = /(?:^|[\s,])(?:no|nr|opp|rd|st|h|d|flat|sec|ph|dist|distt|po|ps|p\.o|vill|teh|tq|tal|mg|ext|apt|bldg|blk|near|plot|old|new|jn|ave|marg|chs|soc|[a-z])$/i;
 var MAX_LEN = 180;
+var COMPANY = String.raw`(?:pvt\.?\s*ltd|private\s+limited|ltd|limited|llp|inc|corp|corporation|technologies|solutions|infotech|industries|enterprises|software|systems|consultancy)\.?`;
+var COMPANY_BEFORE = new RegExp(`\\b${COMPANY}\\s*[,\\-\u2013:]?\\s*$`, "i");
+var COMPANY_FIRST = new RegExp(`^[^,\\n]*\\b${COMPANY}\\s*(?:,|$)`, "i");
+var BUSINESS_CONFIDENCE = 0.45;
+function isBusiness(text, start, end) {
+  const lineStart = text.lastIndexOf("\n", start - 1) + 1;
+  const before = text.slice(Math.max(lineStart, start - 80), start);
+  if (/\b(?:near|nr|opp|opposite|behind|beside)\s+[^,]*$/i.test(before)) return false;
+  return COMPANY_BEFORE.test(before) || COMPANY_FIRST.test(text.slice(start, end));
+}
 function clauseEnd(text, from) {
   const limit = Math.min(text.length, from + MAX_LEN);
   let end = limit;
@@ -1690,7 +1701,7 @@ function extend(text, start, from) {
   return { start, end: start + value.length, value };
 }
 function findAddresses(text) {
-  const out = [];
+  const found = [];
   let m;
   LABEL.lastIndex = 0;
   while (m = LABEL.exec(text)) {
@@ -1699,7 +1710,7 @@ function findAddresses(text) {
     const a = extend(text, from + lead, from + lead);
     const words = a.value.split(/[\s,]+/).filter(Boolean);
     if (a.value.length < 3 || words.length < 1) continue;
-    out.push({ start: a.start, end: a.end, confidence: words.length >= 2 || /\d/.test(a.value) ? 0.9 : 0.7 });
+    found.push({ start: a.start, end: a.end, confidence: words.length >= 2 || /\d/.test(a.value) ? 0.9 : 0.7 });
   }
   MARKER.lastIndex = 0;
   while (m = MARKER.exec(text)) {
@@ -1707,12 +1718,12 @@ function findAddresses(text) {
     const tail = a.value.slice(m[0].length);
     const strong = /,/.test(a.value) && (/[1-9]\d{2}\s?\d{3}$/.test(a.value) || HAS_PLACE.test(tail) || ADDRESS_WORD.test(tail));
     if (!strong) continue;
-    out.push({ start: a.start, end: a.end, confidence: 0.85 });
+    found.push({ start: a.start, end: a.end, confidence: 0.85 });
   }
   PIN_AFTER_PLACE.lastIndex = 0;
   while (m = PIN_AFTER_PLACE.exec(text)) {
     const end = m.index + m[0].length;
-    if (out.some((a) => a.end === end)) continue;
+    if (found.some((a) => a.end === end)) continue;
     const lineStart = Math.max(text.lastIndexOf("\n", m.index) + 1, end - MAX_LEN);
     const head = text.slice(lineStart, end);
     const parts = head.split(/(?<=,)/);
@@ -1729,16 +1740,16 @@ function findAddresses(text) {
     const startOffset = parts.slice(0, parts.length - take).join("").length;
     let start = lineStart + startOffset;
     while (start < end && /[\s,]/.test(text[start])) start++;
-    out.push({ start, end, confidence: 0.8 });
+    found.push({ start, end, confidence: 0.8 });
   }
   LANDMARK.lastIndex = 0;
   while (m = LANDMARK.exec(text)) {
     const a = extend(text, m.index, m.index + m[0].length);
     const endsInPin = /[1-9]\d{2}\s?\d{3}$/.test(a.value);
     if (!/,/.test(a.value) || !(endsInPin || HAS_PLACE.test(a.value))) continue;
-    out.push({ start: a.start, end: a.end, confidence: 0.75 });
+    found.push({ start: a.start, end: a.end, confidence: 0.75 });
   }
-  return out;
+  return found.map((a) => isBusiness(text, a.start, a.end) ? { ...a, confidence: BUSINESS_CONFIDENCE } : a);
 }
 
 // src/presets.js
@@ -1793,8 +1804,8 @@ var presets = {
   hipaa: {
     types: uniq(CONTACT, HEALTH, DEVICE, ["DATE_OF_BIRTH", "SSN", "VEHICLE_REG", "BANK_ACCOUNT", "CREDIT_CARD", "AADHAAR"])
   },
-  // everything, and accept weaker matches: best for prompts sent to third-party models
-  strict: { minConfidence: 0.4 },
+  // everything, weaker matches and test-looking numbers too: best for prompts sent to third-party models
+  strict: { minConfidence: 0.4, skipFakeNumbers: false },
   // only high-certainty matches, for analytics where false alarms are costly
   precise: { minConfidence: 0.8 }
 };
@@ -1940,7 +1951,7 @@ var Piilite = class {
     let last = 0;
     const detections = [];
     for (const d of found) {
-      const key = d.type + "\0" + d.value.toLowerCase();
+      const key = d.type + "\0" + d.value;
       let placeholder = state.seen.get(key);
       if (placeholder === void 0) {
         if (typeof opts.mode === "function") placeholder = opts.mode(d);

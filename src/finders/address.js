@@ -50,6 +50,20 @@ const ABBR = /(?:^|[\s,])(?:no|nr|opp|rd|st|h|d|flat|sec|ph|dist|distt|po|ps|p\.
 
 const MAX_LEN = 180;
 
+// A company's own address ("GoTrust Technologies Pvt Ltd, Sector 62, Noida") is not personal
+// data. It stays below the default confidence cut-off (0.5); the strict preset (0.4) still masks it.
+const COMPANY = String.raw`(?:pvt\.?\s*ltd|private\s+limited|ltd|limited|llp|inc|corp|corporation|technologies|solutions|infotech|industries|enterprises|software|systems|consultancy)\.?`;
+const COMPANY_BEFORE = new RegExp(`\\b${COMPANY}\\s*[,\\-–:]?\\s*$`, "i");
+const COMPANY_FIRST = new RegExp(`^[^,\\n]*\\b${COMPANY}\\s*(?:,|$)`, "i");
+const BUSINESS_CONFIDENCE = 0.45;
+
+function isBusiness(text, start, end) {
+  const lineStart = text.lastIndexOf("\n", start - 1) + 1;
+  const before = text.slice(Math.max(lineStart, start - 80), start);
+  if (/\b(?:near|nr|opp|opposite|behind|beside)\s+[^,]*$/i.test(before)) return false;
+  return COMPANY_BEFORE.test(before) || COMPANY_FIRST.test(text.slice(start, end));
+}
+
 function clauseEnd(text, from) {
   const limit = Math.min(text.length, from + MAX_LEN);
   let end = limit;
@@ -86,7 +100,7 @@ function extend(text, start, from) {
 }
 
 export function findAddresses(text) {
-  const out = [];
+  const found = [];
   let m;
 
   LABEL.lastIndex = 0;
@@ -97,7 +111,7 @@ export function findAddresses(text) {
     // "I live in Patna" is enough; a bare word after "address" is not
     const words = a.value.split(/[\s,]+/).filter(Boolean);
     if (a.value.length < 3 || words.length < 1) continue;
-    out.push({ start: a.start, end: a.end, confidence: words.length >= 2 || /\d/.test(a.value) ? 0.9 : 0.7 });
+    found.push({ start: a.start, end: a.end, confidence: words.length >= 2 || /\d/.test(a.value) ? 0.9 : 0.7 });
   }
 
   MARKER.lastIndex = 0;
@@ -107,7 +121,7 @@ export function findAddresses(text) {
     const tail = a.value.slice(m[0].length);
     const strong = /,/.test(a.value) && (/[1-9]\d{2}\s?\d{3}$/.test(a.value) || HAS_PLACE.test(tail) || ADDRESS_WORD.test(tail));
     if (!strong) continue;
-    out.push({ start: a.start, end: a.end, confidence: 0.85 });
+    found.push({ start: a.start, end: a.end, confidence: 0.85 });
   }
 
   // no label at all: "S/O Ram Lal, 45, Civil Lines, Jaipur 302001". Start at a PIN
@@ -115,7 +129,7 @@ export function findAddresses(text) {
   PIN_AFTER_PLACE.lastIndex = 0;
   while ((m = PIN_AFTER_PLACE.exec(text))) {
     const end = m.index + m[0].length;
-    if (out.some((a) => a.end === end)) continue;
+    if (found.some((a) => a.end === end)) continue;
     const lineStart = Math.max(text.lastIndexOf("\n", m.index) + 1, end - MAX_LEN);
     const head = text.slice(lineStart, end);
     const parts = head.split(/(?<=,)/);
@@ -133,7 +147,7 @@ export function findAddresses(text) {
     const startOffset = parts.slice(0, parts.length - take).join("").length;
     let start = lineStart + startOffset;
     while (start < end && /[\s,]/.test(text[start])) start++;
-    out.push({ start, end, confidence: 0.8 });
+    found.push({ start, end, confidence: 0.8 });
   }
 
   LANDMARK.lastIndex = 0;
@@ -141,7 +155,7 @@ export function findAddresses(text) {
     const a = extend(text, m.index, m.index + m[0].length);
     const endsInPin = /[1-9]\d{2}\s?\d{3}$/.test(a.value);
     if (!/,/.test(a.value) || !(endsInPin || HAS_PLACE.test(a.value))) continue;
-    out.push({ start: a.start, end: a.end, confidence: 0.75 });
+    found.push({ start: a.start, end: a.end, confidence: 0.75 });
   }
-  return out;
+  return found.map((a) => (isBusiness(text, a.start, a.end) ? { ...a, confidence: BUSINESS_CONFIDENCE } : a));
 }

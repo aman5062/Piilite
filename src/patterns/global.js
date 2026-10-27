@@ -81,9 +81,9 @@ export const globalPatterns = [
     // international numbers other than +91 (those are handled by PHONE_IN)
     type: "PHONE",
     regex: /(?<![\w+])(?:\+|00)(?!91)[1-9]\d{0,2}[\s.-]?\(?\d{1,4}\)?(?:[\s.-]?\d{2,5}){2,4}(?![\w])/g,
-    validator: (val) => {
+    validator: (val, _ctx, _text, _start, _end, opts) => {
       const d = v.digitsOf(val).replace(/^00/, "");
-      return d.length >= 8 && d.length <= 15 && !v.isJunkNumber(d);
+      return d.length >= 8 && d.length <= 15 && !v.isFake(d, opts);
     },
     priority: 77,
     severity: "high",

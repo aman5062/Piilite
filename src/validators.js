@@ -70,21 +70,24 @@ export function isJunkNumber(d) {
   return "01234567890".includes(d) || "09876543210".includes(d);
 }
 
+// Pattern validators get the Piilite options last; `skipFakeNumbers: false` keeps test numbers
+export const isFake = (d, opts) => opts?.skipFakeNumbers !== false && isJunkNumber(d);
+
 // Card network prefixes, including RuPay (60, 65, 81, 82, 508, 353, 356) and Maestro (50, 56-58, 63, 67)
 const CARD_PREFIX = /^(?:4|5[0-8]|2[2-7]|3[47]|3[0689]|35|6|81|82)/;
-export function creditCard(value) {
+export function creditCard(value, _ctx, _text, _start, _end, opts) {
   const d = digitsOf(value);
-  return d.length >= 13 && d.length <= 19 && CARD_PREFIX.test(d) && luhn(d) && !isJunkNumber(d);
+  return d.length >= 13 && d.length <= 19 && CARD_PREFIX.test(d) && luhn(d) && !isFake(d, opts);
 }
 
-export function aadhaar(value) {
+export function aadhaar(value, _ctx, _text, _start, _end, opts) {
   const d = digitsOf(value);
-  return d.length === 12 && /^[2-9]/.test(d) && !isJunkNumber(d) && verhoeff(d);
+  return d.length === 12 && /^[2-9]/.test(d) && !isFake(d, opts) && verhoeff(d);
 }
 
-export function aadhaarVid(value) {
+export function aadhaarVid(value, _ctx, _text, _start, _end, opts) {
   const d = digitsOf(value);
-  return d.length === 16 && !isJunkNumber(d) && verhoeff(d);
+  return d.length === 16 && !isFake(d, opts) && verhoeff(d);
 }
 
 // 4th character of a PAN is the holder type
@@ -128,21 +131,21 @@ export function iban(value) {
   return rem === 1;
 }
 
-export function indianMobile(value) {
+export function indianMobile(value, _ctx, _text, _start, _end, opts) {
   let d = digitsOf(value);
   if (d.length === 12 && d.startsWith("91")) d = d.slice(2);
   else if (d.length === 13 && d.startsWith("091")) d = d.slice(3);
   else if (d.length === 14 && d.startsWith("0091")) d = d.slice(4);
   else if (d.length === 11 && d.startsWith("0")) d = d.slice(1);
-  return d.length === 10 && /^[6-9]/.test(d) && !isJunkNumber(d);
+  return d.length === 10 && /^[6-9]/.test(d) && !isFake(d, opts);
 }
 
-export function indianLandline(value) {
+export function indianLandline(value, _ctx, _text, _start, _end, opts) {
   let d = digitsOf(value);
   if (d.startsWith("91") && d.length === 12) d = d.slice(2);
   else if (d.startsWith("0") && d.length === 11) d = d.slice(1);
   else return false;
-  return d.length === 10 && /^[1-5]/.test(d) && !isJunkNumber(d);
+  return d.length === 10 && /^[1-5]/.test(d) && !isFake(d, opts);
 }
 
 export function ipv4(value) {

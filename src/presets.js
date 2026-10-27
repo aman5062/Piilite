@@ -45,8 +45,8 @@ export const presets = {
   hipaa: {
     types: uniq(CONTACT, HEALTH, DEVICE, ["DATE_OF_BIRTH", "SSN", "VEHICLE_REG", "BANK_ACCOUNT", "CREDIT_CARD", "AADHAAR"]),
   },
-  // everything, and accept weaker matches: best for prompts sent to third-party models
-  strict: { minConfidence: 0.4 },
+  // everything, weaker matches and test-looking numbers too: best for prompts sent to third-party models
+  strict: { minConfidence: 0.4, skipFakeNumbers: false },
   // only high-certainty matches, for analytics where false alarms are costly
   precise: { minConfidence: 0.8 },
 };
