@@ -9,6 +9,9 @@ export type PiiType =
   | "BEARER_TOKEN" | "CONNECTION_STRING" | "URL_CREDENTIALS" | "PASSWORD"
   | (string & {});
 
+export type PresetName =
+  | "dpdp" | "kyc" | "fintech" | "pci" | "healthcare" | "hr" | "secrets" | "gdpr" | "hipaa" | "strict" | "precise";
+
 /** Same shape as OpenRedaction's PIIPattern, plus optional piilite fields. */
 export interface PiiPattern {
   type: string;
@@ -32,6 +35,8 @@ export interface PiiPattern {
   contextOnly?: "before";
   contextWindow?: number;
   contextAfter?: number;
+  /** Keyword regex that rejects the match unless `context` also matches */
+  negativeContext?: RegExp;
   /** Accept a failed validator when context is present */
   lenient?: boolean;
   /** May be trimmed around higher-priority matches instead of dropped */
@@ -61,12 +66,18 @@ export interface DetectionResult {
   redacted: string;
   detections: PiiDetection[];
   redactionMap: Record<string, string>;
-  stats: { piiCount: number; processingTime: number };
+  stats: { piiCount: number; processingTime: number; byType: Record<string, number> };
 }
 
 export type RedactionMode = "placeholder" | "mask" | "mask-all" | "remove" | ((match: PiiMatch) => string);
 
 export interface PiiliteOptions {
+  /** Ready-made type set; your other options override it */
+  preset?: PresetName;
+  /** Throw a RangeError above this many characters (default 5,000,000) */
+  maxInputSize?: number;
+  /** Called after every detect(); use it for audit logs (types, counts, positions) */
+  onDetect?: (result: DetectionResult) => void;
   /** How to replace PII (default "placeholder" → "[PHONE_IN_1]") */
   mode?: RedactionMode;
   /** Only detect these types */
@@ -87,16 +98,51 @@ export interface PiiliteOptions {
   placeholder?: (type: string, n: number, value: string) => string;
 }
 
+export interface RedactionState {
+  counters: Record<string, number>;
+  seen: Map<string, string>;
+  map: Record<string, string>;
+}
+
+export interface StreamOptions {
+  /** Characters held back until it is safe to emit them (default 200) */
+  holdBack?: number;
+}
+
+export declare class StreamRedactor {
+  constructor(shield: Piilite, options?: StreamOptions);
+  readonly redactionMap: Record<string, string>;
+  /** Add a chunk; returns redacted text that is safe to emit now (may be "") */
+  push(chunk: string): string;
+  /** Flush the rest */
+  end(): string;
+}
+
+export interface RestoreOptions {
+  /** Also restore "[NAME 1]", "[name_1]", "NAME_1" (default true) */
+  fuzzy?: boolean;
+}
+
 export declare class Piilite {
   constructor(options?: PiiliteOptions);
   options: PiiliteOptions;
+  patterns: PiiPattern[];
   scan(text: string): PiiMatch[];
   hasPII(text: string): boolean;
-  detect(text: string): DetectionResult;
+  detect(text: string, state?: RedactionState): DetectionResult;
   redact(text: string): string;
-  redactObject<T>(value: T): { value: T; redactionMap: Record<string, string> };
-  restore(text: string, redactionMap: Record<string, string>): string;
+  redactObject<T>(value: T, options?: { skipKeys?: string[] }): { value: T; redactionMap: Record<string, string> };
+  restore(text: string, redactionMap: Record<string, string>, options?: RestoreOptions): string;
+  createStream(options?: StreamOptions): StreamRedactor;
+  redactStream(source: AsyncIterable<string>, options?: StreamOptions): AsyncGenerator<string>;
+  transformStream(options?: StreamOptions): TransformStream<string, string>;
+  newState(): RedactionState;
+  apply(text: string, found: PiiMatch[], state?: RedactionState): { redacted: string; detections: PiiDetection[] };
+  getPatterns(): PiiPattern[];
+  getCacheStats(): { size: number; maxSize: number; enabled: boolean };
 }
+
+export declare const presets: Record<PresetName, Partial<PiiliteOptions>>;
 
 export declare const PII_TYPES: string[];
 export declare const builtinPatterns: PiiPattern[];
@@ -105,7 +151,7 @@ export declare function redact(text: string): string;
 export declare function scan(text: string): PiiMatch[];
 export declare function detect(text: string): DetectionResult;
 export declare function hasPII(text: string): boolean;
-export declare function restore(text: string, redactionMap: Record<string, string>): string;
+export declare function restore(text: string, redactionMap: Record<string, string>, options?: RestoreOptions): string;
 
 export declare function verhoeff(num: string): boolean;
 export declare function verhoeffDigit(num: string): number;
